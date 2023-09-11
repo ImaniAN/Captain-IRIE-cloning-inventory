@@ -112,9 +112,11 @@ CREATE TABLE Maturity (
 CREATE TABLE Cutting (
     CutID INT PRIMARY KEY,
     DateOfCut DATE,
-    NumberOfBranchesCut INT,
+    NumberOfCuts INT,
     MaturityID INT,
-    FOREIGN KEY (MaturityID) REFERENCES Maturity(MaturityID)
+    MotherID INT,
+    FOREIGN KEY (MaturityID) REFERENCES Maturity(MaturityID),
+    FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
 );
 
 -- Create the Transplant Table
@@ -134,10 +136,17 @@ CREATE TABLE Daughter (
     CutID INT,
     MotherID INT,
     TransplantID INT,
-    DateTransplanted DATE,
     GeneticMarkerID INT,
     PhenotypicMarkerID INT,
     Age INT,
+    NumberOfBranches INT,
+    BranchSites INT,
+    Roots INT,
+    Branches INT,
+    Trunk INT,
+    Nodes INT,
+    Leaves INT,
+    Color VARCHAR(255),
     FOREIGN KEY (CutID) REFERENCES Cutting(CutID),
     FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID),
     FOREIGN KEY (TransplantID) REFERENCES Transplant(TransplantID),
