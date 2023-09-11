@@ -21,7 +21,8 @@ CREATE TABLE GeneticMarker (
 CREATE TABLE PhenotypicMarker (
     PhenotypicMarkerID INT PRIMARY KEY,
     MarkerName VARCHAR(255) UNIQUE,
-    Description TEXT
+    Colour VARCHAR(255),
+    LeafStructure VARCHAR(255)
 );
 
 -- Create the Seed Table
@@ -31,7 +32,7 @@ CREATE TABLE Seed (
     GeneticMarkerID INT,
     PhenotypicMarkerID INT,
     PackID VARCHAR(50),
-    DatePurchased DATE,
+    DateRecieved DATE,
     FOREIGN KEY (BreederVendorID) REFERENCES SeedBreederVendor(BreederVendorID),
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID),
     FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID)
@@ -45,10 +46,26 @@ CREATE TABLE SeedBank (
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
 );
 
+-- Create the Seedling Table
+CREATE TABLE Seedling (
+    SeedlingID INT PRIMARY KEY,
+    SeedID INT,
+    DateTransplanted DATE,
+    Age INT,
+    Nodes INT,
+    PhenotypicMarkerID INT,
+    GeneticMarkerID INT,
+    FOREIGN KEY (SeedID) REFERENCES Seed(SeedID),
+    FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID),
+    FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
+);
+
+
 -- Create the Mothers Table
 CREATE TABLE Mothers (
     MotherID INT PRIMARY KEY,
     SeedID INT,
+    SeedlingID INT,
     SeedBankID INT,
     DatePlanted DATE,
     Age INT,
@@ -57,6 +74,7 @@ CREATE TABLE Mothers (
     PhenotypicMarkerID INT,
     GeneticMarkerID INT,
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID),
+    FOREIGN KEY (SeedlingID) REFERENCES Seedling(SeedlingID),
     FOREIGN KEY (SeedBankID) REFERENCES SeedBank(SeedBankID),
     FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID),
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
