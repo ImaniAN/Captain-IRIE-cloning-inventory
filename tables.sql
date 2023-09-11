@@ -31,12 +31,14 @@ CREATE TABLE Seed (
     BreederVendorID INT,
     GeneticMarkerID INT,
     PhenotypicMarkerID INT,
-    PackID VARCHAR(50),
-    DateRecieved DATE,
-    FOREIGN KEY (BreederVendorID) REFERENCES SeedBreederVendor(BreederVendorID),
-    FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID),
+    PackID VARCHAR(50) DEFAULT 'HomePack', -- Set your default value here
+    DateReceived DATE DEFAULT GETDATE(), -- Set your default value here
+    FOREIGN KEY (BreederVendorID) REFERENCES SeedBreederVendor(BreederVendorID)
+        ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
+        ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID)
-);
+        ON UPDATE CASCADE ON DELETE CASCADE
 
 -- Create the PackagingInfo Table
 CREATE TABLE PackagingInfo (
@@ -46,8 +48,10 @@ CREATE TABLE PackagingInfo (
     PackageUnits VARCHAR(50),
     PackagingDate DATE,
     ExpirationDate DATE,
-    FOREIGN KEY (SeedID) REFERENCES Seed(SeedID),
+    FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
+        ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (SeedBankID) REFERENCES SeedBank(SeedBankID)
+      ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Seed Bank Table
@@ -56,6 +60,7 @@ CREATE TABLE SeedBank (
     SeedID INT,
     Quantity INT,
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
+      ON UPDATE CASCADE ON DELETE CASCADE,
 );
 
 -- Create the Seeding Table
@@ -65,8 +70,10 @@ CREATE TABLE Seeding (
     SeedBankID INT,
     DatePlanted DATE,
     Quantity INT,
-    FOREIGN KEY (SeedID) REFERENCES Seed(SeedID),
+    FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
+      ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (SeedBankID) REFERENCES SeedBank(SeedBankID)
+      ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Seedling Table
@@ -77,6 +84,7 @@ CREATE TABLE Seedling (
     SproutDate DATE,
     Age INT,
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
+      ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Mothers Table
@@ -88,9 +96,12 @@ CREATE TABLE Mothers (
     Nodes INT,
     PhenotypicMarkerID INT,
     GeneticMarkerID INT,
-    FOREIGN KEY (SeedID) REFERENCES Seed(SeedID),
-    FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID),
+    FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
+      ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID)
+      ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
+      ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Maturity Table
@@ -106,6 +117,7 @@ CREATE TABLE Maturity (
     Leaves INT,
     Color VARCHAR(255),
     FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
+      ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Cutting Table
@@ -115,8 +127,10 @@ CREATE TABLE Cutting (
     NumberOfCuts INT,
     MaturityID INT,
     MotherID INT,
-    FOREIGN KEY (MaturityID) REFERENCES Maturity(MaturityID),
+    FOREIGN KEY (MaturityID) REFERENCES Maturity(MaturityID)
+      ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
+      ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Transplant Table
@@ -126,8 +140,10 @@ CREATE TABLE Transplant (
     MotherID INT,
     NumberOfTransplants INT,
     DateTransplanted DATE,
-    FOREIGN KEY (CutID) REFERENCES Cutting(CutID),
+    FOREIGN KEY (CutID) REFERENCES Cutting(CutID)
+      ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
+      ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Daughter Table
@@ -147,11 +163,16 @@ CREATE TABLE Daughter (
     Nodes INT,
     Leaves INT,
     Color VARCHAR(255),
-    FOREIGN KEY (CutID) REFERENCES Cutting(CutID),
-    FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID),
-    FOREIGN KEY (TransplantID) REFERENCES Transplant(TransplantID),
-    FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID),
+    FOREIGN KEY (CutID) REFERENCES Cutting(CutID)
+      ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
+      ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (TransplantID) REFERENCES Transplant(TransplantID)
+      ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
+      ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID)
+      ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -162,6 +183,7 @@ CREATE TABLE Strain (
     Age INT,
     DaughterID INT,
     FOREIGN KEY (DaughterID) REFERENCES Daughter(DaughterID)
+      ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create primary key indexes and additional indexes as needed
