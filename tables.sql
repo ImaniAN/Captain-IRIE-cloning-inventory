@@ -38,6 +38,18 @@ CREATE TABLE Seed (
     FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID)
 );
 
+-- Create the PackagingInfo Table
+CREATE TABLE PackagingInfo (
+    PackagingInfoID INT PRIMARY KEY,
+    SeedID INT,
+    SeedBankID INT,
+    PackageUnits VARCHAR(50),
+    PackagingDate DATE,
+    ExpirationDate DATE,
+    FOREIGN KEY (SeedID) REFERENCES Seed(SeedID),
+    FOREIGN KEY (SeedBankID) REFERENCES SeedBank(SeedBankID)
+);
+
 -- Create the Seed Bank Table
 CREATE TABLE SeedBank (
     SeedBankID INT PRIMARY KEY,
@@ -61,30 +73,22 @@ CREATE TABLE Seeding (
 CREATE TABLE Seedling (
     SeedlingID INT PRIMARY KEY,
     SeedID INT,
-    DateTransplanted DATE,
+    SeedingID INT,
+    SproutDate DATE,
     Age INT,
-    PhenotypicMarkerID INT,
-    GeneticMarkerID INT,
-    FOREIGN KEY (SeedID) REFERENCES Seed(SeedID),
-    FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID),
-    FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
+    FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
 );
 
 -- Create the Mothers Table
 CREATE TABLE Mothers (
     MotherID INT PRIMARY KEY,
-    SeedID INT,
     SeedlingID INT,
-    SeedBankID INT,
-    DatePlanted DATE,
     Age INT,
     TimeGrown INT,
     Nodes INT,
     PhenotypicMarkerID INT,
     GeneticMarkerID INT,
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID),
-    FOREIGN KEY (SeedlingID) REFERENCES Seedling(SeedlingID),
-    FOREIGN KEY (SeedBankID) REFERENCES SeedBank(SeedBankID),
     FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID),
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
 );
@@ -109,10 +113,19 @@ CREATE TABLE Cutting (
     CutID INT PRIMARY KEY,
     DateOfCut DATE,
     NumberOfBranchesCut INT,
+    MaturityID INT,
+    FOREIGN KEY (MaturityID) REFERENCES Maturity(MaturityID)
+);
+
+-- Create the Transplant Table
+CREATE TABLE Transplant (
+    TransplantID INT PRIMARY KEY,
+    CutID INT,
     MotherID INT,
-    TransplantID INT,
-    FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID),
-    FOREIGN KEY (TransplantID) REFERENCES Transplant(TransplantID)
+    NumberOfTransplants INT,
+    DateTransplanted DATE,
+    FOREIGN KEY (CutID) REFERENCES Cutting(CutID),
+    FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
 );
 
 -- Create the Daughter Table
@@ -132,16 +145,17 @@ CREATE TABLE Daughter (
     FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID)
 );
 
--- Create the Transplant Table
-CREATE TABLE Transplant (
-    TransplantID INT PRIMARY KEY,
-    CutID INT,
-    MotherID INT,
-    NumberOfTransplants INT,
-    DateTransplanted DATE,
-    FOREIGN KEY (CutID) REFERENCES Cutting(CutID),
-    FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
+
+-- Create the Strain Table
+CREATE TABLE Strain (
+    StrainID INT PRIMARY KEY,
+    StrainName VARCHAR(255) UNIQUE,
+    Age INT,
+    DaughterID INT,
+    Color VARCHAR(255),
+    FOREIGN KEY (DaughterID) REFERENCES Daughter(DaughterID)
 );
+
 
 
 -- Create primary key indexes and additional indexes as needed
