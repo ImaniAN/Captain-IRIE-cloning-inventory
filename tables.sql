@@ -6,20 +6,20 @@ USE YourDatabaseName;
 
 -- Create the Seed Breeder Vendor Table
 CREATE TABLE SeedBreederVendor (
-    BreederVendorID INT PRIMARY KEY,
+    BreederVendorID  INT IDENTITY(1,1) PRIMARY KEY,
     VendorName VARCHAR(255) UNIQUE
 );
 
 -- Create the Genetic Marker Table
 CREATE TABLE GeneticMarker (
-    GeneticMarkerID INT PRIMARY KEY,
+    GeneticMarkerID  INT IDENTITY(1,1) PRIMARY KEY,
     Genus VARCHAR(255),
     Species VARCHAR(255)
 );
 
 -- Create the Phenotypic Marker Table
 CREATE TABLE PhenotypicMarker (
-    PhenotypicMarkerID INT PRIMARY KEY,
+    PhenotypicMarkerID  INT IDENTITY(1,1) PRIMARY KEY,
     MarkerName VARCHAR(255) UNIQUE,
     Colour VARCHAR(255),
     LeafStructure VARCHAR(255)
@@ -27,7 +27,7 @@ CREATE TABLE PhenotypicMarker (
 
 -- Create the Seed Table
 CREATE TABLE Seed (
-    SeedID INT PRIMARY KEY,
+    SeedID  INT IDENTITY(1,1) PRIMARY KEY,
     BreederVendorID INT,
     GeneticMarkerID INT,
     PhenotypicMarkerID INT,
@@ -39,10 +39,11 @@ CREATE TABLE Seed (
         ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID)
         ON UPDATE CASCADE ON DELETE CASCADE
+);
 
 -- Create the PackagingInfo Table
 CREATE TABLE PackagingInfo (
-    PackagingInfoID INT PRIMARY KEY,
+    PackagingInfoID  INT IDENTITY(1,1) PRIMARY KEY,
     SeedID INT,
     SeedBankID INT,
     PackageUnits VARCHAR(50),
@@ -56,7 +57,7 @@ CREATE TABLE PackagingInfo (
 
 -- Create the Seed Bank Table
 CREATE TABLE SeedBank (
-    SeedBankID INT PRIMARY KEY,
+    SeedBankID  INT IDENTITY(1,1) PRIMARY KEY,
     SeedID INT,
     Quantity INT,
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
@@ -65,7 +66,7 @@ CREATE TABLE SeedBank (
 
 -- Create the Seeding Table
 CREATE TABLE Seeding (
-    SeedingID INT PRIMARY KEY,
+    SeedingID  INT IDENTITY(1,1) PRIMARY KEY,
     SeedID INT,
     SeedBankID INT,
     DatePlanted DATE,
@@ -78,20 +79,20 @@ CREATE TABLE Seeding (
 
 -- Create the Seedling Table
 CREATE TABLE Seedling (
-    SeedlingID INT PRIMARY KEY,
+    SeedlingID  INT IDENTITY(1,1) PRIMARY KEY,
     SeedID INT,
     SeedingID INT,
     SproutDate DATE,
-    Age INT,
+    Age INT DEFAULT 0,
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Mothers Table
 CREATE TABLE Mothers (
-    MotherID INT PRIMARY KEY,
+    MotherID  INT IDENTITY(1,1) PRIMARY KEY,
     SeedlingID INT,
-    Age INT,
+    Age INT DEFAULT 0,
     TimeGrown INT,
     Nodes INT,
     PhenotypicMarkerID INT,
@@ -106,7 +107,7 @@ CREATE TABLE Mothers (
 
 -- Create the Maturity Table
 CREATE TABLE Maturity (
-    MaturityID INT PRIMARY KEY,
+    MaturityID  INT IDENTITY(1,1) PRIMARY KEY,
     MotherID INT,
     NumberOfBranches INT,
     BranchSites INT,
@@ -122,7 +123,7 @@ CREATE TABLE Maturity (
 
 -- Create the Cutting Table
 CREATE TABLE Cutting (
-    CutID INT PRIMARY KEY,
+    CutID  INT IDENTITY(1,1) PRIMARY KEY,
     DateOfCut DATE,
     NumberOfCuts INT,
     MaturityID INT,
@@ -135,7 +136,7 @@ CREATE TABLE Cutting (
 
 -- Create the Transplant Table
 CREATE TABLE Transplant (
-    TransplantID INT PRIMARY KEY,
+    TransplantID  INT IDENTITY(1,1) PRIMARY KEY,
     CutID INT,
     MotherID INT,
     NumberOfTransplants INT,
@@ -148,13 +149,13 @@ CREATE TABLE Transplant (
 
 -- Create the Daughter Table
 CREATE TABLE Daughter (
-    DaughterID INT PRIMARY KEY,
+    DaughterID  INT IDENTITY(1,1) PRIMARY KEY,
     CutID INT,
     MotherID INT,
     TransplantID INT,
     GeneticMarkerID INT,
     PhenotypicMarkerID INT,
-    Age INT,
+    Age INT DEFAULT 0,
     NumberOfBranches INT,
     BranchSites INT,
     Roots INT,
@@ -178,9 +179,9 @@ CREATE TABLE Daughter (
 
 -- Create the Strain Table
 CREATE TABLE Strain (
-    StrainID INT PRIMARY KEY,
+    StrainID  INT IDENTITY(1,1) PRIMARY KEY,
     StrainName VARCHAR(255) UNIQUE,
-    Age INT,
+    Age INT DEFAULT 0,
     DaughterID INT,
     FOREIGN KEY (DaughterID) REFERENCES Daughter(DaughterID)
       ON UPDATE CASCADE ON DELETE CASCADE
