@@ -161,16 +161,60 @@ CREATE TABLE Strain (
     StrainName VARCHAR(255) UNIQUE,
     Age INT,
     DaughterID INT,
-    Color VARCHAR(255),
     FOREIGN KEY (DaughterID) REFERENCES Daughter(DaughterID)
 );
 
-
-
 -- Create primary key indexes and additional indexes as needed
 -- (e.g., indexes for frequently queried columns, non-clustered indexes, etc.)
+-- Indexes for Seed Table
 CREATE INDEX idx_Seed_BreederVendorID ON Seed (BreederVendorID);
 CREATE INDEX idx_Seed_GeneticMarkerID ON Seed (GeneticMarkerID);
+CREATE INDEX idx_Seed_PhenotypicMarkerID ON Seed (PhenotypicMarkerID);
+CREATE INDEX idx_Seed_DateReceived ON Seed (DateReceived);
+CREATE INDEX idx_Seed_PackID ON Seed (PackID);
+
+-- Indexes for PackagingInfo Table
+CREATE INDEX idx_PackagingInfo_SeedID ON PackagingInfo (SeedID);
+CREATE INDEX idx_PackagingInfo_SeedBankID ON PackagingInfo (SeedBankID);
+
+-- Indexes for SeedBank Table
+CREATE INDEX idx_SeedBank_SeedID ON SeedBank (SeedID);
+CREATE INDEX idx_SeedBank_Quantity ON SeedBank (Quantity);
+
+-- Indexes for Seeding Table
+CREATE INDEX idx_Seeding_SeedID ON Seeding (SeedID);
+CREATE INDEX idx_Seeding_SeedBankID ON Seeding (SeedBankID);
+CREATE INDEX idx_Seeding_DatePlanted ON Seeding (DatePlanted);
+
+-- Indexes for Seedling Table
+CREATE INDEX idx_Seedling_SeedID ON Seedling (SeedID);
+CREATE INDEX idx_Seedling_SeedingID ON Seedling (SeedingID);
+CREATE INDEX idx_Seedling_SproutDate ON Seedling (SproutDate);
+
+-- Indexes for Mothers Table
+CREATE INDEX idx_Mothers_SeedlingID ON Mothers (SeedlingID);
+CREATE INDEX idx_Mothers_PhenotypicMarkerID ON Mothers (PhenotypicMarkerID);
+CREATE INDEX idx_Mothers_GeneticMarkerID ON Mothers (GeneticMarkerID);
+
+-- Indexes for Maturity Table
+CREATE INDEX idx_Maturity_MotherID ON Maturity (MotherID);
+
+-- Indexes for Cutting Table
+CREATE INDEX idx_Cutting_MotherID ON Cutting (MotherID);
+CREATE INDEX idx_Cutting_MaturityID ON Cutting (MaturityID);
+
+-- Indexes for Transplant Table
+CREATE INDEX idx_Transplant_MotherID ON Transplant (MotherID);
+
+-- Indexes for Daughter Table
+CREATE INDEX idx_Daughter_MotherID ON Daughter (MotherID);
+CREATE INDEX idx_Daughter_TransplantID ON Daughter (TransplantID);
+CREATE INDEX idx_Daughter_GeneticMarkerID ON Daughter (GeneticMarkerID);
+CREATE INDEX idx_Daughter_PhenotypicMarkerID ON Daughter (PhenotypicMarkerID);
+
+-- Indexes for Strain Table
+CREATE INDEX idx_Strain_DaughterID ON Strain (DaughterID);
+
 -- Add more indexes as needed.
 
 -- Create constraints, triggers, and other database-specific configurations as required.
