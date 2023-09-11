@@ -46,20 +46,29 @@ CREATE TABLE SeedBank (
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
 );
 
+-- Create the Seeding Table
+CREATE TABLE Seeding (
+    SeedingID INT PRIMARY KEY,
+    SeedID INT,
+    SeedBankID INT,
+    DatePlanted DATE,
+    Quantity INT,
+    FOREIGN KEY (SeedID) REFERENCES Seed(SeedID),
+    FOREIGN KEY (SeedBankID) REFERENCES SeedBank(SeedBankID)
+);
+
 -- Create the Seedling Table
 CREATE TABLE Seedling (
     SeedlingID INT PRIMARY KEY,
     SeedID INT,
     DateTransplanted DATE,
     Age INT,
-    Nodes INT,
     PhenotypicMarkerID INT,
     GeneticMarkerID INT,
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID),
     FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID),
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
 );
-
 
 -- Create the Mothers Table
 CREATE TABLE Mothers (
@@ -79,6 +88,61 @@ CREATE TABLE Mothers (
     FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID),
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
 );
+
+-- Create the Maturity Table
+CREATE TABLE Maturity (
+    MaturityID INT PRIMARY KEY,
+    MotherID INT,
+    NumberOfBranches INT,
+    BranchSites INT,
+    Roots INT,
+    Branches INT,
+    Trunk INT,
+    Nodes INT,
+    Leaves INT,
+    Color VARCHAR(255),
+    FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
+);
+
+-- Create the Cutting Table
+CREATE TABLE Cutting (
+    CutID INT PRIMARY KEY,
+    DateOfCut DATE,
+    NumberOfBranchesCut INT,
+    MotherID INT,
+    TransplantID INT,
+    FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID),
+    FOREIGN KEY (TransplantID) REFERENCES Transplant(TransplantID)
+);
+
+-- Create the Daughter Table
+CREATE TABLE Daughter (
+    DaughterID INT PRIMARY KEY,
+    CutID INT,
+    MotherID INT,
+    TransplantID INT,
+    DateTransplanted DATE,
+    GeneticMarkerID INT,
+    PhenotypicMarkerID INT,
+    Age INT,
+    FOREIGN KEY (CutID) REFERENCES Cutting(CutID),
+    FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID),
+    FOREIGN KEY (TransplantID) REFERENCES Transplant(TransplantID),
+    FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID),
+    FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID)
+);
+
+-- Create the Transplant Table
+CREATE TABLE Transplant (
+    TransplantID INT PRIMARY KEY,
+    CutID INT,
+    MotherID INT,
+    NumberOfTransplants INT,
+    DateTransplanted DATE,
+    FOREIGN KEY (CutID) REFERENCES Cutting(CutID),
+    FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
+);
+
 
 -- Create primary key indexes and additional indexes as needed
 -- (e.g., indexes for frequently queried columns, non-clustered indexes, etc.)
