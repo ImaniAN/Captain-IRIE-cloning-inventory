@@ -47,8 +47,8 @@ CREATE TABLE PackagingInfo (
     SeedID INT,
     SeedBankID INT,
     PackageUnits VARCHAR(50),
-    PackagingDate DATE,
-    ExpirationDate DATE,
+    PackagingDate DATE, -- GETDATE() ???
+    ExpirationDate DATE, -- GETDATE() ???
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
         ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (SeedBankID) REFERENCES SeedBank(SeedBankID)
@@ -69,7 +69,7 @@ CREATE TABLE Seeding (
     SeedingID  INT IDENTITY(1,1) PRIMARY KEY,
     SeedID INT,
     SeedBankID INT,
-    DatePlanted DATE,
+    DatePlanted DATE, -- GETDATE() ???
     Quantity INT,
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
       ON UPDATE CASCADE ON DELETE CASCADE,
@@ -82,7 +82,7 @@ CREATE TABLE Seedling (
     SeedlingID  INT IDENTITY(1,1) PRIMARY KEY,
     SeedID INT,
     SeedingID INT,
-    SproutDate DATE,
+    SproutDate DATE, -- GETDATE() ???
     Age INT DEFAULT 0,
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
       ON UPDATE CASCADE ON DELETE CASCADE
@@ -116,7 +116,7 @@ CREATE TABLE Maturity (
     Trunk INT,
     Nodes INT,
     Leaves INT,
-    Color VARCHAR(255),
+    Color VARCHAR(50),
     FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -124,7 +124,7 @@ CREATE TABLE Maturity (
 -- Create the Cutting Table
 CREATE TABLE Cutting (
     CutID  INT IDENTITY(1,1) PRIMARY KEY,
-    DateOfCut DATE,
+    DateOfCut DATE, -- GETDATE() ???
     NumberOfCuts INT,
     MaturityID INT,
     MotherID INT,
@@ -140,7 +140,7 @@ CREATE TABLE Transplant (
     CutID INT,
     MotherID INT,
     NumberOfTransplants INT,
-    DateTransplanted DATE,
+    DateTransplanted DATE, -- GETDATE() ???
     FOREIGN KEY (CutID) REFERENCES Cutting(CutID)
       ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
@@ -163,7 +163,7 @@ CREATE TABLE Daughter (
     Trunk INT,
     Nodes INT,
     Leaves INT,
-    Color VARCHAR(255),
+    Color VARCHAR(50),
     FOREIGN KEY (CutID) REFERENCES Cutting(CutID)
       ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
