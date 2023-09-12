@@ -21,8 +21,12 @@ CREATE TABLE GeneticMarker (
 CREATE TABLE PhenotypicMarker (
     PhenotypicMarkerID  INT IDENTITY(1,1) PRIMARY KEY,
     MarkerName VARCHAR(255) UNIQUE,
-    Colour VARCHAR(255),
-    LeafStructure VARCHAR(255)
+    GeneticMarkerID INT,
+    NumberofNodes INT,
+    Colour VARCHAR(50),
+    LeafShape VARCHAR(50), --Leaves can be broad or narrow
+    FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
+      ON UPDATE CASCADE ON DELETE CASCADE,
 );
 
 -- Create the Seed Table
@@ -31,8 +35,7 @@ CREATE TABLE Seed (
     BreederVendorID INT,
     GeneticMarkerID INT,
     PhenotypicMarkerID INT,
-    PackID VARCHAR(50) DEFAULT 'HomePack', -- Set your default value here
-    DateReceived DATE DEFAULT GETDATE(), -- Set your default value here
+    PackID VARCHAR(50) DEFAULT 'BackSeed', -- Set your default value here
     FOREIGN KEY (BreederVendorID) REFERENCES SeedBreederVendor(BreederVendorID)
         ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
@@ -49,6 +52,7 @@ CREATE TABLE PackagingInfo (
     PackageUnits VARCHAR(50),
     PackagingDate DATE, -- GETDATE() ???
     ExpirationDate DATE, -- GETDATE() ???
+    DateReceived DATE DEFAULT GETDATE(), -- Set your default value here
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
         ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (SeedBankID) REFERENCES SeedBank(SeedBankID)
@@ -58,6 +62,8 @@ CREATE TABLE PackagingInfo (
 -- Create the Seed Bank Table
 CREATE TABLE SeedBank (
     SeedBankID  INT IDENTITY(1,1) PRIMARY KEY,
+    SeedBankname,
+    PackagingInfoID,
     SeedID INT,
     Quantity INT,
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
@@ -110,12 +116,14 @@ CREATE TABLE Maturity (
     MaturityID  INT IDENTITY(1,1) PRIMARY KEY,
     MotherID INT,
     NumberOfBranches INT,
+    MaturityDate DATE, -- GETDATE() ???
     BranchSites INT,
-    Roots INT,
+    Age INT DEFAULT 0,
+    Height INT DEFAULT 0,
     Branches INT,
     Trunk INT,
     Nodes INT,
-    Leaves INT,
+    LeafShape VARCHAR(50),
     Color VARCHAR(50),
     FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
       ON UPDATE CASCADE ON DELETE CASCADE
@@ -124,7 +132,7 @@ CREATE TABLE Maturity (
 -- Create the Cutting Table
 CREATE TABLE Cutting (
     CutID  INT IDENTITY(1,1) PRIMARY KEY,
-    DateOfCut DATE, -- GETDATE() ???
+    CutDate DATE, -- GETDATE() ???
     NumberOfCuts INT,
     MaturityID INT,
     MotherID INT,
@@ -138,12 +146,9 @@ CREATE TABLE Cutting (
 CREATE TABLE Transplant (
     TransplantID  INT IDENTITY(1,1) PRIMARY KEY,
     CutID INT,
-    MotherID INT,
-    NumberOfTransplants INT,
-    DateTransplanted DATE, -- GETDATE() ???
+    Roots INT DEFAULT 0,
+    TransplantDate DATE, -- GETDATE() ???
     FOREIGN KEY (CutID) REFERENCES Cutting(CutID)
-      ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -156,13 +161,9 @@ CREATE TABLE Daughter (
     GeneticMarkerID INT,
     PhenotypicMarkerID INT,
     Age INT DEFAULT 0,
-    NumberOfBranches INT,
     BranchSites INT,
-    Roots INT,
-    Branches INT,
-    Trunk INT,
     Nodes INT,
-    Leaves INT,
+    LeafShape VARCHAR(50),
     Color VARCHAR(50),
     FOREIGN KEY (CutID) REFERENCES Cutting(CutID)
       ON UPDATE CASCADE ON DELETE CASCADE,
