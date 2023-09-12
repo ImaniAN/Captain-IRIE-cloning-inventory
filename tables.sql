@@ -1,28 +1,29 @@
 -- Create a new database
-CREATE DATABASE YourDatabaseName;
+CREATE DATABASE ProjectMotherShip;
 
 -- Use the newly created database
-USE YourDatabaseName;
+USE ProjectMotherShip;
 
 -- Create the Seed Breeder Vendor Table
 CREATE TABLE SeedBreederVendor (
     BreederVendorID  INT IDENTITY(1,1) PRIMARY KEY,
-    VendorName VARCHAR(255) UNIQUE
+    VendorName VARCHAR(50) UNIQUE
 );
 
 -- Create the Genetic Marker Table
 CREATE TABLE GeneticMarker (
     GeneticMarkerID  INT IDENTITY(1,1) PRIMARY KEY,
-    Genus VARCHAR(255),
-    Species VARCHAR(255)
-);
+    Genus VARCHAR(50),
+    Species VARCHAR(50)
+); -- Cannabis sativa, indica and hybrid
 
 -- Create the Phenotypic Marker Table
 CREATE TABLE PhenotypicMarker (
     PhenotypicMarkerID  INT IDENTITY(1,1) PRIMARY KEY,
-    MarkerName VARCHAR(255) UNIQUE,
+    MarkerName VARCHAR(50) UNIQUE,
     GeneticMarkerID INT,
     NumberofNodes INT,
+    Height INT DEFAULT 0,
     Colour VARCHAR(50),
     LeafShape VARCHAR(50), --Leaves can be broad or narrow
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
@@ -49,7 +50,7 @@ CREATE TABLE PackagingInfo (
     PackagingInfoID  INT IDENTITY(1,1) PRIMARY KEY,
     SeedID INT,
     SeedBankID INT,
-    PackageUnits VARCHAR(50),
+    PackageUnits INT,
     PackagingDate DATE, -- GETDATE() ???
     ExpirationDate DATE, -- GETDATE() ???
     DateReceived DATE DEFAULT GETDATE(), -- Set your default value here
@@ -62,12 +63,10 @@ CREATE TABLE PackagingInfo (
 -- Create the Seed Bank Table
 CREATE TABLE SeedBank (
     SeedBankID  INT IDENTITY(1,1) PRIMARY KEY,
-    SeedBankname,
-    PackagingInfoID,
-    SeedID INT,
-    Quantity INT,
-    FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
-      ON UPDATE CASCADE ON DELETE CASCADE,
+    SeedBankName VARCHAR(50),
+    PackagingInfoID INT,
+    FOREIGN KEY (PackagingInfoID) REFERENCES PackagingInfo(PackagingInfoID)
+      ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Seeding Table
@@ -76,7 +75,6 @@ CREATE TABLE Seeding (
     SeedID INT,
     SeedBankID INT,
     DatePlanted DATE, -- GETDATE() ???
-    Quantity INT,
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
       ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (SeedBankID) REFERENCES SeedBank(SeedBankID)
@@ -88,8 +86,8 @@ CREATE TABLE Seedling (
     SeedlingID  INT IDENTITY(1,1) PRIMARY KEY,
     SeedID INT,
     SeedingID INT,
-    SproutDate DATE, -- GETDATE() ???
-    Age INT DEFAULT 0,
+    SproutDate DATE, --GETDATE() ???
+    Age INT DEFAULT 0, --Dateplanted - sproutdate = age
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -97,8 +95,7 @@ CREATE TABLE Seedling (
 -- Create the Mothers Table
 CREATE TABLE Mothers (
     MotherID  INT IDENTITY(1,1) PRIMARY KEY,
-    SeedlingID INT,
-    Age INT DEFAULT 0,
+    SeedlingID INT
     TimeGrown INT,
     Nodes INT,
     PhenotypicMarkerID INT,
@@ -118,10 +115,8 @@ CREATE TABLE Maturity (
     NumberOfBranches INT,
     MaturityDate DATE, -- GETDATE() ???
     BranchSites INT,
-    Age INT DEFAULT 0,
+    Age INT DEFAULT 0, --DatePlatented - MaturityDate = Age
     Height INT DEFAULT 0,
-    Branches INT,
-    Trunk INT,
     Nodes INT,
     LeafShape VARCHAR(50),
     Color VARCHAR(50),
@@ -135,18 +130,14 @@ CREATE TABLE Cutting (
     CutDate DATE, -- GETDATE() ???
     NumberOfCuts INT,
     MaturityID INT,
-    MotherID INT,
     FOREIGN KEY (MaturityID) REFERENCES Maturity(MaturityID)
-      ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Transplant Table
 CREATE TABLE Transplant (
     TransplantID  INT IDENTITY(1,1) PRIMARY KEY,
-    CutID INT,
-    Roots INT DEFAULT 0,
+    CutID INT
     TransplantDate DATE, -- GETDATE() ???
     FOREIGN KEY (CutID) REFERENCES Cutting(CutID)
       ON UPDATE CASCADE ON DELETE CASCADE
@@ -160,11 +151,7 @@ CREATE TABLE Daughter (
     TransplantID INT,
     GeneticMarkerID INT,
     PhenotypicMarkerID INT,
-    Age INT DEFAULT 0,
-    BranchSites INT,
-    Nodes INT,
-    LeafShape VARCHAR(50),
-    Color VARCHAR(50),
+    Age INT DEFAULT 0, --CutDate - TransplantDate = Age
     FOREIGN KEY (CutID) REFERENCES Cutting(CutID)
       ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
@@ -181,8 +168,10 @@ CREATE TABLE Daughter (
 -- Create the Strain Table
 CREATE TABLE Strain (
     StrainID  INT IDENTITY(1,1) PRIMARY KEY,
-    StrainName VARCHAR(255) UNIQUE,
-    Age INT DEFAULT 0,
+    NickName VARCHAR(50),
+    FirstName VARCHAR(50),
+    MiddleName VARCHAR(50),
+    LastName VARCHAR(50),
     DaughterID INT,
     FOREIGN KEY (DaughterID) REFERENCES Daughter(DaughterID)
       ON UPDATE CASCADE ON DELETE CASCADE
