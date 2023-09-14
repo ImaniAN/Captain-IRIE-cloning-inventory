@@ -210,34 +210,41 @@ CREATE INDEX idx_Seeding_DatePlanted ON Seeding (DatePlanted);
 CREATE INDEX idx_Seedling_SeedID ON Seedling (SeedID);
 CREATE INDEX idx_Seedling_SeedingID ON Seedling (SeedingID);
 CREATE INDEX idx_Seedling_SproutDate ON Seedling (SproutDate);
+CREATE INDEX idx_Seedling_Age ON Seedling (Age);
 
 -- Indexes for Mothers Table
 CREATE INDEX idx_Mothers_SeedlingID ON Mothers (SeedlingID);
 CREATE INDEX idx_Mothers_PhenotypicMarkerID ON Mothers (PhenotypicMarkerID);
 CREATE INDEX idx_Mothers_GeneticMarkerID ON Mothers (GeneticMarkerID);
+CREATE INDEX idx_Mothers_TimeGrown ON Mothers (TimeGrown);
 
 -- Indexes for Maturity Table
+CREATE INDEX idx_Maturity_MaturityID ON Maturity (MaturityID);
 CREATE INDEX idx_Maturity_MotherID ON Maturity (MotherID);
+CREATE INDEX idx_Maturity_MaturityDate ON Maturity (MaturityDate);
+CREATE INDEX idx_Maturity_Age ON Maturity (Age);
+CREATE INDEX idx_Maturity_Height ON Maturity (Height);
 
 -- Indexes for Cutting Table
-CREATE INDEX idx_Cutting_MotherID ON Cutting (MotherID);
+CREATE INDEX idx_Cutting_CutID ON Cutting (CutID);
 CREATE INDEX idx_Cutting_MaturityID ON Cutting (MaturityID);
 
 -- Indexes for Transplant Table
-CREATE INDEX idx_Transplant_MotherID ON Transplant (MotherID);
+CREATE INDEX idx_Transplant_TransplantID ON Transplant (TransplantID);
 
 -- Indexes for Daughter Table
+CREATE INDEX idx_Daughter_CutID ON Daughter (CutID);
 CREATE INDEX idx_Daughter_MotherID ON Daughter (MotherID);
 CREATE INDEX idx_Daughter_TransplantID ON Daughter (TransplantID);
 CREATE INDEX idx_Daughter_GeneticMarkerID ON Daughter (GeneticMarkerID);
 CREATE INDEX idx_Daughter_PhenotypicMarkerID ON Daughter (PhenotypicMarkerID);
+CREATE INDEX idx_Daughter_DateDaughtered ON Daughter (DateDaughtered);
+CREATE INDEX idx_Daughter_Age ON Daughter (Age);
 
 -- Indexes for Strain Table
 CREATE INDEX idx_Strain_DaughterID ON Strain (DaughterID);
 
--- Add more indexes as needed.
-
--- Create constraSMALLINTs, triggers, and other database-specific configurations as required.
+-- Create constras, triggers, and other database-specific configurations as required.
 -- Ensure data types, default values, and cascading actions are appropriately defined.
 
--- Continue creating tables and defining constraSMALLINTs and indexes for the remaining tables in your schema.
+-- Continue creating tables and defining constras and indexes for the remaining tables in your schema.
