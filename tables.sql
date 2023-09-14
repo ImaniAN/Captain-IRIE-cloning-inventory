@@ -20,10 +20,10 @@ CREATE TABLE GeneticMarker (
 -- Create the Phenotypic Marker Table
 CREATE TABLE PhenotypicMarker (
     PhenotypicMarkerID SMALLINT IDENTITY(1,1) PRIMARY KEY,
-    MarkerName VARCHAR(50) UNIQUE,
     GeneticMarkerID SMALLINT,
+    MarkerName VARCHAR(50) UNIQUE,
     NumberofNodes INT,
-    Height SMALLINT DEFAULT 0,
+    Height SMALLINT,
     Colour VARCHAR(50),
     LeafShape VARCHAR(50), --Leaves can be broad or narrow
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
@@ -120,7 +120,7 @@ CREATE TABLE Maturity (
     MaturityDate DATE DEFAULT GETDATE(),
     BranchSites SMALLINT,
     Age INT, --DatePlatented - MaturityDate = Age
-    Height SMALLINT DEFAULT 0,
+    Height SMALLINT,
     Nodes SMALLINT,
     LeafShape VARCHAR(50),
     Color VARCHAR(50),
@@ -243,6 +243,104 @@ CREATE INDEX idx_Daughter_Age ON Daughter (Age);
 
 -- Indexes for Strain Table
 CREATE INDEX idx_Strain_DaughterID ON Strain (DaughterID);
+
+-- Insert data into SeedBreederVendor Table
+INSERT INTO SeedBreederVendor (VendorName)
+VALUES
+    ('Vendor1'),
+    ('Vendor2'),
+    ('Vendor3');
+
+-- Insert data into GeneticMarker Table
+INSERT INTO GeneticMarker (Genus, Species)
+VALUES
+    ('Genus1', 'Species1'),
+    ('Genus2', 'Species2'),
+    ('Genus3', 'Species3');
+
+-- Insert data into PhenotypicMarker Table
+INSERT INTO PhenotypicMarker (MarkerName, GeneticMarkerID, NumberofNodes, Height, Colour, LeafShape)
+VALUES
+    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
+    ('Marker2', 2, 7, 12, 'Red', 'Narrow'),
+    ('Marker3', 3, 6, 11, 'Blue', 'Broad');
+
+-- Insert data into Seed Table
+INSERT INTO Seed (BreederVendorID, GeneticMarkerID, PhenotypicMarkerID, PackID)
+VALUES
+    (1, 1, 1, 'SeedPack1'),
+    (2, 2, 2, 'SeedPack2'),
+    (3, 3, 3, 'SeedPack3');
+
+-- Insert data into PackagingInfo Table
+INSERT INTO PackagingInfo (SeedID, PackID, SeedBankID, PackageUnits, PackagingDate, ExpirationDate)
+VALUES
+    (1, 'SeedPack1', 101, 100, '2023-01-01', '2023-12-31'),
+    (2, 'SeedPack2', 102, 150, '2023-02-01', '2023-11-30'),
+    (3, 'SeedPack3', 103, 200, '2023-03-01', '2023-10-31');
+
+-- Insert data into SeedBank Table
+INSERT INTO SeedBank (SeedBankName, PackagingInfoID)
+VALUES
+    ('Bank1', 1),
+    ('Bank2', 2),
+    ('Bank3', 3);
+
+-- Insert data into Seeding Table
+INSERT INTO Seeding (SeedID, SeedBankID, DatePlanted)
+VALUES
+    (1, 101, '2023-04-01'),
+    (2, 102, '2023-05-01'),
+    (3, 103, '2023-06-01');
+
+-- Insert data into Seedling Table
+INSERT INTO Seedling (SeedID, SeedingID, SproutDate, Age)
+VALUES
+    (1, 1, '2023-04-15', 14),
+    (2, 2, '2023-05-15', 14),
+    (3, 3, '2023-06-15', 14);
+
+-- Insert data into Mothers Table
+INSERT INTO Mothers (SeedlingID, TimeGrown, Nodes, PhenotypicMarkerID, GeneticMarkerID)
+VALUES
+    (1, 30, 8, 1, 1),
+    (2, 31, 9, 2, 2),
+    (3, 32, 7, 3, 3);
+
+-- Insert data into Maturity Table
+INSERT INTO Maturity (MotherID, NumberOfBranches, MaturityDate, BranchSites, Age, Height, Nodes, LeafShape, Color)
+VALUES
+    (1, 20, '2023-07-01', 10, 15, 30, 12, 'Broad', 'Green'),
+    (2, 18, '2023-07-02', 8, 14, 32, 11, 'Narrow', 'Red'),
+    (3, 22, '2023-07-03', 12, 16, 28, 10, 'Broad', 'Blue');
+
+-- Insert data into Cutting Table
+INSERT INTO Cutting (MaturityID, NumberOfCuts, CutDate)
+VALUES
+    (1, 3, '2023-07-15'),
+    (2, 2, '2023-07-16'),
+    (3, 4, '2023-07-17');
+
+-- Insert data into Transplant Table
+INSERT INTO Transplant (CutID, TransplantDate)
+VALUES
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (3, '2023-07-22');
+
+-- Insert data into Daughter Table
+INSERT INTO Daughter (CutID, MotherID, Price, Packaged, TransplantID, GeneticMarkerID, PhenotypicMarkerID, DateDaughtered, Age)
+VALUES
+    (1, 1, 5, 1, 1, 1, 1, '2023-07-25', 5),
+    (2, 2, 6, 0, 2, 2, 2, '2023-07-26', 4),
+    (3, 3, 4, 1, 3, 3, 3, '2023-07-27', 3);
+
+-- Insert data into Strain Table
+INSERT INTO Strain (NickName, FirstName, MiddleName, LastName, DaughterID)
+VALUES
+    ('Strain1', 'First1', 'Middle1', 'Last1', 1),
+    ('Strain2', 'First2', 'Middle2', 'Last2', 2),
+    ('Strain3', 'First3', 'Middle3', 'Last3', 3);
 
 -- Create constras, triggers, and other database-specific configurations as required.
 -- Ensure data types, default values, and cascading actions are appropriately defined.
