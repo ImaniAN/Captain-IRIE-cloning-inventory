@@ -6,23 +6,23 @@ USE ProjectMotherShip;
 
 -- Create the Seed Breeder Vendor Table
 CREATE TABLE SeedBreederVendor (
-    BreederVendorID  SMALLINT IDENTITY(1,1) PRIMARY KEY,
+    BreederVendorID SMALLINT IDENTITY(1,1) PRIMARY KEY,
     VendorName VARCHAR(50) UNIQUE
 );
 
 -- Create the Genetic Marker Table
 CREATE TABLE GeneticMarker (
-    GeneticMarkerID  SMALLINT IDENTITY(1,1) PRIMARY KEY,
+    GeneticMarkerID SMALLINT IDENTITY(1,1) PRIMARY KEY,
     Genus VARCHAR(50),
     Species VARCHAR(50)
 ); -- Cannabis sativa, indica and hybrid
 
 -- Create the Phenotypic Marker Table
 CREATE TABLE PhenotypicMarker (
-    PhenotypicMarkerID  SMALLINT IDENTITY(1,1) PRIMARY KEY,
+    PhenotypicMarkerID SMALLINT IDENTITY(1,1) PRIMARY KEY,
     MarkerName VARCHAR(50) UNIQUE,
     GeneticMarkerID SMALLINT,
-    NumberofNodes SMALLINT,
+    NumberofNodes INT,
     Height SMALLINT DEFAULT 0,
     Colour VARCHAR(50),
     LeafShape VARCHAR(50), --Leaves can be broad or narrow
@@ -32,12 +32,12 @@ CREATE TABLE PhenotypicMarker (
 
 -- Create the Seed Table
 CREATE TABLE Seed (
-    SeedID  SMALLINT IDENTITY(1,1) PRIMARY KEY,
+    SeedID INT IDENTITY(1,1) PRIMARY KEY,
     BreederVendorID SMALLINT,
     GeneticMarkerID SMALLINT,
     PhenotypicMarkerID SMALLINT,
     PackID VARCHAR(50) DEFAULT 'BackSeed', -- Set your default value here
-    PackagingID  SMALLINT,
+    PackagingID INT,
     FOREIGN KEY (BreederVendorID) REFERENCES SeedBreederVendor(BreederVendorID)
         ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
@@ -50,13 +50,13 @@ CREATE TABLE Seed (
 
 -- Create the PackagingInfo Table
 CREATE TABLE PackagingInfo (
-    PackagingID SMALLINT IDENTITY(1,1) PRIMARY KEY,
-    SeedID SMALLINT,
+    PackagingInfoID INT IDENTITY(1,1) PRIMARY KEY,
+    SeedID INT,
     PackID VARCHAR(50), -- Set your default value here
     SeedBankID SMALLINT,
     PackageUnits SMALLINT,
-    PackagingDate  DATETIME,
-    ExpirationDate  DATETIME,
+    PackagingDate DATE,
+    ExpirationDate DATE,
     DateReceived DATE DEFAULT GETDATE(), -- Set your default value here
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
         ON UPDATE CASCADE ON DELETE CASCADE,
@@ -66,19 +66,19 @@ CREATE TABLE PackagingInfo (
 
 -- Create the Seed Bank Table
 CREATE TABLE SeedBank (
-    SeedBankID  SMALLINT IDENTITY(1,1) PRIMARY KEY,
+    SeedBankID SMALLINT IDENTITY(1,1) PRIMARY KEY,
     SeedBankName VARCHAR(50),
-    PackagingInfoID SMALLINT,
+    PackagingInfoID INT,
     FOREIGN KEY (PackagingInfoID) REFERENCES PackagingInfo(PackagingInfoID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Seeding Table
 CREATE TABLE Seeding (
-    SeedingID  SMALLINT IDENTITY(1,1) PRIMARY KEY,
-    SeedID SMALLINT,
+    SeedingID INT IDENTITY(1,1) PRIMARY KEY,
+    SeedID INT,
     SeedBankID SMALLINT,
-    DatePlanted  DATETIME DEFAULT GETDATE(),
+    DatePlanted DATE DEFAULT GETDATE(),
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
       ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (SeedBankID) REFERENCES SeedBank(SeedBankID)
@@ -87,21 +87,21 @@ CREATE TABLE Seeding (
 
 -- Create the Seedling Table
 CREATE TABLE Seedling (
-    SeedlingID  SMALLINT IDENTITY(1,1) PRIMARY KEY,
-    SeedID SMALLINT,
-    SeedingID SMALLINT,
+    SeedlingID INT IDENTITY(1,1) PRIMARY KEY,
+    SeedID INT,
+    SeedingID INT,
     SproutDate DATE, --GETDATE() ???
-    Age SMALLINT DEFAULT 0, --Dateplanted - sproutdate = age
+    Age INT, --Dateplanted - sproutdate = age
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Mothers Table
 CREATE TABLE Mothers (
-    MotherID  SMALLINT IDENTITY(1,1) PRIMARY KEY,
-    SeedlingID SMALLINT
-    TimeGrown SMALLINT,
-    Nodes SMALLINT,
+    MotherID INT IDENTITY(1,1) PRIMARY KEY,
+    SeedlingID INT
+    TimeGrown SMALLINT, --perform an age calultion of some sort here
+    Nodes INT,
     PhenotypicMarkerID SMALLINT,
     GeneticMarkerID SMALLINT,
     FOREIGN KEY (SeedlingID) REFERENCES Seedling(SeedlingID)
@@ -114,12 +114,12 @@ CREATE TABLE Mothers (
 
 -- Create the Maturity Table
 CREATE TABLE Maturity (
-    MaturityID  SMALLINT IDENTITY(1,1) PRIMARY KEY,
-    MotherID SMALLINT,
+    MaturityID INT IDENTITY(1,1) PRIMARY KEY,
+    MotherID INT,
     NumberOfBranches SMALLINT,
-    MaturityDate  DATETIME DEFAULT GETDATE(),
+    MaturityDate DATE DEFAULT GETDATE(),
     BranchSites SMALLINT,
-    Age SMALLINT DEFAULT 0, --DatePlatented - MaturityDate = Age
+    Age INT, --DatePlatented - MaturityDate = Age
     Height SMALLINT DEFAULT 0,
     Nodes SMALLINT,
     LeafShape VARCHAR(50),
@@ -130,35 +130,35 @@ CREATE TABLE Maturity (
 
 -- Create the Cutting Table
 CREATE TABLE Cutting (
-    CutID  SMALLINT IDENTITY(1,1) PRIMARY KEY,
-    CutDate  DATETIME DEFAULT GETDATE(),
+    CutID INT IDENTITY(1,1) PRIMARY KEY,
+    CutDate DATE DEFAULT GETDATE(),
     NumberOfCuts SMALLINT,
-    MaturityID SMALLINT,
+    MaturityID INT,
     FOREIGN KEY (MaturityID) REFERENCES Maturity(MaturityID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Transplant Table
 CREATE TABLE Transplant (
-    TransplantID  SMALLINT IDENTITY(1,1) PRIMARY KEY,
-    CutID SMALLINT
-    TransplantDate  DATETIME DEFAULT GETDATE(),
+    TransplantID INT IDENTITY(1,1) PRIMARY KEY,
+    CutID INT
+    TransplantDate DATE DEFAULT GETDATE(),
     FOREIGN KEY (CutID) REFERENCES Cutting(CutID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Daughter Table
 CREATE TABLE Daughter (
-    DaughterID  SMALLINT IDENTITY(1,1) PRIMARY KEY,
-    CutID SMALLINT,
-    MotherID SMALLINT,
+    DaughterID INT IDENTITY(1,1) PRIMARY KEY,
+    CutID INT,
+    MotherID INT,
     Price SMALLINT,
     Packaged BOOLEAN,
-    TransplantID SMALLINT,
+    TransplantID INT,
     GeneticMarkerID SMALLINT,
     PhenotypicMarkerID SMALLINT,
-    DateDaughtered  DATETIME DEFAULT GETDATE(),
-    Age SMALLINT DEFAULT 0, --CutDate - TransplantDate = Age
+    DateDaughtered DATE DEFAULT GETDATE(),
+    Age INT, --CutDate - TransplantDate = Age
     FOREIGN KEY (CutID) REFERENCES Cutting(CutID)
       ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
@@ -174,7 +174,7 @@ CREATE TABLE Daughter (
 
 -- Create the Strain Table
 CREATE TABLE Strain (
-    StrainID  SMALLINT IDENTITY(1,1) PRIMARY KEY,
+    StrainID SMALLINT IDENTITY(1,1) PRIMARY KEY,
     NickName VARCHAR(50),
     FirstName VARCHAR(50),
     MiddleName VARCHAR(50),
