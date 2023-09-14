@@ -9,15 +9,12 @@ CREATE TABLE PackagingInfo (
     PackagingInfoID INT IDENTITY(1,1) PRIMARY KEY,
     SeedID INT,
     PackName VARCHAR(50),
-    SeedBankID SMALLINT,
     PackageUnits SMALLINT,
     PackagingDate DATE,
     ExpirationDate DATE,
     DateReceived DATE DEFAULT GETDATE(), -- Set your default value here
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
         ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (SeedBankID) REFERENCES SeedBank(SeedBankID)
-      ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (PackName) REFERENCES Seed(PackName)
         ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -191,15 +188,9 @@ CREATE INDEX idx_Seed_PackName ON Seed (PackName);
 
 -- Indexes for PackagingInfo Table
 CREATE INDEX idx_PackagingInfo_SeedID ON PackagingInfo (SeedID);
-CREATE INDEX idx_PackagingInfo_SeedBankID ON PackagingInfo (SeedBankID);
-
--- Indexes for SeedBank Table
-CREATE INDEX idx_SeedBank_SeedID ON SeedBank (SeedID);
-CREATE INDEX idx_SeedBank_Quantity ON SeedBank (Quantity);
 
 -- Indexes for Seeding Table
 CREATE INDEX idx_Seeding_SeedID ON Seeding (SeedID);
-CREATE INDEX idx_Seeding_SeedBankID ON Seeding (SeedBankID);
 CREATE INDEX idx_Seeding_DatePlanted ON Seeding (DatePlanted);
 
 -- Indexes for Seedling Table
@@ -269,24 +260,19 @@ VALUES
     (3, 3, 3, 'SeedPack3');
 
 -- Insert data into PackagingInfo Table
-INSERT INTO PackagingInfo (SeedID, PackName, SeedBankID, PackageUnits, PackagingDate, ExpirationDate)
+INSERT INTO PackagingInfo (SeedID, PackName, PackageUnits, PackagingDate, ExpirationDate)
 VALUES
-    (1, 'SeedPack1', 101, 100, '2023-01-01', '2023-12-31'),
-    (2, 'SeedPack2', 102, 150, '2023-02-01', '2023-11-30'),
-    (3, 'SeedPack3', 103, 200, '2023-03-01', '2023-10-31');
+    (1, 'SeedPack1', 100, '2023-01-01', '2023-12-31'),
+    (2, 'SeedPack2', 150, '2023-02-01', '2023-11-30'),
+    (3, 'SeedPack3', 200, '2023-03-01', '2023-10-31');
 
--- Insert data into SeedBank Table
-INSERT INTO SeedBank (SeedBankName, PackagingInfoID)
-VALUES
-    ('Bank1', 1),
-    ('Bank2', 2);
 
 -- Insert data into Seeding Table
-INSERT INTO Seeding (SeedID, SeedBankID, DatePlanted)
+INSERT INTO Seeding (SeedID, DatePlanted)
 VALUES
-    (1, 1, '2023-04-01'),
-    (2, 2, '2023-05-01'),
-    (3, 1, '2023-06-01');
+    (1, '2023-04-01'),
+    (2, '2023-05-01'),
+    (3, '2023-06-01');
 
 -- Insert data into Seedling Table
 INSERT INTO Seedling (SeedID, SeedingID, SproutDate, Age)
