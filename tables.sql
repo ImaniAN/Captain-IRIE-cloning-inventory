@@ -37,18 +37,22 @@ CREATE TABLE Seed (
     GeneticMarkerID INT,
     PhenotypicMarkerID INT,
     PackID VARCHAR(50) DEFAULT 'BackSeed', -- Set your default value here
+    PackagingID  INT,
     FOREIGN KEY (BreederVendorID) REFERENCES SeedBreederVendor(BreederVendorID)
         ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
         ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID)
+        ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (PackID) REFERENCES PackagingInfo(PackID)
         ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the PackagingInfo Table
 CREATE TABLE PackagingInfo (
-    PackagingInfoID  INT IDENTITY(1,1) PRIMARY KEY,
+    PackagingID  INT IDENTITY(1,1) PRIMARY KEY,
     SeedID INT,
+    PackID VARCHAR(50) DEFAULT 'BackSeed', -- Set your default value here
     SeedBankID INT,
     PackageUnits INT,
     PackagingDate DATE, -- GETDATE() ???
@@ -100,7 +104,7 @@ CREATE TABLE Mothers (
     Nodes INT,
     PhenotypicMarkerID INT,
     GeneticMarkerID INT,
-    FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
+    FOREIGN KEY (SeedlingID) REFERENCES Seedling(SeedlingID)
       ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID)
       ON UPDATE CASCADE ON DELETE CASCADE,
@@ -148,9 +152,12 @@ CREATE TABLE Daughter (
     DaughterID  INT IDENTITY(1,1) PRIMARY KEY,
     CutID INT,
     MotherID INT,
+    Price INT,
+    Packaged BOOLEAN,
     TransplantID INT,
     GeneticMarkerID INT,
     PhenotypicMarkerID INT,
+    DateDaughtered DATE, -- GETDATE() ???
     Age INT DEFAULT 0, --CutDate - TransplantDate = Age
     FOREIGN KEY (CutID) REFERENCES Cutting(CutID)
       ON UPDATE CASCADE ON DELETE CASCADE,
