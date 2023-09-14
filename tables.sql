@@ -4,6 +4,24 @@ CREATE DATABASE ProjectMotherShip;
 -- Use the newly created database
 USE ProjectMotherShip;
 
+-- Create the PackagingInfo Table
+CREATE TABLE PackagingInfo (
+    PackagingInfoID INT IDENTITY(1,1) PRIMARY KEY,
+    SeedID INT,
+    PackName VARCHAR(50),
+    SeedBankID SMALLINT,
+    PackageUnits SMALLINT,
+    PackagingDate DATE,
+    ExpirationDate DATE,
+    DateReceived DATE DEFAULT GETDATE(), -- Set your default value here
+    FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
+        ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (SeedBankID) REFERENCES SeedBank(SeedBankID)
+      ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (PackName) REFERENCES Seed(PackName)
+        ON UPDATE CASCADE ON DELETE CASCADE
+);
+
 -- Create the Seed Breeder Vendor Table
 CREATE TABLE SeedBreederVendor (
     BreederVendorID SMALLINT IDENTITY(1,1) PRIMARY KEY,
@@ -36,53 +54,28 @@ CREATE TABLE Seed (
     BreederVendorID SMALLINT,
     GeneticMarkerID SMALLINT,
     PhenotypicMarkerID SMALLINT,
-    PackID VARCHAR(50) DEFAULT 'BackSeed', -- Set your default value here
-    PackagingID INT,
+    PackName VARCHAR(50),
+    PackagingInfoID INT,
     FOREIGN KEY (BreederVendorID) REFERENCES SeedBreederVendor(BreederVendorID)
         ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
         ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID)
-        ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (PackID) REFERENCES PackagingInfo(PackID)
-        ON UPDATE CASCADE ON DELETE CASCADE
-);
-
--- Create the PackagingInfo Table
-CREATE TABLE PackagingInfo (
-    PackagingInfoID INT IDENTITY(1,1) PRIMARY KEY,
-    SeedID INT,
-    PackID VARCHAR(50), -- Set your default value here
-    SeedBankID SMALLINT,
-    PackageUnits SMALLINT,
-    PackagingDate DATE,
-    ExpirationDate DATE,
-    DateReceived DATE DEFAULT GETDATE(), -- Set your default value here
-    FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
-        ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (SeedBankID) REFERENCES SeedBank(SeedBankID)
-      ON UPDATE CASCADE ON DELETE CASCADE
-);
-
--- Create the Seed Bank Table
-CREATE TABLE SeedBank (
-    SeedBankID SMALLINT IDENTITY(1,1) PRIMARY KEY,
-    SeedBankName VARCHAR(50),
-    PackagingInfoID INT,
     FOREIGN KEY (PackagingInfoID) REFERENCES PackagingInfo(PackagingInfoID)
-      ON UPDATE CASCADE ON DELETE CASCADE
+        ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID)
+        ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Seeding Table
 CREATE TABLE Seeding (
     SeedingID INT IDENTITY(1,1) PRIMARY KEY,
     SeedID INT,
-    SeedBankID SMALLINT,
+    PackagingInfoID INT,
     DatePlanted DATE DEFAULT GETDATE(),
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
       ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (SeedBankID) REFERENCES SeedBank(SeedBankID)
-      ON UPDATE CASCADE ON DELETE CASCADE
+    FOREIGN KEY (PackagingInfoID) REFERENCES PackagingInfo(PackagingInfoID)
+        ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Seedling Table
@@ -93,7 +86,10 @@ CREATE TABLE Seedling (
     SproutDate DATE, --GETDATE() ???
     Age INT, --Dateplanted - sproutdate = age
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
-      ON UPDATE CASCADE ON DELETE CASCADE
+      ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (SeedingID) REFERENCES Seeding(SeedingID)
+      ON UPDATE CASCADE ON DELETE CASCADE,
+
 );
 
 -- Create the Mothers Table
@@ -191,7 +187,7 @@ CREATE INDEX idx_Seed_BreederVendorID ON Seed (BreederVendorID);
 CREATE INDEX idx_Seed_GeneticMarkerID ON Seed (GeneticMarkerID);
 CREATE INDEX idx_Seed_PhenotypicMarkerID ON Seed (PhenotypicMarkerID);
 CREATE INDEX idx_Seed_DateReceived ON Seed (DateReceived);
-CREATE INDEX idx_Seed_PackID ON Seed (PackID);
+CREATE INDEX idx_Seed_PackName ON Seed (PackName);
 
 -- Indexes for PackagingInfo Table
 CREATE INDEX idx_PackagingInfo_SeedID ON PackagingInfo (SeedID);
@@ -254,26 +250,26 @@ VALUES
 -- Insert data into GeneticMarker Table
 INSERT INTO GeneticMarker (Genus, Species)
 VALUES
-    ('Genus1', 'Species1'),
-    ('Genus2', 'Species2'),
-    ('Genus3', 'Species3');
+    ('Cannabis', 'Sativa'),
+    ('Cannabis', 'Indica'),
+    ('Cannabis', 'Hybrid');
 
 -- Insert data into PhenotypicMarker Table
 INSERT INTO PhenotypicMarker (MarkerName, GeneticMarkerID, NumberofNodes, Height, Colour, LeafShape)
 VALUES
     ('Marker1', 1, 5, 10, 'Green', 'Broad'),
-    ('Marker2', 2, 7, 12, 'Red', 'Narrow'),
-    ('Marker3', 3, 6, 11, 'Blue', 'Broad');
+    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
+    ('Marker3', 3, 6, 11, 'Brown', 'Broad');
 
 -- Insert data into Seed Table
-INSERT INTO Seed (BreederVendorID, GeneticMarkerID, PhenotypicMarkerID, PackID)
+INSERT INTO Seed (BreederVendorID, GeneticMarkerID, PhenotypicMarkerID, PackName)
 VALUES
     (1, 1, 1, 'SeedPack1'),
     (2, 2, 2, 'SeedPack2'),
     (3, 3, 3, 'SeedPack3');
 
 -- Insert data into PackagingInfo Table
-INSERT INTO PackagingInfo (SeedID, PackID, SeedBankID, PackageUnits, PackagingDate, ExpirationDate)
+INSERT INTO PackagingInfo (SeedID, PackName, SeedBankID, PackageUnits, PackagingDate, ExpirationDate)
 VALUES
     (1, 'SeedPack1', 101, 100, '2023-01-01', '2023-12-31'),
     (2, 'SeedPack2', 102, 150, '2023-02-01', '2023-11-30'),
@@ -283,15 +279,14 @@ VALUES
 INSERT INTO SeedBank (SeedBankName, PackagingInfoID)
 VALUES
     ('Bank1', 1),
-    ('Bank2', 2),
-    ('Bank3', 3);
+    ('Bank2', 2);
 
 -- Insert data into Seeding Table
 INSERT INTO Seeding (SeedID, SeedBankID, DatePlanted)
 VALUES
-    (1, 101, '2023-04-01'),
-    (2, 102, '2023-05-01'),
-    (3, 103, '2023-06-01');
+    (1, 1, '2023-04-01'),
+    (2, 2, '2023-05-01'),
+    (3, 1, '2023-06-01');
 
 -- Insert data into Seedling Table
 INSERT INTO Seedling (SeedID, SeedingID, SproutDate, Age)
@@ -311,15 +306,15 @@ VALUES
 INSERT INTO Maturity (MotherID, NumberOfBranches, MaturityDate, BranchSites, Age, Height, Nodes, LeafShape, Color)
 VALUES
     (1, 20, '2023-07-01', 10, 15, 30, 12, 'Broad', 'Green'),
-    (2, 18, '2023-07-02', 8, 14, 32, 11, 'Narrow', 'Red'),
-    (3, 22, '2023-07-03', 12, 16, 28, 10, 'Broad', 'Blue');
+    (2, 18, '2023-07-02', 8, 14, 32, 11, 'Narrow', 'Purpule'),
+    (3, 22, '2023-07-03', 12, 16, 28, 10, 'Broad', 'Brown');
 
 -- Insert data into Cutting Table
 INSERT INTO Cutting (MaturityID, NumberOfCuts, CutDate)
 VALUES
-    (1, 3, '2023-07-15'),
-    (2, 2, '2023-07-16'),
-    (3, 4, '2023-07-17');
+    (1, 13, '2023-07-15'),
+    (2, 12, '2023-07-16'),
+    (3, 14, '2023-07-17');
 
 -- Insert data into Transplant Table
 INSERT INTO Transplant (CutID, TransplantDate)
@@ -331,9 +326,9 @@ VALUES
 -- Insert data into Daughter Table
 INSERT INTO Daughter (CutID, MotherID, Price, Packaged, TransplantID, GeneticMarkerID, PhenotypicMarkerID, DateDaughtered, Age)
 VALUES
-    (1, 1, 5, 1, 1, 1, 1, '2023-07-25', 5),
-    (2, 2, 6, 0, 2, 2, 2, '2023-07-26', 4),
-    (3, 3, 4, 1, 3, 3, 3, '2023-07-27', 3);
+    (1, 1, 100, 1, 1, 1, 1, '2023-07-25', 5),
+    (2, 2, 100, 0, 2, 2, 2, '2023-07-26', 4),
+    (3, 3, 100, 1, 3, 3, 3, '2023-07-27', 3);
 
 -- Insert data into Strain Table
 INSERT INTO Strain (NickName, FirstName, MiddleName, LastName, DaughterID)
