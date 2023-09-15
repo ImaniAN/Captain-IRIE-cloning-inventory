@@ -13,7 +13,7 @@ CREATE TABLE SeedBreederVendor (
 -- Create the SeedStore Table
 CREATE TABLE SeedStore (
     SeedStoreID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    SeedStorerName VARCHAR(50),
+    SeedStoreName VARCHAR(50),
     PackageUnits SMALLINT,
     PackagingDate DATE,
     ExpirationDate DATE,
@@ -30,8 +30,8 @@ CREATE TABLE GeneticMarker (
 -- Create the Phenotypic Marker Table
 CREATE TABLE PhenotypicMarker (
     PhenotypicMarkerID SMALLINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    GeneticMarkerID SMALLINT,
     MarkerName VARCHAR(50) UNIQUE,
+    GeneticMarkerID SMALLINT,
     NumberOfBranches INT,
     Height INT,
     Colour VARCHAR(50),
@@ -57,11 +57,10 @@ CREATE TABLE Seed (
         ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-
 -- Create the Seeding Table
 CREATE TABLE Seeding (
     SeedingID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    SeedID INT,
+    SeedID INT UNIQUE,
     SeedStoreID INT,
     DatePlanted DATE,
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
@@ -73,7 +72,7 @@ CREATE TABLE Seeding (
 -- Create the Seedling Table
 CREATE TABLE Seedling (
     SeedlingID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    SeedID INT,
+    SeedID INT UNIQUE,
     SeedingID INT,
     SproutDate DATE,
     Age INT, --Dateplanted - sproutdate = age
@@ -87,7 +86,7 @@ CREATE TABLE Seedling (
 -- Create the Mothers Table
 CREATE TABLE Mothers (
     MotherID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    SeedlingID INT
+    SeedlingID INT UNIQUE,
     DateMothered DATE,
     Age INT, --DatePlated - DateMothered = age
     NumberOfBranches INT,
@@ -109,10 +108,9 @@ CREATE TABLE Maturity (
     MaturityDate DATE,
     Age INT, --DatePlatented - MaturityDate = Age
     Height INT,
-    Colour VARCHAR(50),
     NumberOfBranches INT,
     LeafShape VARCHAR(50),
-    Color VARCHAR(50),
+    Colour VARCHAR(50),
     FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -120,9 +118,9 @@ CREATE TABLE Maturity (
 -- Create the Cutting Table
 CREATE TABLE Cutting (
     CutID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    CutDate DATE,
-    NumberOfCuts SMALLINT,
     MaturityID INT,
+    NumberOfCuts SMALLINT,
+    CutDate DATE,
     FOREIGN KEY (MaturityID) REFERENCES Maturity(MaturityID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -130,8 +128,8 @@ CREATE TABLE Cutting (
 -- Create the Transplant Table
 CREATE TABLE Transplant (
     TransplantID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    CutID INT UNIQUE,
     TransplantDate DATE,
-    CutID INT
     FOREIGN KEY (CutID) REFERENCES Cutting(CutID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -243,7 +241,18 @@ INSERT INTO SeedBreederVendor (VendorName)
 VALUES
     ('Vendor1'),
     ('Vendor2'),
-    ('Vendor3');
+    ('Vendor3'),
+    ('Bagseeds');
+
+-- Insert data into SeedStore Table
+INSERT INTO SeedStore (SeedStoreName, PackageUnits, PackagingDate, ExpirationDate, DateReceived)
+VALUES
+    ('Bagseeds', 137, '2023-01-01', '2023-12-31', '2023-01-01'),
+    ('SeedPack1', 10, '2023-01-01', '2023-12-31', '2023-01-01'),
+    ('SeedPack1', 5, '2023-01-01', '2023-12-31', '2023-01-01'),
+    ('SeedPack1', 3, '2023-01-01', '2023-12-31', '2023-01-01'),
+    ('SeedPack2', 2, '2023-02-01', '2023-11-30', '2023-01-01'),
+    ('Bagseeds', 220, '2023-03-01', '2023-10-31', '2023-01-01');
 
 -- Insert data into GeneticMarker Table
 INSERT INTO GeneticMarker (Genus, Species)
@@ -257,54 +266,92 @@ INSERT INTO PhenotypicMarker (MarkerName, GeneticMarkerID, NumberOfBranches, Hei
 VALUES
     ('Marker1', 1, 5, 10, 'Green', 'Broad'),
     ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
+    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
+    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
+    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
+    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
+    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
+    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
+    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
+    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
+    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
+    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
+    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
+    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
+    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
+    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
+    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
+    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
+    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
+    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
+    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
+    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
+    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
+    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
     ('Marker3', 3, 6, 11, 'Brown', 'Broad');
 
 -- Insert data into Seed Table
-INSERT INTO Seed (BreederVendorID, GeneticMarkerID, PhenotypicMarkerID, PackName)
+INSERT INTO Seed (SeedStoreID, BreederVendorID, GeneticMarkerID, PhenotypicMarkerID)
 VALUES
-    (1, 1, 1, 'SeedPack1'),
-    (2, 2, 2, 'SeedPack2'),
-    (3, 3, 3, 'SeedPack3');
-
--- Insert data into SeedStore Table
-INSERT INTO SeedStore (SeedID, PackName, PackageUnits, PackagingDate, ExpirationDate)
-VALUES
-    (1, 'SeedPack1', 100, '2023-01-01', '2023-12-31'),
-    (2, 'SeedPack2', 150, '2023-02-01', '2023-11-30'),
-    (3, 'SeedPack3', 200, '2023-03-01', '2023-10-31');
-
+    (1, 1, 1, 1),
+    (1, 1, 1, 1),
+    (3, 2, 2, 2),
+    (3, 2, 2, 2),
+    (1, 1, 1, 1),
+    (3, 2, 2, 2),
+    (1, 1, 1, 1),
+    (3, 2, 2, 2),
+    (1, 1, 1, 1),
+    (3, 2, 2, 2),
+    (1, 1, 1, 1),
+    (3, 2, 2, 2),
+    (1, 1, 1, 1),
+    (3, 2, 2, 2),
+    (1, 1, 1, 1),
+    (3, 2, 2, 2),
+    (1, 1, 1, 1),
+    (3, 2, 2, 2),
+    (7, 3, 3, 3);
 
 -- Insert data into Seeding Table
 INSERT INTO Seeding (SeedID, SeedStoreID, DatePlanted)
 VALUES
-    (1, 1, '2023-04-01'),
-    (1, 1, '2023-05-01'),
-    (1, 1, '2023-06-01');
+    (1, 9, '2023-04-01'),
+    (23, 1, '2023-05-01'),
+    (1, 9, '2023-04-01'),
+    (23, 1, '2023-05-01'),
+    (19, 4, '2023-06-01');
 
 -- Insert data into Seedling Table
 INSERT INTO Seedling (SeedID, SeedingID, SproutDate, Age)
 VALUES
-    (1, 1, '2023-04-15', 2),
-    (2, 2, '2023-05-15', 4),
-    (3, 3, '2023-06-15', 3);
+    (1, 1, '2023-04-15', 1),
+    (2, 2, '2023-05-15', 3),
+    (1, 1, '2023-04-15', 1),
+    (2, 2, '2023-05-15', 3),
+    (1, 1, '2023-04-15', 1),
+    (2, 2, '2023-05-15', 3),
+    (3, 3, '2023-06-15', 4);
 
 -- Insert data into Mothers Table
-INSERT INTO Mothers (SeedlingID, Age, NumberOfBranches, PhenotypicMarkerID, GeneticMarkerID)
+INSERT INTO Mothers (SeedlingID, DateMothered, Age, NumberOfBranches, PhenotypicMarkerID, GeneticMarkerID)
 VALUES
-    (1, 30, 8, 1, 1),
-    (2, 31, 9, 2, 2),
-    (3, 32, 7, 3, 3);
+    (1, '2023-07-01', 61, 3, 1, 1),
+    (2, '2023-07-01', 72, 9, 2, 2),
+    (3, '2023-07-01', 83, 5, 3, 3);
 
 -- Insert data into Maturity Table
-INSERT INTO Maturity (MotherID, NumberOfBranches, MaturityDate, BranchSites, Age, Height, NumberOfBranches, LeafShape, Color)
+INSERT INTO Maturity (MotherID, MaturityDate, Age, Height, NumberOfBranches, LeafShape, Colour)
 VALUES
-    (1, 20, '2023-07-01', 10, 15, 30, 12, 'Broad', 'Green'),
-    (2, 18, '2023-07-02', 8, 14, 32, 11, 'Narrow', 'Purpule'),
-    (3, 22, '2023-07-03', 12, 16, 28, 10, 'Broad', 'Brown');
+    (1, '2023-07-01', 15, 30, 12, 'Broad', 'Green'),
+    (2, '2023-07-02', 14, 32, 11, 'Narrow', 'Purpule'),
+    (3, '2023-07-03', 16, 28, 10, 'Broad', 'Brown');
 
 -- Insert data into Cutting Table
 INSERT INTO Cutting (MaturityID, NumberOfCuts, CutDate)
 VALUES
+    (1, 13, '2023-07-15'),
+    (2, 12, '2023-07-16'),
     (1, 13, '2023-07-15'),
     (2, 12, '2023-07-16'),
     (3, 14, '2023-07-17');
@@ -314,21 +361,147 @@ INSERT INTO Transplant (CutID, TransplantDate)
 VALUES
     (1, '2023-07-20'),
     (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
+    (1, '2023-07-20'),
+    (2, '2023-07-21'),
     (3, '2023-07-22');
 
 -- Insert data into Daughter Table
-INSERT INTO Daughter (CutID, MotherID, Price, Packaged, TransplantID, GeneticMarkerID, PhenotypicMarkerID, DateDaughtered, Age)
+INSERT INTO Daughter (CutID, MotherID, Price, Packaged, TransplantID, GeneticMarkerID, PhenotypicMarkerID, DateDaughtered, Age, Colour)
 VALUES
-    (1, 1, 100, 1, 1, 1, 1, '2023-07-25', 5),
-    (2, 2, 100, 0, 2, 2, 2, '2023-07-26', 4),
-    (3, 3, 100, 1, 3, 3, 3, '2023-07-27', 3);
+    (1, 1, 100, 1, 1, 1, 1, '2023-07-25', 5, 'Green'),
+    (2, 2, 100, 0, 2, 2, 2, '2023-07-26', 4, 'Lime'),
+    (1, 1, 100, 1, 1, 1, 1, '2023-07-25', 5, 'Green'),
+    (2, 2, 100, 0, 2, 2, 2, '2023-07-26', 4, 'Lime'),
+    (1, 1, 100, 1, 1, 1, 1, '2023-07-25', 5, 'Green'),
+    (2, 2, 100, 0, 2, 2, 2, '2023-07-26', 4, 'Lime'),
+    (1, 1, 100, 1, 1, 1, 1, '2023-07-25', 5, 'Green'),
+    (1, 1, 100, 1, 1, 1, 1, '2023-07-25', 5, 'Green'),
+    (2, 2, 100, 0, 2, 2, 2, '2023-07-26', 4, 'Lime'),
+    (1, 1, 100, 1, 1, 1, 1, '2023-07-25', 5, 'Green'),
+    (2, 2, 100, 0, 2, 2, 2, '2023-07-26', 4, 'Lime'),
+    (1, 1, 100, 1, 1, 1, 1, '2023-07-25', 5, 'Green'),
+    (2, 2, 100, 0, 2, 2, 2, '2023-07-26', 4, 'Lime'),
+    (3, 3, 100, 1, 3, 3, 3, '2023-07-27', 3, 'Brown');
 
 -- Insert data into Strain Table
 INSERT INTO Strain (NickName, FirstName, MiddleName, LastName, DaughterID)
 VALUES
     ('Strain1', 'First1', 'Middle1', 'Last1', 1),
     ('Strain2', 'First2', 'Middle2', 'Last2', 2),
+    ('Strain1', 'First1', 'Middle1', 'Last1', 1),
+    ('Strain1', 'First1', 'Middle1', 'Last1', 1),
+    ('Strain2', 'First2', 'Middle2', 'Last2', 2),
+    ('Strain1', 'First1', 'Middle1', 'Last1', 1),
+    ('Strain2', 'First2', 'Middle2', 'Last2', 2),
     ('Strain3', 'First3', 'Middle3', 'Last3', 3);
+    
 
 -- Create constras, triggers, and other database-specific configurations as required.
 -- Ensure data types, default values, and cascading actions are appropriately defined.
