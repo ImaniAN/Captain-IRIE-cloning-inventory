@@ -170,18 +170,34 @@ CREATE TABLE Strain (
 
 -- Create primary key indexes and additional indexes as needed
 -- (e.g., indexes for frequently queried columns, non-clustered indexes, etc.)
+
+-- Indexes for SeedBreederVendor Table
+CREATE INDEX idx_SeedBreederVendor_GeneticMarkerID ON BreederVendor (BreederVendorID);
+CREATE UNIQUE INDEX UI_SeedBreederVendor_VendorName ON GeneticMarker (VendorName);
+
+-- Indexes for SeedStore Table
+CREATE INDEX idx_SeedStore_SeedID ON SeedStore (SeedID);
+CREATE INDEX idx_SeedStore_PackagingDate ON SeedStore (PackagingDate);
+CREATE INDEX idx_SeedStore_ExpirationDate ON SeedStore (ExpirationDate);
+CREATE INDEX idx_SeedStore_DateReceived ON SeedStore (DateReceived);
+
+-- Indexes for GeneticMarker Table
+CREATE INDEX idx_GeneticMarker_GeneticMarkerID ON GeneticMarker (GeneticMarkerID);
+CREATE UNIQUE INDEX UI_GeneticMarker_Species ON GeneticMarker (Species);
+
+-- Indexes for PhenotypicMarker Table
+CREATE INDEX idx_PhenotypicMarker_PhenotypicMarkerID ON PhenotypicMarker (PhenotypicMarkerID);
+CREATE UNIQUE INDEX UI_PhenotypicMarker_MarkerName ON PhenotypicMarker (MarkerName);
+CREATE INDEX idx_PhenotypicMarker_GeneticMarkerID ON PhenotypicMarker (GeneticMarkerID);
+
 -- Indexes for Seed Table
 CREATE INDEX idx_Seed_BreederVendorID ON Seed (BreederVendorID);
 CREATE INDEX idx_Seed_GeneticMarkerID ON Seed (GeneticMarkerID);
 CREATE INDEX idx_Seed_PhenotypicMarkerID ON Seed (PhenotypicMarkerID);
-CREATE INDEX idx_Seed_DateReceived ON Seed (DateReceived);
-CREATE INDEX idx_Seed_PackName ON Seed (PackName);
-
--- Indexes for SeedStore Table
-CREATE INDEX idx_SeedStore_SeedID ON SeedStore (SeedID);
 
 -- Indexes for Seeding Table
 CREATE INDEX idx_Seeding_SeedID ON Seeding (SeedID);
+CREATE INDEX idx_Seeding_SeedStoreID ON Seeding (SeedStoreID);
 CREATE INDEX idx_Seeding_DatePlanted ON Seeding (DatePlanted);
 
 -- Indexes for Seedling Table
@@ -192,9 +208,10 @@ CREATE INDEX idx_Seedling_Age ON Seedling (Age);
 
 -- Indexes for Mothers Table
 CREATE INDEX idx_Mothers_SeedlingID ON Mothers (SeedlingID);
+CREATE INDEX idx_MothersDateMothered ON Mothers (DateMothered);
+CREATE INDEX idx_Mothers_Age ON Mothers (Age);
 CREATE INDEX idx_Mothers_PhenotypicMarkerID ON Mothers (PhenotypicMarkerID);
 CREATE INDEX idx_Mothers_GeneticMarkerID ON Mothers (GeneticMarkerID);
-CREATE INDEX idx_Mothers_Age ON Mothers (Age);
 
 -- Indexes for Maturity Table
 CREATE INDEX idx_Maturity_MaturityID ON Maturity (MaturityID);
@@ -212,12 +229,11 @@ CREATE INDEX idx_Transplant_TransplantID ON Transplant (TransplantID);
 
 -- Indexes for Daughter Table
 CREATE INDEX idx_Daughter_CutID ON Daughter (CutID);
-CREATE INDEX idx_Daughter_MotherID ON Daughter (MotherID);
-CREATE INDEX idx_Daughter_TransplantID ON Daughter (TransplantID);
-CREATE INDEX idx_Daughter_GeneticMarkerID ON Daughter (GeneticMarkerID);
-CREATE INDEX idx_Daughter_PhenotypicMarkerID ON Daughter (PhenotypicMarkerID);
+CREATE INDEX idx_Daughter_Packaged ON Daughter (Packaged);
 CREATE INDEX idx_Daughter_DateDaughtered ON Daughter (DateDaughtered);
 CREATE INDEX idx_Daughter_Age ON Daughter (Age);
+CREATE INDEX idx_Daughter_GeneticMarkerID ON Daughter (GeneticMarkerID);
+CREATE INDEX idx_Daughter_PhenotypicMarkerID ON Daughter (PhenotypicMarkerID);
 
 -- Indexes for Strain Table
 CREATE INDEX idx_Strain_DaughterID ON Strain (DaughterID);
