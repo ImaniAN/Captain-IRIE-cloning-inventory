@@ -4,83 +4,78 @@ CREATE DATABASE ProjectMotherShip;
 -- Use the newly created database
 USE ProjectMotherShip;
 
--- Create the PackagingInfo Table
-CREATE TABLE PackagingInfo (
-    PackagingInfoID INT IDENTITY(1,1) PRIMARY KEY,
-    SeedID INT,
-    PackName VARCHAR(50),
+-- Create the Seed Breeder Vendor Table
+CREATE TABLE SeedBreederVendor (
+    BreederVendorID SMALLINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    VendorName VARCHAR(50) UNIQUE
+);
+
+-- Create the SeedStore Table
+CREATE TABLE SeedStore (
+    SeedStoreID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    SeedStorerName VARCHAR(50),
     PackageUnits SMALLINT,
     PackagingDate DATE,
     ExpirationDate DATE,
-    DateReceived DATE DEFAULT GETDATE(), -- Set your default value here
-    FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
-        ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (PackName) REFERENCES Seed(PackName)
-        ON UPDATE CASCADE ON DELETE CASCADE
-);
-
--- Create the Seed Breeder Vendor Table
-CREATE TABLE SeedBreederVendor (
-    BreederVendorID SMALLINT IDENTITY(1,1) PRIMARY KEY,
-    VendorName VARCHAR(50) UNIQUE
+    DateReceived DATE DEFAULT GETDATE()
 );
 
 -- Create the Genetic Marker Table
 CREATE TABLE GeneticMarker (
-    GeneticMarkerID SMALLINT IDENTITY(1,1) PRIMARY KEY,
+    GeneticMarkerID SMALLINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Genus VARCHAR(50),
-    Species VARCHAR(50)
-); -- Cannabis sativa, indica and hybrid
+    Species VARCHAR(50) UNIQUE
+);
 
 -- Create the Phenotypic Marker Table
 CREATE TABLE PhenotypicMarker (
-    PhenotypicMarkerID SMALLINT IDENTITY(1,1) PRIMARY KEY,
+    PhenotypicMarkerID SMALLINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     GeneticMarkerID SMALLINT,
     MarkerName VARCHAR(50) UNIQUE,
-    NumberofNodes INT,
-    Height SMALLINT,
+    NumberOfBranches INT,
+    Height INT,
     Colour VARCHAR(50),
-    LeafShape VARCHAR(50), --Leaves can be broad or narrow
+    LeafShape VARCHAR(50),
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
       ON UPDATE CASCADE ON DELETE CASCADE,
 );
 
 -- Create the Seed Table
 CREATE TABLE Seed (
-    SeedID INT IDENTITY(1,1) PRIMARY KEY,
-    BreederVendorID SMALLINT,
+    SeedID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    SeedStoreID INT,
+    BreederVendorID VARCHAR(50),
     GeneticMarkerID SMALLINT,
     PhenotypicMarkerID SMALLINT,
-    PackName VARCHAR(50),
-    PackagingInfoID INT,
     FOREIGN KEY (BreederVendorID) REFERENCES SeedBreederVendor(BreederVendorID)
         ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
         ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (PackagingInfoID) REFERENCES PackagingInfo(PackagingInfoID)
+    FOREIGN KEY (SeedStoreID) REFERENCES SeedStore(SeedStoreID)
         ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID)
         ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+
 -- Create the Seeding Table
 CREATE TABLE Seeding (
-    SeedingID INT IDENTITY(1,1) PRIMARY KEY,
+    SeedingID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     SeedID INT,
-    PackagingInfoID INT,
-    DatePlanted DATE DEFAULT GETDATE(),
+    SeedStoreID INT,
+    DatePlanted DATE,
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
       ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (PackagingInfoID) REFERENCES PackagingInfo(PackagingInfoID)
+    FOREIGN KEY (SeedStoreID) REFERENCES SeedStore(SeedStoreID)
         ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Seedling Table
 CREATE TABLE Seedling (
-    SeedlingID INT IDENTITY(1,1) PRIMARY KEY,
+    SeedlingID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     SeedID INT,
     SeedingID INT,
-    SproutDate DATE, --GETDATE() ???
+    SproutDate DATE,
     Age INT, --Dateplanted - sproutdate = age
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
       ON UPDATE CASCADE ON DELETE CASCADE,
@@ -91,10 +86,12 @@ CREATE TABLE Seedling (
 
 -- Create the Mothers Table
 CREATE TABLE Mothers (
-    MotherID INT IDENTITY(1,1) PRIMARY KEY,
+    MotherID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     SeedlingID INT
-    TimeGrown SMALLINT, --perform an age calultion of some sort here
-    Nodes INT,
+    DateMothered DATE,
+    Age INT, --DatePlated - DateMothered = age
+    NumberOfBranches INT,
+    Colour VARCHAR(50),
     PhenotypicMarkerID SMALLINT,
     GeneticMarkerID SMALLINT,
     FOREIGN KEY (SeedlingID) REFERENCES Seedling(SeedlingID)
@@ -107,14 +104,13 @@ CREATE TABLE Mothers (
 
 -- Create the Maturity Table
 CREATE TABLE Maturity (
-    MaturityID INT IDENTITY(1,1) PRIMARY KEY,
+    MaturityID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     MotherID INT,
-    NumberOfBranches SMALLINT,
-    MaturityDate DATE DEFAULT GETDATE(),
-    BranchSites SMALLINT,
+    MaturityDate DATE,
     Age INT, --DatePlatented - MaturityDate = Age
-    Height SMALLINT,
-    Nodes SMALLINT,
+    Height INT,
+    Colour VARCHAR(50),
+    NumberOfBranches INT,
     LeafShape VARCHAR(50),
     Color VARCHAR(50),
     FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
@@ -123,8 +119,8 @@ CREATE TABLE Maturity (
 
 -- Create the Cutting Table
 CREATE TABLE Cutting (
-    CutID INT IDENTITY(1,1) PRIMARY KEY,
-    CutDate DATE DEFAULT GETDATE(),
+    CutID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    CutDate DATE,
     NumberOfCuts SMALLINT,
     MaturityID INT,
     FOREIGN KEY (MaturityID) REFERENCES Maturity(MaturityID)
@@ -133,30 +129,25 @@ CREATE TABLE Cutting (
 
 -- Create the Transplant Table
 CREATE TABLE Transplant (
-    TransplantID INT IDENTITY(1,1) PRIMARY KEY,
+    TransplantID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    TransplantDate DATE,
     CutID INT
-    TransplantDate DATE DEFAULT GETDATE(),
     FOREIGN KEY (CutID) REFERENCES Cutting(CutID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Daughter Table
 CREATE TABLE Daughter (
-    DaughterID INT IDENTITY(1,1) PRIMARY KEY,
+    DaughterID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     CutID INT,
-    MotherID INT,
-    Price SMALLINT,
     Packaged BOOLEAN,
-    TransplantID INT,
+    DateDaughtered DATE,
+    Age INT, --CutDate - TransplantDate = Age
+    Price SMALLINT,
     GeneticMarkerID SMALLINT,
     PhenotypicMarkerID SMALLINT,
-    DateDaughtered DATE DEFAULT GETDATE(),
-    Age INT, --CutDate - TransplantDate = Age
+    Colour VARCHAR(50),
     FOREIGN KEY (CutID) REFERENCES Cutting(CutID)
-      ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
-      ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (TransplantID) REFERENCES Transplant(TransplantID)
       ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
       ON UPDATE CASCADE ON DELETE CASCADE,
@@ -167,12 +158,12 @@ CREATE TABLE Daughter (
 
 -- Create the Strain Table
 CREATE TABLE Strain (
-    StrainID SMALLINT IDENTITY(1,1) PRIMARY KEY,
+    StrainID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     NickName VARCHAR(50),
     FirstName VARCHAR(50),
     MiddleName VARCHAR(50),
     LastName VARCHAR(50),
-    DaughterID SMALLINT,
+    DaughterID INT,
     FOREIGN KEY (DaughterID) REFERENCES Daughter(DaughterID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -186,8 +177,8 @@ CREATE INDEX idx_Seed_PhenotypicMarkerID ON Seed (PhenotypicMarkerID);
 CREATE INDEX idx_Seed_DateReceived ON Seed (DateReceived);
 CREATE INDEX idx_Seed_PackName ON Seed (PackName);
 
--- Indexes for PackagingInfo Table
-CREATE INDEX idx_PackagingInfo_SeedID ON PackagingInfo (SeedID);
+-- Indexes for SeedStore Table
+CREATE INDEX idx_SeedStore_SeedID ON SeedStore (SeedID);
 
 -- Indexes for Seeding Table
 CREATE INDEX idx_Seeding_SeedID ON Seeding (SeedID);
@@ -203,7 +194,7 @@ CREATE INDEX idx_Seedling_Age ON Seedling (Age);
 CREATE INDEX idx_Mothers_SeedlingID ON Mothers (SeedlingID);
 CREATE INDEX idx_Mothers_PhenotypicMarkerID ON Mothers (PhenotypicMarkerID);
 CREATE INDEX idx_Mothers_GeneticMarkerID ON Mothers (GeneticMarkerID);
-CREATE INDEX idx_Mothers_TimeGrown ON Mothers (TimeGrown);
+CREATE INDEX idx_Mothers_Age ON Mothers (Age);
 
 -- Indexes for Maturity Table
 CREATE INDEX idx_Maturity_MaturityID ON Maturity (MaturityID);
@@ -246,7 +237,7 @@ VALUES
     ('Cannabis', 'Hybrid');
 
 -- Insert data into PhenotypicMarker Table
-INSERT INTO PhenotypicMarker (MarkerName, GeneticMarkerID, NumberofNodes, Height, Colour, LeafShape)
+INSERT INTO PhenotypicMarker (MarkerName, GeneticMarkerID, NumberOfBranches, Height, Colour, LeafShape)
 VALUES
     ('Marker1', 1, 5, 10, 'Green', 'Broad'),
     ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
@@ -259,8 +250,8 @@ VALUES
     (2, 2, 2, 'SeedPack2'),
     (3, 3, 3, 'SeedPack3');
 
--- Insert data into PackagingInfo Table
-INSERT INTO PackagingInfo (SeedID, PackName, PackageUnits, PackagingDate, ExpirationDate)
+-- Insert data into SeedStore Table
+INSERT INTO SeedStore (SeedID, PackName, PackageUnits, PackagingDate, ExpirationDate)
 VALUES
     (1, 'SeedPack1', 100, '2023-01-01', '2023-12-31'),
     (2, 'SeedPack2', 150, '2023-02-01', '2023-11-30'),
@@ -268,28 +259,28 @@ VALUES
 
 
 -- Insert data into Seeding Table
-INSERT INTO Seeding (SeedID, DatePlanted)
+INSERT INTO Seeding (SeedID, SeedStoreID, DatePlanted)
 VALUES
-    (1, '2023-04-01'),
-    (2, '2023-05-01'),
-    (3, '2023-06-01');
+    (1, 1, '2023-04-01'),
+    (1, 1, '2023-05-01'),
+    (1, 1, '2023-06-01');
 
 -- Insert data into Seedling Table
 INSERT INTO Seedling (SeedID, SeedingID, SproutDate, Age)
 VALUES
-    (1, 1, '2023-04-15', 14),
-    (2, 2, '2023-05-15', 14),
-    (3, 3, '2023-06-15', 14);
+    (1, 1, '2023-04-15', 2),
+    (2, 2, '2023-05-15', 4),
+    (3, 3, '2023-06-15', 3);
 
 -- Insert data into Mothers Table
-INSERT INTO Mothers (SeedlingID, TimeGrown, Nodes, PhenotypicMarkerID, GeneticMarkerID)
+INSERT INTO Mothers (SeedlingID, Age, NumberOfBranches, PhenotypicMarkerID, GeneticMarkerID)
 VALUES
     (1, 30, 8, 1, 1),
     (2, 31, 9, 2, 2),
     (3, 32, 7, 3, 3);
 
 -- Insert data into Maturity Table
-INSERT INTO Maturity (MotherID, NumberOfBranches, MaturityDate, BranchSites, Age, Height, Nodes, LeafShape, Color)
+INSERT INTO Maturity (MotherID, NumberOfBranches, MaturityDate, BranchSites, Age, Height, NumberOfBranches, LeafShape, Color)
 VALUES
     (1, 20, '2023-07-01', 10, 15, 30, 12, 'Broad', 'Green'),
     (2, 18, '2023-07-02', 8, 14, 32, 11, 'Narrow', 'Purpule'),
