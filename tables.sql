@@ -7,35 +7,37 @@ USE ProjectMotherShip;
 -- Create the Seed Breeder Vendor Table
 CREATE TABLE SeedBreederVendor (
     BreederVendorID SMALLINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    VendorName VARCHAR(50) UNIQUE
+    VendorName VARCHAR(150) UNIQUE
 );
 
 -- Create the SeedStore Table
 CREATE TABLE SeedStore (
     SeedStoreID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    SeedStoreName VARCHAR(50),
-    PackageUnits SMALLINT,
-    PackagingDate DATE,
-    ExpirationDate DATE,
-    DateReceived DATE DEFAULT GETDATE()
+    SeedStoreName VARCHAR(150),
+    BreederVendorID SMALLINT.
+    PackageUnits INT,
+    ExpirationDate DATE, -- (date recivued plus 2 years)
+    DateReceived DATE DEFAULT GETDATE() 
+    --TODO: run a query for the diference between PackagingDate - DateReceived to find out how old seeds are before we get them
+    FOREIGN KEY (BreederVendorID) REFERENCES SeedBreederVendor(BreederVendorID)
+      ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Genetic Marker Table
 CREATE TABLE GeneticMarker (
     GeneticMarkerID SMALLINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    Genus VARCHAR(50),
-    Species VARCHAR(50) UNIQUE
+    Genus VARCHAR(150),
+    Species VARCHAR(150) UNIQUE
 );
 
 -- Create the Phenotypic Marker Table
 CREATE TABLE PhenotypicMarker (
     PhenotypicMarkerID SMALLINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    MarkerName VARCHAR(50) UNIQUE,
+    MarkerName VARCHAR(150) UNIQUE,
     GeneticMarkerID SMALLINT,
     NumberOfBranches INT,
     Height INT,
-    Colour VARCHAR(50),
-    LeafShape VARCHAR(50),
+    LeafColour VARCHAR(150),
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -44,7 +46,7 @@ CREATE TABLE PhenotypicMarker (
 CREATE TABLE Seed (
     SeedID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     SeedStoreID INT,
-    BreederVendorID VARCHAR(50),
+    BreederVendorID VARCHAR(150),
     GeneticMarkerID SMALLINT,
     PhenotypicMarkerID SMALLINT,
     FOREIGN KEY (BreederVendorID) REFERENCES SeedBreederVendor(BreederVendorID)
@@ -90,7 +92,7 @@ CREATE TABLE Mothers (
     DateMothered DATE,
     Age INT, --DatePlated - DateMothered = age
     NumberOfBranches INT,
-    Colour VARCHAR(50),
+    LeafColour VARCHAR(150),
     PhenotypicMarkerID SMALLINT,
     GeneticMarkerID SMALLINT,
     FOREIGN KEY (SeedlingID) REFERENCES Seedling(SeedlingID)
@@ -109,8 +111,7 @@ CREATE TABLE Maturity (
     Age INT, --DatePlatented - MaturityDate = Age
     Height INT,
     NumberOfBranches INT,
-    LeafShape VARCHAR(50),
-    Colour VARCHAR(50),
+    LeafColour VARCHAR(150),
     FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -145,7 +146,7 @@ CREATE TABLE Daughter (
     PhenotypicMarkerID SMALLINT,
     DateDaughtered DATE,
     Age INT, --CutDate - TransplantDate = Age
-    Colour VARCHAR(50),
+    LeafColour VARCHAR(150),
     FOREIGN KEY (TransplantID) REFERENCES Transplant(TransplantID)
       ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
@@ -158,10 +159,10 @@ CREATE TABLE Daughter (
 -- Create the Strain Table
 CREATE TABLE Strain (
     StrainID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    NickName VARCHAR(50),
-    FirstName VARCHAR(50),
-    MiddleName VARCHAR(50),
-    LastName VARCHAR(50),
+    NickName VARCHAR(150),
+    FirstName VARCHAR(150),
+    MiddleName VARCHAR(150),
+    LastName VARCHAR(150),
     DaughterID INT UNIQUE,
     FOREIGN KEY (DaughterID) REFERENCES Daughter(DaughterID)
       ON UPDATE CASCADE ON DELETE CASCADE
@@ -243,20 +244,32 @@ CREATE INDEX idx_Strain_DaughterID ON Strain (DaughterID);
 -- Insert data into SeedBreederVendor Table
 INSERT INTO SeedBreederVendor (VendorName)
 VALUES
-    ('Vendor1'),
-    ('Vendor2'),
-    ('Vendor3'),
-    ('Bagseeds');
+    ('MarijuanaSouthAfrica'),
+    ('GrowWeedAfrica'),
+    ('BagSeeds'),
+    ('Vendor1');
 
 -- Insert data into SeedStore Table
-INSERT INTO SeedStore (SeedStoreName, PackageUnits, PackagingDate, ExpirationDate, DateReceived)
+INSERT INTO SeedStore (SeedStoreName, PackageUnits, BreederVendorID, ExpirationDate, DateReceived)
 VALUES
-    ('Bagseeds', 137, '2023-01-01', '2023-12-31', '2023-01-01'),
-    ('SeedPack1', 10, '2023-01-01', '2023-12-31', '2023-01-01'),
-    ('SeedPack2', 5, '2023-01-01', '2023-12-31', '2023-01-01'),
-    ('SeedPack3', 3, '2023-01-01', '2023-12-31', '2023-01-01'),
-    ('SeedPack4', 2, '2023-02-01', '2023-11-30', '2023-01-01'),
-    ('Bagseeds', 220, '2023-03-01', '2023-10-31', '2023-01-01');
+    ('SeedPack1', 3, 1, '2024-12-31', '2023-01-11'),
+    ('SeedPack1', 3, 1, '2024-12-31', '2023-01-11'),
+    ('SeedPack1', 3, 1, '2024-12-31', '2023-01-11'),
+    ('SeedPack1', 3, 1, '2024-12-31', '2023-01-11'),
+    ('SeedPack1', 3, 1, '2024-12-31', '2023-01-11'),
+    ('SeedPack1', 3, 1, '2024-12-31', '2023-01-11'),
+    ('SeedPack1', 3, 1, '2024-12-31', '2023-01-11'),
+    ('SeedPack1', 3, 1, '2024-12-31', '2023-01-11'),
+    ('SeedPack2', 5, 2, '2024-12-31', '2023-01-11'),
+    ('SeedPack2', 5, 2, '2024-12-31', '2023-01-11'),
+    ('SeedPack2', 5, 2, '2024-12-31', '2023-01-11'),
+    ('SeedPack2', 5, 2, '2024-12-31', '2023-01-11'),
+    ('Bagseeds', 37, 3, '2024-12-31', '2023-03-11'),
+    ('Bagseeds', 737, 3, '2024-12-31', '2023-03-11'),
+    ('Bagseeds', 237, 3, '2024-12-31', '2023-03-11'),
+    ('Bagseeds', 37, 3, '2024-12-31', '2023-03-11'),
+    ('Bagseeds', 17, 3, '2024-12-31', '2023-03-11'),
+    ('Bagseeds', 2200, 3, '2023-10-31', '2023-03-03');
 
 -- Insert data into GeneticMarker Table
 INSERT INTO GeneticMarker (Genus, Species)
@@ -266,33 +279,44 @@ VALUES
     ('Cannabis', 'Hybrid');
 
 -- Insert data into PhenotypicMarker Table
-INSERT INTO PhenotypicMarker (MarkerName, GeneticMarkerID, NumberOfBranches, Height, Colour, LeafShape)
+INSERT INTO PhenotypicMarker (MarkerName, GeneticMarkerID, NumberOfBranches, Height, LeafColour)
 VALUES
-    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
-    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
-    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
-    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
-    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
-    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
-    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
-    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
-    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
-    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
-    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
-    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
-    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
-    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
-    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
-    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
-    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
-    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
-    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
-    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
-    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
-    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
-    ('Marker1', 1, 5, 10, 'Green', 'Broad'),
-    ('Marker2', 2, 7, 12, 'Purple', 'Narrow'),
-    ('Marker3', 3, 6, 11, 'Brown', 'Broad');
+    -- Cannabis Sativa PhenotypicMarkers
+    ('Seedling Stage (Sativa)', 1, 2, 5, 'Green (Light)', ),
+    ('Early Vegetative Stage (Sativa)', 1, 6, 20, 'Green (Medium)'),
+    ('Late Vegetative Stage (Sativa)', 1, 12, 40, 'Green (Dark)'),
+    ('Pre-Flowering Stage (Sativa)', 1, 18, 70, 'Green (Dark)'),
+    ('Early Flowering Stage (Sativa)', 1, 24, 100, 'Varied (Light to Dark)'),
+    ('Mid-Flowering Stage (Sativa)', 1, 30, 150, 'Varied (Light to Dark)'),
+    ('Late Flowering Stage (Sativa)', 1, 36, 200, 'Varied (Light to Dark)'),
+    ('Mid-Maturity Stage (Sativa)', 1, 42, 220, 'Autumn Colors'),
+    ('Mid-Harvest Stage (Sativa)', 1, 48, 240, 'Drying and Curing'),
+    ('Post-Harvest Stage (Sativa)', 1, 50, 254, 'Drying and Curing'),
+
+    -- Cannabis Indica PhenotypicMarkers
+    ('Seedling Stage (Indica)', 2, 2, 5, 'Green (Light)', ),
+    ('Early Vegetative Stage (Indica)', 2, 6, 20, 'Green (Medium)'),
+    ('Late Vegetative Stage (Indica)', 2, 12, 40, 'Green (Dark)'),
+    ('Pre-Flowering Stage (Indica)', 2, 18, 70, 'Green (Dark)'),
+    ('Early Flowering Stage (Indica)', 2, 24, 100, 'Varied (Light to Dark)'),
+    ('Mid-Flowering Stage (Indica)', 2, 30, 150, 'Varied (Light to Dark)'),
+    ('Late Flowering Stage (Indica)', 2, 36, 200, 'Varied (Light to Dark)'),
+    ('Mid-Maturity Stage (Indica)', 2, 42, 220, 'Autumn Colors'),
+    ('Mid-Harvest Stage (Indica)', 2, 48, 240, 'Drying and Curing'),
+    ('Post-Harvest Stage (Indica)', 2, 50, 254, 'Drying and Curing'),
+
+    -- Cannabis Hybrid PhenotypicMarkers
+    ('Seedling Stage (Hybrid)', 3, 2, 5, 'Green (Light)', ),
+    ('Early Vegetative Stage (Hybrid)', 3, 6, 20, 'Green (Medium)'),
+    ('Late Vegetative Stage (Hybrid)', 3, 12, 40, 'Green (Dark)'),
+    ('Pre-Flowering Stage (Hybrid)', 3, 18, 70, 'Green (Dark)'),
+    ('Early Flowering Stage (Hybrid)', 3, 24, 100, 'Varied (Light to Dark)'),
+    ('Mid-Flowering Stage (Hybrid)', 3, 30, 150, 'Varied (Light to Dark)'),
+    ('Late Flowering Stage (Hybrid)', 3, 36, 200, 'Varied (Light to Dark)'),
+    ('Mid-Maturity Stage (Hybrid)', 3, 42, 220, 'Autumn Colors'),
+    ('Mid-Harvest Stage (Hybrid)', 3, 48, 240, 'Drying and Curing'),
+    ('Post-Harvest Stage (Hybrid)', 3, 50, 254, 'Drying and Curing', 'May Change');
+
 
 -- Insert data into Seed Table
 INSERT INTO Seed (SeedStoreID, BreederVendorID, GeneticMarkerID, PhenotypicMarkerID)
@@ -372,26 +396,26 @@ VALUES
     (3, '2023-07-01', 83, 5, 3, 3);
 
 -- Insert data into Maturity Table
-INSERT INTO Maturity (MotherID, MaturityDate, Age, Height, NumberOfBranches, LeafShape, Colour)
+INSERT INTO Maturity (MotherID, MaturityDate, Age, Height, NumberOfBranches, LeafShape, LeafColour)
 VALUES
-    (1, '2023-07-01', 15, 30, 12, 'Broad', 'Green'), -- MaturityID = 1
-    (2, '2023-07-02', 14, 32, 11, 'Narrow', 'Purpule'),
-    (1, '2023-07-01', 15, 30, 12, 'Broad', 'Green'),
-    (2, '2023-07-02', 14, 32, 11, 'Narrow', 'Purpule'),
-    (2, '2023-07-01', 15, 30, 12, 'Broad', 'Green'), -- MaturityID = 5
-    (2, '2023-07-02', 14, 32, 11, 'Narrow', 'Purpule'),
-    (2, '2023-07-02', 14, 32, 11, 'Narrow', 'Purpule'),
-    (1, '2023-07-01', 15, 30, 12, 'Broad', 'Green'),
-    (3, '2023-07-02', 14, 32, 11, 'Narrow', 'Purpule'), -- MaturityID = 9
-    (1, '2023-07-01', 15, 30, 12, 'Broad', 'Green'),
-    (2, '2023-07-02', 14, 32, 11, 'Narrow', 'Purpule'),
-    (2, '2023-07-02', 14, 32, 11, 'Narrow', 'Purpule'),
-    (2, '2023-07-02', 14, 32, 11, 'Narrow', 'Purpule'),
-    (1, '2023-07-01', 15, 30, 12, 'Broad', 'Green'), -- MaturityID = 14
-    (2, '2023-07-02', 14, 32, 11, 'Narrow', 'Purpule'),
-    (1, '2023-07-01', 15, 30, 12, 'Broad', 'Green'),
-    (2, '2023-07-02', 14, 32, 11, 'Narrow', 'Purpule'),
-    (3, '2023-07-03', 16, 28, 10, 'Broad', 'Brown');
+    (1, '2023-07-01', 15, 30, 12, 'Green'), -- MaturityID = 1
+    (2, '2023-07-02', 14, 32, 11, 'Purpule'),
+    (1, '2023-07-01', 15, 30, 12, 'Green'),
+    (2, '2023-07-02', 14, 32, 11, 'Purpule'),
+    (2, '2023-07-01', 15, 30, 12, 'Green'), -- MaturityID = 5
+    (2, '2023-07-02', 14, 32, 11, 'Purpule'),
+    (2, '2023-07-02', 14, 32, 11, 'Purpule'),
+    (1, '2023-07-01', 15, 30, 12, 'Green'),
+    (3, '2023-07-02', 14, 32, 11, 'Purpule'), -- MaturityID = 9
+    (1, '2023-07-01', 15, 30, 12, 'Green'),
+    (2, '2023-07-02', 14, 32, 11, 'Purpule'),
+    (2, '2023-07-02', 14, 32, 11, 'Purpule'),
+    (2, '2023-07-02', 14, 32, 11, 'Purpule'),
+    (1, '2023-07-01', 15, 30, 12, 'Green'), -- MaturityID = 14
+    (2, '2023-07-02', 14, 32, 11, 'Purpule'),
+    (1, '2023-07-01', 15, 30, 12, 'Green'),
+    (2, '2023-07-02', 14, 32, 11, 'Purpule'),
+    (3, '2023-07-03', 16, 28, 10, 'Brown');
 
 -- Insert data into Cutting Table
 INSERT INTO Cutting (MaturityID, NumberOfCuts, CutDate)
@@ -458,7 +482,7 @@ VALUES
     (14, '2023-07-22');
 
 -- Insert data into Daughter Table
-INSERT INTO Daughter (MotherID, Price, Packaged, TransplantID, GeneticMarkerID, PhenotypicMarkerID, DateDaughtered, Age, Colour)
+INSERT INTO Daughter (MotherID, Price, Packaged, TransplantID, GeneticMarkerID, PhenotypicMarkerID, DateDaughtered, Age, LeafColour)
 VALUES
     (1, 199, 1, 1, 1, 1, '2023-07-25', 5, 'Green'),
     (1, 199, 0, 2, 2, 2, '2023-07-26', 4, 'Lime'),
