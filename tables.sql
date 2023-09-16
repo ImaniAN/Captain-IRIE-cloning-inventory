@@ -37,7 +37,7 @@ CREATE TABLE PhenotypicMarker (
     Colour VARCHAR(50),
     LeafShape VARCHAR(50),
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
-      ON UPDATE CASCADE ON DELETE CASCADE,
+      ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Seed Table
@@ -79,7 +79,7 @@ CREATE TABLE Seedling (
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
       ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (SeedingID) REFERENCES Seeding(SeedingID)
-      ON UPDATE CASCADE ON DELETE CASCADE,
+      ON UPDATE CASCADE ON DELETE CASCADE
 
 );
 
@@ -195,18 +195,18 @@ CREATE INDEX idx_Seed_GeneticMarkerID ON Seed (GeneticMarkerID);
 CREATE INDEX idx_Seed_PhenotypicMarkerID ON Seed (PhenotypicMarkerID);
 
 -- Indexes for Seeding Table
-CREATE INDEX idx_Seeding_SeedID ON Seeding (SeedID);
+CREATE UNIQUE INDEX UI_Seeding_SeedID ON Seeding (SeedID);
 CREATE INDEX idx_Seeding_SeedStoreID ON Seeding (SeedStoreID);
 CREATE INDEX idx_Seeding_DatePlanted ON Seeding (DatePlanted);
 
 -- Indexes for Seedling Table
-CREATE INDEX idx_Seedling_SeedID ON Seedling (SeedID);
+CREATE UNIQUE INDEX UI_Seedling_SeedID ON Seedling (SeedID);
 CREATE INDEX idx_Seedling_SeedingID ON Seedling (SeedingID);
 CREATE INDEX idx_Seedling_SproutDate ON Seedling (SproutDate);
 CREATE INDEX idx_Seedling_Age ON Seedling (Age);
 
 -- Indexes for Mothers Table
-CREATE INDEX idx_Mothers_SeedlingID ON Mothers (SeedlingID);
+CREATE UNIQUE INDEX UI_Mothers_SeedlingID ON Mothers (SeedlingID);
 CREATE INDEX idx_MothersDateMothered ON Mothers (DateMothered);
 CREATE INDEX idx_Mothers_Age ON Mothers (Age);
 CREATE INDEX idx_Mothers_PhenotypicMarkerID ON Mothers (PhenotypicMarkerID);
@@ -222,17 +222,20 @@ CREATE INDEX idx_Maturity_Height ON Maturity (Height);
 -- Indexes for Cutting Table
 CREATE INDEX idx_Cutting_CutID ON Cutting (CutID);
 CREATE INDEX idx_Cutting_MaturityID ON Cutting (MaturityID);
+CREATE INDEX idx_Cutting_CutDate ON Cutting (CutDate);
 
 -- Indexes for Transplant Table
 CREATE INDEX idx_Transplant_TransplantID ON Transplant (TransplantID);
+CREATE INDEX idx_Transplant_CutID ON Transplant (CutID);
 
 -- Indexes for Daughter Table
-CREATE INDEX idx_Daughter_CutID ON Daughter (CutID);
+CREATE INDEX idx_Daughter_MotherID ON Daughter (MotherID);
 CREATE INDEX idx_Daughter_Packaged ON Daughter (Packaged);
-CREATE INDEX idx_Daughter_DateDaughtered ON Daughter (DateDaughtered);
-CREATE INDEX idx_Daughter_Age ON Daughter (Age);
+CREATE UNIQUE INDEX UI_Daughter_TransplantID ON Daughter (TransplantID);
 CREATE INDEX idx_Daughter_GeneticMarkerID ON Daughter (GeneticMarkerID);
 CREATE INDEX idx_Daughter_PhenotypicMarkerID ON Daughter (PhenotypicMarkerID);
+CREATE INDEX idx_Daughter_Age ON Daughter (Age);
+CREATE INDEX idx_Daughter_DateDaughtered ON Daughter (DateDaughtered);
 
 -- Indexes for Strain Table
 CREATE INDEX idx_Strain_DaughterID ON Strain (DaughterID);
