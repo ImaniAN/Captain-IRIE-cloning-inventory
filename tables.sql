@@ -100,7 +100,7 @@ CREATE TABLE Seedling (
 -- Create the Mothers Table
 CREATE TABLE Mothers (
     MotherID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    SeedlingID INT UNIQUE,
+    SeedlingID INT,
     DateMothered DATE,
     NumberOfBranches INT,
     LeafColour VARCHAR(150),
@@ -160,6 +160,7 @@ CREATE TABLE Daughter (
     DateDaughtered DATE,
     Age INT, -- Calculate this based on CutDate and TransplantDate
     LeafColour VARCHAR(150),
+    HealthStatus BOOLEAN,
     Fate VARCHAR(50), -- To track fate (e.g., 'Kept', 'Sold', 'Destroyed', 'Donated')
     FOREIGN KEY (TransplantID) REFERENCES Transplant(TransplantID)
       ON UPDATE CASCADE ON DELETE CASCADE,
@@ -299,56 +300,49 @@ VALUES
     (1, 1, 'BagSeeds1', 3, '2023-01-11'), --BagSeeds1 is a Sativa from MarijuanaSouthAfrica
     (4, 1, 'BagSeeds2', 3, '2023-01-11'), --BagSeeds2 is a Indica from MarijuanaSouthAfrica
     (7, 1, 'BagSeeds3', 3, '2023-01-11'), --BagSeeds3 is a Hybird from MarijuanaSouthAfrica
-    (2, 2, 'SeedPack4', 3, '2023-01-11'), --SeedPack4 is a Sativa from GrowWeedAfrica
-    (5, 2, 'SeedPack5', 3, '2023-01-11'), --SeedPack5 is a Indica from GrowWeedAfrica
-    (8, 2, 'SeedPack6', 3, '2023-01-11'), --SeedPack6 is a Hybird from GrowWeedAfrica
-    (3, 3, 'SeedPack7', 3, '2023-02-15'), --SeedPack7 is a Sativa from BagSeeds
-    (6, 3, 'SeedPack8', 3, '2023-02-15'), --SeedPack8 is a Indica from BagSeeds
-    (9, 3, 'SeedPack9', 3, '2023-03-20'); --SeedPack9 is a Hybrid from BagSeeds
+    (2, 2, 'SeedPack1', 3, '2023-01-11'), --SeedPack1 is a Sativa from GrowWeedAfrica
+    (5, 2, 'SeedPack2', 3, '2023-01-11'), --SeedPack2 is a Indica from GrowWeedAfrica
+    (8, 2, 'SeedPack3', 3, '2023-01-11'), --SeedPack3 is a Hybird from GrowWeedAfrica
+    (3, 3, 'SeedPack4', 3, '2023-02-15'), --SeedPack4 is a Sativa from BagSeeds
+    (6, 3, 'SeedPack5', 3, '2023-02-15'), --SeedPack5 is a Indica from BagSeeds
+    (9, 3, 'SeedPack6', 3, '2023-03-20'); --SeedPack6 is a Hybrid from BagSeeds
 
--- Adjusting mock data to account for % of seeds in the Seed Table
--- Calculate the number of seeds to insert for each StrainSeedBag
-
--- Inserting seeds accordingly
-INSERT INTO Seed (StrainSeedBagID, BreederVendorID, GeneticMarkerID)
+INSERT INTO Seed (StrainSeedBagID, BreederVendorID, GeneticMarkerID) -- 27 seeds
 VALUES
-    -- For StrainSeedBag 1 (BagSeeds1) BagSeeds1 now has 22 entries
-    (1, 1, 3),   -- Seed 1
-    (1, 1, 3),   -- Seed 2
-    (1, 1, 3),   -- Seed 3
-    (1, 1, 3),   -- Seed 4
-    (1, 1, 3),   -- Seed 5
-    (1, 1, 3),   -- Seed 6
-    (1, 1, 3),   -- Seed 7
-    (1, 1, 3),   -- Seed 8
-    (1, 1, 3),   -- Seed 9
-    (1, 1, 3),   -- Seed 10
-    (1, 1, 3),   -- Seed 11
-    (1, 1, 3),   -- Seed 12
-    (1, 1, 3),   -- Seed 13
-    (1, 1, 3),   -- Seed 14
-    (1, 1, 3),   -- Seed 15
-    (1, 1, 3),   -- Seed 16
-    (1, 1, 3),   -- Seed 17
-    (1, 1, 3),   -- Seed 18
+    -- For StrainSeedBag 1 (SeedPack1) has 9 entries for each seed from each Species from each Vendor
+    (1, 1, 1),   -- Seed 1
+    (1, 1, 1),   -- Seed 2
+    (1, 1, 1),   -- Seed 3
+    (1, 1, 1),   -- Seed 4
+    (1, 1, 1),   -- Seed 5
+    (1, 1, 1),   -- Seed 6
+    (1, 1, 1),   -- Seed 7
+    (1, 1, 1),   -- Seed 8
+    (1, 1, 1),   -- Seed 9
+    -- For StrainSeedBag 2 (BagSeeds2) BagSeeds1 now has 9 entries for each seed from each Species from each Vendor
+    (1, 1, 2),   -- Seed 10
+    (1, 1, 2),   -- Seed 11
+    (1, 1, 2),   -- Seed 12
+    (1, 1, 2),   -- Seed 13
+    (1, 1, 2),   -- Seed 14
+    (1, 1, 2),   -- Seed 15
+    (1, 1, 2),   -- Seed 16
+    (1, 1, 2),   -- Seed 17
+    (1, 1, 2),   -- Seed 18
+    -- For StrainSeedBag 3 (BagSeeds3) has 9 entries for each seed from each Species from each Vendor
     (1, 1, 3),   -- Seed 19
     (1, 1, 3),   -- Seed 20
     (1, 1, 3),   -- Seed 21
     (1, 1, 3),   -- Seed 22
-
-    -- For StrainSeedBag 2 (SeedPack1) has 3 entries
     (2, 2, 1),   -- Seed 23
     (2, 2, 1),   -- Seed 24
     (2, 2, 1),   -- Seed 25
-
-    -- For StrainSeedBag 3 (SeedPack2)  has 5 entries
     (3, 3, 2),   -- Seed 26
     (3, 3, 2),   -- Seed 27
     (3, 3, 2),   -- Seed 28
+    -- For StrainSeedBag 4 (SeedPack1) has 9 entries for each seed from each Species from each Vendor
     (3, 3, 2),   -- Seed 29
     (3, 3, 2),   -- Seed 30
-
-    -- For StrainSeedBag 4 (SeedPack3) has 8 entries
     (4, 4, 3),   -- Seed 31
     (4, 4, 3),   -- Seed 32
     (4, 4, 3),   -- Seed 33
@@ -356,10 +350,64 @@ VALUES
     (4, 4, 3),   -- Seed 35
     (4, 4, 3),   -- Seed 36
     (4, 4, 3),   -- Seed 37
+    -- For StrainSeedBag 5 (SeedPack2) has 9 entries for each seed from each Species from each Vendor
+    (1, 1, 3),   -- Seed 19
+    (1, 1, 3),   -- Seed 20
+    (1, 1, 3),   -- Seed 21
+    (1, 1, 3),   -- Seed 22
+    (2, 2, 1),   -- Seed 23
+    (2, 2, 1),   -- Seed 24
+    (2, 2, 1),   -- Seed 25
+    (3, 3, 2),   -- Seed 26
+    (3, 3, 2),   -- Seed 27
+    (3, 3, 2),   -- Seed 28
+    -- For StrainSeedBag 6 (SeedPack3) has 9 entries for each seed from each Species from each Vendor
+    (3, 3, 2),   -- Seed 29
+    (3, 3, 2),   -- Seed 30
+    (4, 4, 3),   -- Seed 31
+    (4, 4, 3),   -- Seed 32
+    (4, 4, 3),   -- Seed 33
+    (4, 4, 3),   -- Seed 34
+    (4, 4, 3),   -- Seed 35
+    (4, 4, 3),   -- Seed 36
+    (4, 4, 3),   -- Seed 37
+    -- For StrainSeedBag 7 (SeedPack4) has 9 entries for each seed from each Species from each Vendor
+    (1, 1, 3),   -- Seed 19
+    (1, 1, 3),   -- Seed 20
+    (1, 1, 3),   -- Seed 21
+    (1, 1, 3),   -- Seed 22
+    (2, 2, 1),   -- Seed 23
+    (2, 2, 1),   -- Seed 24
+    (2, 2, 1),   -- Seed 25
+    (3, 3, 2),   -- Seed 26
+    (3, 3, 2),   -- Seed 27
+    (3, 3, 2),   -- Seed 28
+    -- For StrainSeedBag 8 (SeedPack5) has 9 entries for each seed from each Species from each Vendor
+    (3, 3, 2),   -- Seed 29
+    (3, 3, 2),   -- Seed 30
+    (4, 4, 3),   -- Seed 31
+    (4, 4, 3),   -- Seed 32
+    (4, 4, 3),   -- Seed 33
+    (4, 4, 3),   -- Seed 34
+    (4, 4, 3),   -- Seed 35
+    (4, 4, 3),   -- Seed 36
+    (4, 4, 3),   -- Seed 37
+    -- For StrainSeedBag 9 (SeedPack6) has 9 entries for each seed from each Species from each Vendor
+    (1, 1, 3),   -- Seed 19
+    (1, 1, 3),   -- Seed 20
+    (1, 1, 3),   -- Seed 21
+    (4, 4, 3),   -- Seed 34
+    (4, 4, 3),   -- Seed 35
+    (4, 4, 3),   -- Seed 36
+    (4, 4, 3),   -- Seed 37
+    (4, 4, 3),   -- Seed 34
+    (4, 4, 3),   -- Seed 35
+    (4, 4, 3),   -- Seed 36
+    (4, 4, 3),   -- Seed 37
     (4, 4, 3);   -- Seed 38
 
 -- Insert data into Seeding Table
-INSERT INTO Seeding (SeedID, StrainSeedBagID, DatePlanted)
+INSERT INTO Seeding (SeedID, StrainSeedBagID, DatePlanted) -- 27 Seeding -- DatePlanted 2023-01-01
 VALUES
     (1, 1, '2023-04-01'), -- StrainSeedBagID has 12 from 22 seeds
     (2, 1, '2023-04-03'),
@@ -387,7 +435,7 @@ VALUES
     (37, 4, '2023-04-12');
 
 -- Insert data into Seedling Table
-INSERT INTO Seedling (SeedID, SeedingID, SproutDate, Age)
+INSERT INTO Seedling (SeedID, SeedingID, SproutDate, Age) --27 Seedling -- DatePlanted 2023-01-01 + 7 days = SproutDate (2023-01-07)
 VALUES
     (1, 1, '2023-04-15', 14),
     (2, 2, '2023-04-19', 12),
@@ -399,7 +447,7 @@ VALUES
     (8, 8, '2023-04-21', 12),
     (9, 9, '2023-04-26', 10);
 
--- Insert data into Mothers Table
+-- Insert data into Mothers Table -- 27 mothers -- SproutDate + 60 days = DateMothered (2023-02-07)
 INSERT INTO Mothers (SeedlingID, DateMothered, NumberOfBranches, LeafColour, PhenotypicMarkerID, GeneticMarkerID, StrainID)
 VALUES
     (1, '2023-06-01', 6, 'Green', 1, 1, 1),
@@ -409,8 +457,8 @@ VALUES
     (5, '2023-06-06', 5, 'Blue', 2, 2, 2),
     (6, '2023-06-11', 7, 'Green', 3, 3, 3);
 
--- Insert data into Maturity Table
-INSERT INTO Maturity (MotherID, DateOfMaturityCheck, Height, NumberOfBranches, LeafColour)
+-- Insert data into Maturity Table --4(1 every 3 weeks) Maturity checks per mother = 108 Maturity checks --DateMothered + 3 days = DateOfMaturityCheck each niitital maturity check must happen within 3 days of being a mother for cutting. every matruty check after that happens 3 weeks from that date
+INSERT INTO Maturity (MotherID, DateOfMaturityCheck, Height, NumberOfBranches, LeafColour) --(2023-02-10)
 VALUES
     (1, '2023-07-01', 40, 12, 'Green'),
     (2, '2023-07-05', 38, 11, 'Purple'),
@@ -419,8 +467,8 @@ VALUES
     (5, '2023-07-06', 37, 11, 'Blue'),
     (6, '2023-07-11', 41, 13, 'Green');
 
--- Insert data into Cutting Table
-INSERT INTO Cutting (MotherID, NumberOfCuts, CutDate)
+-- Insert data into Cutting Table -- 4 cuttings * 52 cuts * 27 mothers = 5616 -- CutDate = DateOfMaturityCheck + 3 days cut
+INSERT INTO Cutting (MotherID, NumberOfCuts, CutDate) --(2023-02-13)
 VALUES
     (1, 8, '2023-07-15'),
     (2, 9, '2023-07-17'),
@@ -429,8 +477,8 @@ VALUES
     (5, 9, '2023-07-18'),
     (6, 7, '2023-07-17');
 
--- Insert data into Transplant Table
-INSERT INTO Transplant (CutID, TransplantDate)
+-- Insert data into Transplant Table -- 4 cuttings * 52 cuts * 27 mothers = 5616 -- TransplantDate = CutDate + 13 days
+INSERT INTO Transplant (CutID, TransplantDate) --(2023-02-26)
 VALUES
     (1, '2023-07-20'),
     (2, '2023-07-22'),
@@ -439,9 +487,9 @@ VALUES
     (5, '2023-07-23'),
     (6, '2023-07-22');
 
--- Insert data into Daughter Table
-INSERT INTO Daughter (MotherID, Price, Packaged, TransplantID, GeneticMarkerID, PhenotypicMarkerID, DateHarvested)
-VALUES
+-- Insert data into Daughter Table -- 4 cuttings * 52 cuts * 27 mothers = 5616 --DateHarvested + 7 days
+INSERT INTO Daughter (MotherID, Price, Packaged, TransplantID, GeneticMarkerID, PhenotypicMarkerID, DateHarvested) --(2023-03-07)
+VALUES --HealthStatus all must = 1 for Healthy status 
     (1, 10.5, 1, 1, 1, 1, '2023-08-15'),
     (2, 11.2, 1, 2, 2, 2, '2023-08-17'),
     (3, 9.8, 1, 3, 3, 3, '2023-08-16'),
