@@ -232,9 +232,10 @@ CREATE INDEX idx_Daughter_TransplantID ON Daughter (TransplantID);
 -- Insert data into SeedBreederVendor Table
 INSERT INTO SeedBreederVendor (VendorName)
 VALUES
-    ('Vendor1'),
-    ('Vendor2'),
-    ('Vendor3');
+    ('MarijuanaSouthAfrica'),
+    ('GrowWeedAfrica'),
+    ('BagSeeds'),
+    ('Vendor1');
 
 -- Insert data into GeneticMarker Table
 INSERT INTO GeneticMarker (Genus, Species)
@@ -243,12 +244,41 @@ VALUES
     ('Cannabis', 'Indica'),
     ('Cannabis', 'Hybrid');
 
--- Insert data into PhenotypicMarker Table
 INSERT INTO PhenotypicMarker (MarkerName, GeneticMarkerID, NumberOfBranches, Height, LeafColour)
 VALUES
-    ('Marker1', 1, 5, 20, 'Green'),
-    ('Marker2', 2, 4, 18, 'Purple'),
-    ('Marker3', 3, 6, 22, 'Blue');
+    -- Cannabis Sativa specific PhenotypicMarkers
+    ('Seedling Stage (Sativa)', 1, 2, 5, 'Green (Light)'),
+    ('Early Vegetative Stage (Sativa)', 1, 6, 20, 'Green (Medium)'),
+    ('Late Vegetative Stage (Sativa)', 1, 12, 40, 'Green (Dark)'),
+    ('Pre-Flowering Stage (Sativa)', 1, 18, 70, 'Green (Dark)'),
+    ('Early Flowering Stage (Sativa)', 1, 24, 100, 'Varied (Light to Dark)'),
+    ('Mid-Flowering Stage (Sativa)', 1, 30, 150, 'Varied (Light to Dark)'),
+    ('Late Flowering Stage (Sativa)', 1, 36, 200, 'Varied (Light to Dark)'),
+    ('Mid-Maturity Stage (Sativa)', 1, 42, 220, 'Autumn Colors'),
+    ('Mid-Harvest Stage (Sativa)', 1, 48, 240, 'Drying and Curing'),
+    ('Post-Harvest Stage (Sativa)', 1, 50, 254, 'Drying and Curing'),
+        -- Cannabis Indica specific PhenotypicMarkers
+    ('Seedling Stage (Indica)', 2, 2, 5, 'Green (Light)', ),
+    ('Early Vegetative Stage (Indica)', 2, 6, 20, 'Green (Medium)'),
+    ('Late Vegetative Stage (Indica)', 2, 12, 40, 'Green (Dark)'),
+    ('Pre-Flowering Stage (Indica)', 2, 18, 70, 'Green (Dark)'),
+    ('Early Flowering Stage (Indica)', 2, 24, 100, 'Varied (Light to Dark)'),
+    ('Mid-Flowering Stage (Indica)', 2, 30, 150, 'Varied (Light to Dark)'),
+    ('Late Flowering Stage (Indica)', 2, 36, 200, 'Varied (Light to Dark)'),
+    ('Mid-Maturity Stage (Indica)', 2, 42, 220, 'Autumn Colors'),
+    ('Mid-Harvest Stage (Indica)', 2, 48, 240, 'Drying and Curing'),
+    ('Post-Harvest Stage (Indica)', 2, 50, 254, 'Drying and Curing'),
+        -- Cannabis Hybrid specific PhenotypicMarkers
+    ('Seedling Stage (Hybrid)', 3, 2, 5, 'Green (Light)', ),
+    ('Early Vegetative Stage (Hybrid)', 3, 6, 20, 'Green (Medium)'),
+    ('Late Vegetative Stage (Hybrid)', 3, 12, 40, 'Green (Dark)'),
+    ('Pre-Flowering Stage (Hybrid)', 3, 18, 70, 'Green (Dark)'),
+    ('Early Flowering Stage (Hybrid)', 3, 24, 100, 'Varied (Light to Dark)'),
+    ('Mid-Flowering Stage (Hybrid)', 3, 30, 150, 'Varied (Light to Dark)'),
+    ('Late Flowering Stage (Hybrid)', 3, 36, 200, 'Varied (Light to Dark)'),
+    ('Mid-Maturity Stage (Hybrid)', 3, 42, 220, 'Autumn Colors'),
+    ('Mid-Harvest Stage (Hybrid)', 3, 48, 240, 'Drying and Curing'),
+    ('Post-Harvest Stage (Hybrid)', 3, 50, 254, 'Drying and Curing', 'May Change');
 
 -- Insert data into Strain Table
 INSERT INTO Strain (NickName, FirstName, MiddleName, LastName, BreederVendorID)
@@ -260,6 +290,8 @@ VALUES
 -- Insert data into StrainSeedBag Table
 INSERT INTO StrainSeedBag (StrainID, BreederVendorID, StrainSeedBagName, PackageUnits, DateReceived)
 VALUES
+    (1, 1, 'BagSeeds1', 10, '2023-01-11'),
+    (1, 1, 'BagSeeds2', 10, '2023-01-11'),
     (1, 1, 'SeedPack1', 10, '2023-01-11'),
     (2, 2, 'SeedPack2', 15, '2023-02-15'),
     (3, 3, 'SeedPack3', 20, '2023-03-20');
@@ -308,9 +340,9 @@ INSERT INTO Mothers (SeedlingID, DateMothered, NumberOfBranches, LeafColour, Phe
 VALUES
     (1, '2023-06-01', 6, 'Green', 1, 1, 1),
     (2, '2023-06-05', 5, 'Purple', 2, 2, 2),
-    (3, '2023-06-10', 7, 'Blue', 3, 3, 3),
+    (3, '2023-06-10', 7, 'Chartreuse', 3, 3, 3),
     (4, '2023-06-02', 6, 'Purple', 1, 1, 1),
-    (5, '2023-06-06', 5, 'Blue', 2, 2, 2),
+    (5, '2023-06-06', 5, 'Chartreuse', 2, 2, 2),
     (6, '2023-06-11', 7, 'Green', 3, 3, 3);
 
 -- Insert data into Maturity Table
@@ -318,9 +350,9 @@ INSERT INTO Maturity (MotherID, DateOfMaturityCheck, Height, NumberOfBranches, L
 VALUES
     (1, '2023-07-01', 40, 12, 'Green'),
     (2, '2023-07-05', 38, 11, 'Purple'),
-    (3, '2023-07-10', 42, 13, 'Blue'),
+    (3, '2023-07-10', 42, 13, 'Chartreuse'),
     (4, '2023-07-02', 39, 12, 'Purple'),
-    (5, '2023-07-06', 37, 11, 'Blue'),
+    (5, '2023-07-06', 37, 11, 'Chartreuse'),
     (6, '2023-07-11', 41, 13, 'Green');
 
 -- Insert data into Cutting Table
@@ -353,7 +385,7 @@ VALUES
     (5, 11.4, 1, 5, 2, 2, '2023-08-18'),
     (6, 9.9, 1, 6, 3, 3, '2023-08-17');
 
--- Create constras, triggers, and other database-specific configurations as required.
+-- Create constraints, triggers, and other database-specific configurations as required.
 -- Ensure data types, default values, and cascading actions are appropriately defined.
 
--- Continue creating tables and defining constras and indexes for the remaining tables in your schema.
+-- Continue creating tables and defining constraints and indexes for the remaining tables in your schema.
