@@ -18,7 +18,10 @@ CREATE TABLE Strain (
     MiddleName VARCHAR(150),
     LastName VARCHAR(150),
     BreederVendorID INT NOT NULL,
+    GeneticMarkerID INT NOT NULL,
     FOREIGN KEY (BreederVendorID) REFERENCES SeedBreederVendor(BreederVendorID)
+      ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -278,91 +281,105 @@ VALUES
     ('Post-Harvest Stage (Hybrid)', 3, 50, 254, 'Drying and Curing', 'May Change');
 
 -- Insert data into Strain Table
-INSERT INTO Strain (NickName, FirstName, MiddleName, LastName, BreederVendorID)
+INSERT INTO Strain (NickName, FirstName, MiddleName, LastName, BreederVendorID, GeneticMarkerID) --Mock data reflects 3 species from 3 "real clients"
 VALUES
-    ('Strain1', 'First1', 'Middle1', 'Last1', 1),
-    ('Strain2', 'First2', 'Middle2', 'Last2', 2),
-    ('Strain3', 'First3', 'Middle3', 'Last3', 3);
+    ('Strain1', 'First1', 'Middle1', 'Last1', 1, 1), -- Strain1 is a Indica because of from MarijuanaSouthAfrica
+    ('Strain2', 'First2', 'Middle2', 'Last2', 2, 2), -- Strain2 is a Sativa because of from GrowWeedAfrica
+    ('Strain3', 'First3', 'Middle3', 'Last3', 3, 3), -- Strain3 is a Hybrid because of from BagSeeds
+    ('Strain4', 'First1', 'Middle1', 'Last1', 1, 1), -- Strain4 is a Indica because of from MarijuanaSouthAfrica
+    ('Strain5', 'First2', 'Middle2', 'Last2', 2, 2), -- Strain5 is a Sativa because of from GrowWeedAfrica
+    ('Strain6', 'First3', 'Middle3', 'Last3', 3, 3), -- Strain6 is a Hybrid because of from BagSeeds
+    ('Strain7', 'First1', 'Middle1', 'Last1', 1, 1), -- Strain7 is a Indica because of from MarijuanaSouthAfrica
+    ('Strain8', 'First2', 'Middle2', 'Last2', 2, 2), -- Strain8 is a Sativa because of from GrowWeedAfrica
+    ('Strain9', 'First3', 'Middle3', 'Last3', 3, 3); -- Strain9 is a Hybrid because of from BagSeeds
 
 -- Insert data into StrainSeedBag Table
 INSERT INTO StrainSeedBag (StrainID, BreederVendorID, StrainSeedBagName, PackageUnits, DateReceived)
 VALUES
-    (2, 1, 'BagSeeds1', 30, '2023-01-11'),
-    (1, 1, 'SeedPack1', 3, '2023-01-11'),
-    (2, 2, 'SeedPack2', 5, '2023-02-15'),
-    (3, 3, 'SeedPack3', 10, '2023-03-20');
+    (2, 1, 'BagSeeds1', 30, '2023-01-11'), --BagSeeds1 is a Indica from MarijuanaSouthAfrica
+    (1, 1, 'SeedPack1', 3, '2023-01-11'), --SeedPack1 is a Sativa from MarijuanaSouthAfrica
+    (2, 2, 'SeedPack2', 5, '2023-02-15'), --SeedPack2 is a Indica from GrowWeedAfrica
+    (3, 3, 'SeedPack3', 10, '2023-03-20'); --SeedPack3 is a Hybrid from BagSeeds
 
--- Adjusting mock data to account for 70% of seeds in the Seed Table
+-- Adjusting mock data to account for % of seeds in the Seed Table
 -- Calculate the number of seeds to insert for each StrainSeedBag
-
--- StrainSeedBag 1 has a total of 30 seeds (BagSeeds1), 70% of 30 is 21
--- StrainSeedBag 2 has a total of 3 seeds (SeedPack1), 70% of 3 is 2
--- StrainSeedBag 3 has a total of 5 seeds (SeedPack2), 70% of 5 is 3
--- StrainSeedBag 4 has a total of 10 seeds (SeedPack3), 70% of 10 is 7
 
 -- Inserting seeds accordingly
 INSERT INTO Seed (StrainSeedBagID, BreederVendorID, GeneticMarkerID)
 VALUES
-    -- For StrainSeedBag 1 (BagSeeds1)
-    (1, 1, 1),   -- Seed 1
-    (1, 1, 2),   -- Seed 2
+    -- For StrainSeedBag 1 (BagSeeds1) BagSeeds1 now has 22 entries
+    (1, 1, 3),   -- Seed 1
+    (1, 1, 3),   -- Seed 2
     (1, 1, 3),   -- Seed 3
-    (1, 1, 1),   -- Seed 4
-    (1, 1, 2),   -- Seed 5
+    (1, 1, 3),   -- Seed 4
+    (1, 1, 3),   -- Seed 5
     (1, 1, 3),   -- Seed 6
-    (1, 1, 1),   -- Seed 7
-    (1, 1, 2),   -- Seed 8
+    (1, 1, 3),   -- Seed 7
+    (1, 1, 3),   -- Seed 8
     (1, 1, 3),   -- Seed 9
-    (1, 1, 1),   -- Seed 10
-    (1, 1, 2),   -- Seed 11
+    (1, 1, 3),   -- Seed 10
+    (1, 1, 3),   -- Seed 11
     (1, 1, 3),   -- Seed 12
-    (1, 1, 1),   -- Seed 13
-    (1, 1, 2),   -- Seed 14
+    (1, 1, 3),   -- Seed 13
+    (1, 1, 3),   -- Seed 14
     (1, 1, 3),   -- Seed 15
-    (1, 1, 1),   -- Seed 16
-    (1, 1, 2),   -- Seed 17
+    (1, 1, 3),   -- Seed 16
+    (1, 1, 3),   -- Seed 17
     (1, 1, 3),   -- Seed 18
-    (1, 1, 1),   -- Seed 19
-    (1, 1, 2),   -- Seed 20
+    (1, 1, 3),   -- Seed 19
+    (1, 1, 3),   -- Seed 20
     (1, 1, 3),   -- Seed 21
+    (1, 1, 3),   -- Seed 22
 
-    -- For StrainSeedBag 2 (SeedPack1)
-    (2, 2, 2),   -- Seed 22
-    (2, 2, 3),   -- Seed 23
+    -- For StrainSeedBag 2 (SeedPack1) has 3 entries
+    (2, 2, 1),   -- Seed 23
     (2, 2, 1),   -- Seed 24
-    (2, 2, 2),   -- Seed 25
-    (2, 2, 3),   -- Seed 26
-    (2, 2, 1),   -- Seed 27
+    (2, 2, 1),   -- Seed 25
 
-    -- For StrainSeedBag 3 (SeedPack2)
-    (3, 3, 3),   -- Seed 28
-    (3, 3, 1),   -- Seed 29
+    -- For StrainSeedBag 3 (SeedPack2)  has 5 entries
+    (3, 3, 2),   -- Seed 26
+    (3, 3, 2),   -- Seed 27
+    (3, 3, 2),   -- Seed 28
+    (3, 3, 2),   -- Seed 29
     (3, 3, 2),   -- Seed 30
-    (3, 3, 3),   -- Seed 31
-    (3, 3, 1),   -- Seed 32
-    (3, 3, 2),   -- Seed 33
 
-    -- For StrainSeedBag 4 (SeedPack3)
+    -- For StrainSeedBag 4 (SeedPack3) has 8 entries
+    (4, 4, 3),   -- Seed 31
+    (4, 4, 3),   -- Seed 32
+    (4, 4, 3),   -- Seed 33
     (4, 4, 3),   -- Seed 34
-    (4, 4, 1),   -- Seed 35
-    (4, 4, 2),   -- Seed 36
+    (4, 4, 3),   -- Seed 35
+    (4, 4, 3),   -- Seed 36
     (4, 4, 3),   -- Seed 37
-    (4, 4, 3),   -- Seed 38
-    (4, 4, 1),   -- Seed 39
-    (4, 4, 2);   -- Seed 40
+    (4, 4, 3);   -- Seed 38
 
 -- Insert data into Seeding Table
 INSERT INTO Seeding (SeedID, StrainSeedBagID, DatePlanted)
 VALUES
-    (1, 1, '2023-04-01'),
-    (2, 2, '2023-04-05'),
-    (3, 3, '2023-04-10'),
-    (4, 1, '2023-04-02'),
-    (5, 2, '2023-04-06'),
-    (6, 3, '2023-04-11'),
-    (7, 1, '2023-04-03'),
-    (8, 2, '2023-04-07'),
-    (9, 3, '2023-04-12');
+    (1, 1, '2023-04-01'), -- StrainSeedBagID has 12 from 22 seeds
+    (2, 1, '2023-04-03'),
+    (3, 1, '2023-04-02'),
+    (4, 1, '2023-04-01'),
+    (5, 1, '2023-04-03'),
+    (6, 1, '2023-04-02'),
+    (7, 1, '2023-04-01'),
+    (8, 1, '2023-04-03'),
+    (9, 1, '2023-04-02'),
+    (10, 1, '2023-04-01'),
+    (11, 1, '2023-04-03'),
+    (12, 1, '2023-04-02'),
+    (23, 2, '2023-04-05'),-- StrainSeedBagID has 3 from 3 seeds
+    (24, 2, '2023-04-06'),
+    (25, 2, '2023-04-07'),
+    (26, 3, '2023-04-10'), -- StrainSeedBagID has 3 from 5 seeds
+    (27, 3, '2023-04-11'),
+    (28, 3, '2023-04-10'),
+    (31, 4, '2023-04-11'), -- StrainSeedBagID has 6 from 8 seeds
+    (32, 4, '2023-04-11'),
+    (33, 4, '2023-04-11'),
+    (34, 4, '2023-04-11'),
+    (35, 4, '2023-04-11'),
+    (37, 4, '2023-04-12');
 
 -- Insert data into Seedling Table
 INSERT INTO Seedling (SeedID, SeedingID, SproutDate, Age)
