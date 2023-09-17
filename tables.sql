@@ -62,14 +62,11 @@ CREATE TABLE Seed (
     StrainSeedBagID INT NOT NULL,
     BreederVendorID INT NOT NULL,
     GeneticMarkerID INT NOT NULL,
-    PhenotypicMarkerID INT NOT NULL,
     FOREIGN KEY (BreederVendorID) REFERENCES SeedBreederVendor(BreederVendorID)
         ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
         ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (StrainSeedBagID) REFERENCES StrainSeedBag(StrainSeedBagID)
-        ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID)
         ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -290,24 +287,69 @@ VALUES
 -- Insert data into StrainSeedBag Table
 INSERT INTO StrainSeedBag (StrainID, BreederVendorID, StrainSeedBagName, PackageUnits, DateReceived)
 VALUES
-    (1, 1, 'BagSeeds1', 10, '2023-01-11'),
-    (1, 1, 'BagSeeds2', 10, '2023-01-11'),
-    (1, 1, 'SeedPack1', 10, '2023-01-11'),
-    (2, 2, 'SeedPack2', 15, '2023-02-15'),
-    (3, 3, 'SeedPack3', 20, '2023-03-20');
+    (2, 1, 'BagSeeds1', 30, '2023-01-11'),
+    (1, 1, 'SeedPack1', 3, '2023-01-11'),
+    (2, 2, 'SeedPack2', 5, '2023-02-15'),
+    (3, 3, 'SeedPack3', 10, '2023-03-20');
 
--- Insert data into Seed Table
-INSERT INTO Seed (StrainSeedBagID, BreederVendorID, GeneticMarkerID, PhenotypicMarkerID)
+-- Adjusting mock data to account for 70% of seeds in the Seed Table
+-- Calculate the number of seeds to insert for each StrainSeedBag
+
+-- StrainSeedBag 1 has a total of 30 seeds (BagSeeds1), 70% of 30 is 21
+-- StrainSeedBag 2 has a total of 3 seeds (SeedPack1), 70% of 3 is 2
+-- StrainSeedBag 3 has a total of 5 seeds (SeedPack2), 70% of 5 is 3
+-- StrainSeedBag 4 has a total of 10 seeds (SeedPack3), 70% of 10 is 7
+
+-- Inserting seeds accordingly
+INSERT INTO Seed (StrainSeedBagID, BreederVendorID, GeneticMarkerID)
 VALUES
-    (1, 1, 1, 1),
-    (2, 2, 2, 2),
-    (3, 3, 3, 3),
-    (1, 1, 1, 2),
-    (2, 2, 2, 3),
-    (3, 3, 3, 1),
-    (1, 1, 1, 3),
-    (2, 2, 2, 1),
-    (3, 3, 3, 2);
+    -- For StrainSeedBag 1 (BagSeeds1)
+    (1, 1, 1),   -- Seed 1
+    (1, 1, 2),   -- Seed 2
+    (1, 1, 3),   -- Seed 3
+    (1, 1, 1),   -- Seed 4
+    (1, 1, 2),   -- Seed 5
+    (1, 1, 3),   -- Seed 6
+    (1, 1, 1),   -- Seed 7
+    (1, 1, 2),   -- Seed 8
+    (1, 1, 3),   -- Seed 9
+    (1, 1, 1),   -- Seed 10
+    (1, 1, 2),   -- Seed 11
+    (1, 1, 3),   -- Seed 12
+    (1, 1, 1),   -- Seed 13
+    (1, 1, 2),   -- Seed 14
+    (1, 1, 3),   -- Seed 15
+    (1, 1, 1),   -- Seed 16
+    (1, 1, 2),   -- Seed 17
+    (1, 1, 3),   -- Seed 18
+    (1, 1, 1),   -- Seed 19
+    (1, 1, 2),   -- Seed 20
+    (1, 1, 3),   -- Seed 21
+
+    -- For StrainSeedBag 2 (SeedPack1)
+    (2, 2, 2),   -- Seed 22
+    (2, 2, 3),   -- Seed 23
+    (2, 2, 1),   -- Seed 24
+    (2, 2, 2),   -- Seed 25
+    (2, 2, 3),   -- Seed 26
+    (2, 2, 1),   -- Seed 27
+
+    -- For StrainSeedBag 3 (SeedPack2)
+    (3, 3, 3),   -- Seed 28
+    (3, 3, 1),   -- Seed 29
+    (3, 3, 2),   -- Seed 30
+    (3, 3, 3),   -- Seed 31
+    (3, 3, 1),   -- Seed 32
+    (3, 3, 2),   -- Seed 33
+
+    -- For StrainSeedBag 4 (SeedPack3)
+    (4, 4, 3),   -- Seed 34
+    (4, 4, 1),   -- Seed 35
+    (4, 4, 2),   -- Seed 36
+    (4, 4, 3),   -- Seed 37
+    (4, 4, 3),   -- Seed 38
+    (4, 4, 1),   -- Seed 39
+    (4, 4, 2);   -- Seed 40
 
 -- Insert data into Seeding Table
 INSERT INTO Seeding (SeedID, StrainSeedBagID, DatePlanted)
@@ -340,9 +382,9 @@ INSERT INTO Mothers (SeedlingID, DateMothered, NumberOfBranches, LeafColour, Phe
 VALUES
     (1, '2023-06-01', 6, 'Green', 1, 1, 1),
     (2, '2023-06-05', 5, 'Purple', 2, 2, 2),
-    (3, '2023-06-10', 7, 'Chartreuse', 3, 3, 3),
+    (3, '2023-06-10', 7, 'Blue', 3, 3, 3),
     (4, '2023-06-02', 6, 'Purple', 1, 1, 1),
-    (5, '2023-06-06', 5, 'Chartreuse', 2, 2, 2),
+    (5, '2023-06-06', 5, 'Blue', 2, 2, 2),
     (6, '2023-06-11', 7, 'Green', 3, 3, 3);
 
 -- Insert data into Maturity Table
@@ -350,9 +392,9 @@ INSERT INTO Maturity (MotherID, DateOfMaturityCheck, Height, NumberOfBranches, L
 VALUES
     (1, '2023-07-01', 40, 12, 'Green'),
     (2, '2023-07-05', 38, 11, 'Purple'),
-    (3, '2023-07-10', 42, 13, 'Chartreuse'),
+    (3, '2023-07-10', 42, 13, 'Blue'),
     (4, '2023-07-02', 39, 12, 'Purple'),
-    (5, '2023-07-06', 37, 11, 'Chartreuse'),
+    (5, '2023-07-06', 37, 11, 'Blue'),
     (6, '2023-07-11', 41, 13, 'Green');
 
 -- Insert data into Cutting Table
