@@ -6,38 +6,52 @@ USE ProjectMotherShip;
 
 -- Create the Seed Breeder Vendor Table
 CREATE TABLE SeedBreederVendor (
-    BreederVendorID SMALLINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    VendorName VARCHAR(150) UNIQUE
+    BreederVendorID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    VendorName VARCHAR(150) UNIQUE NOT NULL
 );
 
--- Create the SeedStore Table
-CREATE TABLE SeedStore (
-    SeedStoreID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    SeedStoreName VARCHAR(150),
-    BreederVendorID SMALLINT.
+-- Create the Strain Table
+CREATE TABLE Strain (
+    StrainID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    NickName VARCHAR(150),
+    FirstName VARCHAR(150),
+    MiddleName VARCHAR(150),
+    LastName VARCHAR(150),
+    BreederVendorID INT NOT NULL,
+    FOREIGN KEY (BreederVendorID) REFERENCES SeedBreederVendor(BreederVendorID)
+      ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+-- Create the StrainSeedBag Table
+CREATE TABLE StrainSeedBag (
+    StrainSeedBagID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    StrainID INT NOT NULL,
+    BreederVendorID INT NOT NULL,
+    StrainSeedBagName VARCHAR(150),
     PackageUnits INT,
-    ExpirationDate DATE, -- (date recivued plus 2 years)
-    DateReceived DATE DEFAULT GETDATE() 
-    --TODO: run a query for the diference between PackagingDate - DateReceived to find out how old seeds are before we get them
+    DateReceived DATE DEFAULT GETDATE(),
+    ExpirationDate AS DATEADD(YEAR, 2, DateReceived), -- Calculate ExpirationDate
+    FOREIGN KEY (StrainID) REFERENCES Strain(StrainID)
+      ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (BreederVendorID) REFERENCES SeedBreederVendor(BreederVendorID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Genetic Marker Table
 CREATE TABLE GeneticMarker (
-    GeneticMarkerID SMALLINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    Genus VARCHAR(150),
-    Species VARCHAR(150) UNIQUE
+    GeneticMarkerID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    Genus VARCHAR(100) NOT NULL,  -- Added NOT NULL constraint
+    Species VARCHAR(100) UNIQUE NOT NULL
 );
 
 -- Create the Phenotypic Marker Table
 CREATE TABLE PhenotypicMarker (
-    PhenotypicMarkerID SMALLINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    MarkerName VARCHAR(150) UNIQUE,
-    GeneticMarkerID SMALLINT,
+    PhenotypicMarkerID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    MarkerName VARCHAR(100) UNIQUE NOT NULL,
+    GeneticMarkerID INT NOT NULL,
     NumberOfBranches INT,
     Height INT,
-    LeafColour VARCHAR(150),
+    LeafColour VARCHAR(100),  -- Adjusted length based on your data
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -45,15 +59,15 @@ CREATE TABLE PhenotypicMarker (
 -- Create the Seed Table
 CREATE TABLE Seed (
     SeedID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    SeedStoreID INT,
-    BreederVendorID VARCHAR(150),
-    GeneticMarkerID SMALLINT,
-    PhenotypicMarkerID SMALLINT,
+    StrainSeedBagID INT NOT NULL,
+    BreederVendorID INT NOT NULL,
+    GeneticMarkerID INT NOT NULL,
+    PhenotypicMarkerID INT NOT NULL,
     FOREIGN KEY (BreederVendorID) REFERENCES SeedBreederVendor(BreederVendorID)
         ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
         ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (SeedStoreID) REFERENCES SeedStore(SeedStoreID)
+    FOREIGN KEY (StrainSeedBagID) REFERENCES StrainSeedBag(StrainSeedBagID)
         ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID)
         ON UPDATE CASCADE ON DELETE CASCADE
@@ -62,27 +76,25 @@ CREATE TABLE Seed (
 -- Create the Seeding Table
 CREATE TABLE Seeding (
     SeedingID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    SeedID INT UNIQUE,
-    SeedStoreID INT,
+    SeedID INT NOT NULL,  -- Removed UNIQUE constraint
+    StrainSeedBagID INT NOT NULL,
     DatePlanted DATE,
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
       ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (SeedStoreID) REFERENCES SeedStore(SeedStoreID)
+    FOREIGN KEY (StrainSeedBagID) REFERENCES StrainSeedBag(StrainSeedBagID)
         ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Seedling Table
 CREATE TABLE Seedling (
     SeedlingID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    SeedID INT UNIQUE,
-    SeedingID INT,
+    SeedID INT NOT NULL,  -- Removed UNIQUE constraint
+    SeedingID INT NOT NULL,
     SproutDate DATE,
-    Age INT, --Dateplanted - sproutdate = age
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
       ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (SeedingID) REFERENCES Seeding(SeedingID)
       ON UPDATE CASCADE ON DELETE CASCADE
-
 );
 
 -- Create the Mothers Table
@@ -90,25 +102,26 @@ CREATE TABLE Mothers (
     MotherID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     SeedlingID INT UNIQUE,
     DateMothered DATE,
-    Age INT, --DatePlated - DateMothered = age
     NumberOfBranches INT,
     LeafColour VARCHAR(150),
-    PhenotypicMarkerID SMALLINT,
-    GeneticMarkerID SMALLINT,
+    PhenotypicMarkerID INT NOT NULL,
+    GeneticMarkerID INT NOT NULL,
+    StrainID INT NOT NULL, -- Added NOT NULL constraint
     FOREIGN KEY (SeedlingID) REFERENCES Seedling(SeedlingID)
       ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID)
       ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
+      ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (StrainID) REFERENCES Strain(StrainID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Maturity Table
 CREATE TABLE Maturity (
     MaturityID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    MotherID INT,
-    MaturityDate DATE,
-    Age INT, --DatePlatented - MaturityDate = Age
+    MotherID INT NOT NULL,
+    DateOfMaturityCheck DATE,
     Height INT,
     NumberOfBranches INT,
     LeafColour VARCHAR(150),
@@ -119,17 +132,17 @@ CREATE TABLE Maturity (
 -- Create the Cutting Table
 CREATE TABLE Cutting (
     CutID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    MaturityID INT UNIQUE,
+    MotherID INT NOT NULL,
     NumberOfCuts SMALLINT,
     CutDate DATE,
-    FOREIGN KEY (MaturityID) REFERENCES Maturity(MaturityID)
+    FOREIGN KEY (MotherID) REFERENCES Mothers(MotherID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Create the Transplant Table
 CREATE TABLE Transplant (
     TransplantID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    CutID INT,
+    CutID INT NOT NULL,
     TransplantDate DATE,
     FOREIGN KEY (CutID) REFERENCES Cutting(CutID)
       ON UPDATE CASCADE ON DELETE CASCADE
@@ -138,33 +151,21 @@ CREATE TABLE Transplant (
 -- Create the Daughter Table
 CREATE TABLE Daughter (
     DaughterID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    MotherID INT,
+    MotherID INT NOT NULL,
     Price SMALLINT,
     Packaged BOOLEAN,
-    TransplantID INT UNIQUE,
-    GeneticMarkerID SMALLINT,
-    PhenotypicMarkerID SMALLINT,
+    TransplantID INT UNIQUE NOT NULL,
+    GeneticMarkerID INT NOT NULL,
+    PhenotypicMarkerID INT NOT NULL,
     DateDaughtered DATE,
-    Age INT, --CutDate - TransplantDate = Age
+    Age INT, -- Calculate this based on CutDate and TransplantDate
     LeafColour VARCHAR(150),
+    Fate VARCHAR(50), -- To track fate (e.g., 'Kept', 'Sold', 'Destroyed', 'Donated')
     FOREIGN KEY (TransplantID) REFERENCES Transplant(TransplantID)
       ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (GeneticMarkerID) REFERENCES GeneticMarker(GeneticMarkerID)
       ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (PhenotypicMarkerID) REFERENCES PhenotypicMarker(PhenotypicMarkerID)
-      ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-
--- Create the Strain Table
-CREATE TABLE Strain (
-    StrainID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    NickName VARCHAR(150),
-    FirstName VARCHAR(150),
-    MiddleName VARCHAR(150),
-    LastName VARCHAR(150),
-    DaughterID INT UNIQUE,
-    FOREIGN KEY (DaughterID) REFERENCES Daughter(DaughterID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -175,11 +176,11 @@ CREATE TABLE Strain (
 CREATE INDEX idx_SeedBreederVendor_GeneticMarkerID ON BreederVendor (BreederVendorID);
 CREATE UNIQUE INDEX UI_SeedBreederVendor_VendorName ON GeneticMarker (VendorName);
 
--- Indexes for SeedStore Table
-CREATE INDEX idx_SeedStore_SeedID ON SeedStore (SeedID);
-CREATE INDEX idx_SeedStore_PackagingDate ON SeedStore (PackagingDate);
-CREATE INDEX idx_SeedStore_ExpirationDate ON SeedStore (ExpirationDate);
-CREATE INDEX idx_SeedStore_DateReceived ON SeedStore (DateReceived);
+-- Indexes for StrainSeedBag Table
+CREATE INDEX idx_StrainSeedBag_SeedID ON StrainSeedBag (SeedID);
+CREATE INDEX idx_StrainSeedBag_PackagingDate ON StrainSeedBag (PackagingDate);
+CREATE INDEX idx_StrainSeedBag_ExpirationDate ON StrainSeedBag (ExpirationDate);
+CREATE INDEX idx_StrainSeedBag_DateReceived ON StrainSeedBag (DateReceived);
 
 -- Indexes for GeneticMarker Table
 CREATE INDEX idx_GeneticMarker_GeneticMarkerID ON GeneticMarker (GeneticMarkerID);
@@ -197,7 +198,7 @@ CREATE INDEX idx_Seed_PhenotypicMarkerID ON Seed (PhenotypicMarkerID);
 
 -- Indexes for Seeding Table
 CREATE UNIQUE INDEX UI_Seeding_SeedID ON Seeding (SeedID);
-CREATE INDEX idx_Seeding_SeedStoreID ON Seeding (SeedStoreID);
+CREATE INDEX idx_Seeding_StrainSeedBagID ON Seeding (StrainSeedBagID);
 CREATE INDEX idx_Seeding_DatePlanted ON Seeding (DatePlanted);
 
 -- Indexes for Seedling Table
@@ -249,8 +250,8 @@ VALUES
     ('BagSeeds'),
     ('Vendor1');
 
--- Insert data into SeedStore Table
-INSERT INTO SeedStore (SeedStoreName, PackageUnits, BreederVendorID, ExpirationDate, DateReceived)
+-- Insert data into StrainSeedBag Table
+INSERT INTO StrainSeedBag (StrainSeedBagName, PackageUnits, BreederVendorID, ExpirationDate, DateReceived)
 VALUES
     ('SeedPack1', 3, 1, '2024-12-31', '2023-01-11'),
     ('SeedPack1', 3, 1, '2024-12-31', '2023-01-11'),
@@ -280,7 +281,7 @@ VALUES
 
 -- Insert data into PhenotypicMarker Table
 INSERT INTO PhenotypicMarker (MarkerName, GeneticMarkerID, NumberOfBranches, Height, LeafColour)
-VALUES
+VALUES -- ADD DATA FOR STARINS THAT HAVE WEIRD COLOURS etc
     -- Cannabis Sativa PhenotypicMarkers
     ('Seedling Stage (Sativa)', 1, 2, 5, 'Green (Light)', ),
     ('Early Vegetative Stage (Sativa)', 1, 6, 20, 'Green (Medium)'),
@@ -319,7 +320,7 @@ VALUES
 
 
 -- Insert data into Seed Table
-INSERT INTO Seed (SeedStoreID, BreederVendorID, GeneticMarkerID, PhenotypicMarkerID)
+INSERT INTO Seed (StrainSeedBagID, BreederVendorID, GeneticMarkerID, PhenotypicMarkerID)
 VALUES
     (1, 1, 1, 1),
     (1, 1, 1, 1),
@@ -328,21 +329,6 @@ VALUES
     (1, 1, 1, 1),
     (1, 1, 1, 1),
     (1, 1, 1, 1),
-    (1, 1, 1, 1),
-    (1, 1, 1, 1),
-    (1, 1, 1, 1),
-    (1, 1, 1, 1),
-    (1, 1, 1, 1),
-    (1, 1, 1, 1),
-    (1, 1, 1, 1),
-    (1, 1, 1, 1),
-    (1, 1, 1, 1),
-    (1, 1, 1, 1),
-    (3, 2, 2, 2),
-    (3, 2, 2, 2),
-    (3, 2, 2, 2),
-    (3, 2, 2, 2),
-    (3, 2, 2, 2),
     (3, 2, 2, 2),
     (3, 2, 2, 2),
     (3, 2, 2, 2),
@@ -356,12 +342,22 @@ VALUES
     (3, 2, 2, 2),
     (1, 1, 1, 1),
     (3, 2, 2, 2),
-    (3, 2, 2, 2),
+    (3, 3, 2, 2),
+    (3, 3, 2, 2),
+    (3, 3, 2, 2),
+    (3, 3, 2, 2),
     (7, 3, 3, 3);
 
 -- Insert data into Seeding Table
-INSERT INTO Seeding (SeedID, SeedStoreID, DatePlanted)
+INSERT INTO Seeding (SeedID, StrainSeedBagID, DatePlanted)
 VALUES
+    (1, 9, '2023-04-01'),
+    (23, 1, '2023-05-01'),
+    (1, 9, '2023-04-01'),
+    (1, 9, '2023-04-01'),
+    (23, 1, '2023-05-01'),
+    (1, 9, '2023-04-01'),
+    (23, 1, '2023-05-01'),
     (1, 9, '2023-04-01'),
     (23, 1, '2023-05-01'),
     (1, 9, '2023-04-01'),
