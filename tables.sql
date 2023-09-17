@@ -283,23 +283,28 @@ VALUES
 -- Insert data into Strain Table
 INSERT INTO Strain (NickName, FirstName, MiddleName, LastName, BreederVendorID, GeneticMarkerID) --Mock data reflects 3 species from 3 "real clients"
 VALUES
-    ('Strain1', 'First1', 'Middle1', 'Last1', 1, 1), -- Strain1 is a Indica because of from MarijuanaSouthAfrica
-    ('Strain2', 'First2', 'Middle2', 'Last2', 2, 2), -- Strain2 is a Sativa because of from GrowWeedAfrica
-    ('Strain3', 'First3', 'Middle3', 'Last3', 3, 3), -- Strain3 is a Hybrid because of from BagSeeds
-    ('Strain4', 'First1', 'Middle1', 'Last1', 1, 1), -- Strain4 is a Indica because of from MarijuanaSouthAfrica
-    ('Strain5', 'First2', 'Middle2', 'Last2', 2, 2), -- Strain5 is a Sativa because of from GrowWeedAfrica
-    ('Strain6', 'First3', 'Middle3', 'Last3', 3, 3), -- Strain6 is a Hybrid because of from BagSeeds
-    ('Strain7', 'First1', 'Middle1', 'Last1', 1, 1), -- Strain7 is a Indica because of from MarijuanaSouthAfrica
-    ('Strain8', 'First2', 'Middle2', 'Last2', 2, 2), -- Strain8 is a Sativa because of from GrowWeedAfrica
-    ('Strain9', 'First3', 'Middle3', 'Last3', 3, 3); -- Strain9 is a Hybrid because of from BagSeeds
+    ('Strain1', 'FirstS', 'MiddleMSA', 'Last1', 1, 1), -- Strain1 is a Sativa from MarijuanaSouthAfrica
+    ('Strain2', 'FirstS', 'MiddleGWA', 'Last2', 2, 1), -- Strain2 is a Sativa from GrowWeedAfrica
+    ('Strain3', 'FirstS', 'MiddleBS', 'Last3', 3, 1), -- Strain3 is a Sativa from BagSeeds
+    ('Strain4', 'FirstI', 'MiddleMSA', 'Last1', 1, 2), -- Strain4 is a Indica from MarijuanaSouthAfrica
+    ('Strain5', 'FirstI', 'MiddleGWA', 'Last2', 2, 2), -- Strain5 is a Indica from GrowWeedAfrica
+    ('Strain6', 'FirstI', 'MiddleBS', 'Last3', 3, 2), -- Strain6 is a Indica from BagSeeds
+    ('Strain7', 'FirstH', 'MiddleMSA', 'Last1', 1, 3), -- Strain7 is a Hybrid from MarijuanaSouthAfrica
+    ('Strain8', 'FirstH', 'MiddleGWA', 'Last2', 2, 3), -- Strain8 is a Hybrid from GrowWeedAfrica
+    ('Strain9', 'FirstH', 'MiddleBS', 'Last3', 3, 3); -- Strain9 is a Hybrid from BagSeeds
 
 -- Insert data into StrainSeedBag Table
 INSERT INTO StrainSeedBag (StrainID, BreederVendorID, StrainSeedBagName, PackageUnits, DateReceived)
 VALUES
-    (2, 1, 'BagSeeds1', 30, '2023-01-11'), --BagSeeds1 is a Indica from MarijuanaSouthAfrica
-    (1, 1, 'SeedPack1', 3, '2023-01-11'), --SeedPack1 is a Sativa from MarijuanaSouthAfrica
-    (2, 2, 'SeedPack2', 5, '2023-02-15'), --SeedPack2 is a Indica from GrowWeedAfrica
-    (3, 3, 'SeedPack3', 10, '2023-03-20'); --SeedPack3 is a Hybrid from BagSeeds
+    (1, 1, 'BagSeeds1', 3, '2023-01-11'), --BagSeeds1 is a Sativa from MarijuanaSouthAfrica
+    (4, 1, 'BagSeeds2', 3, '2023-01-11'), --BagSeeds2 is a Indica from MarijuanaSouthAfrica
+    (7, 1, 'BagSeeds3', 3, '2023-01-11'), --BagSeeds3 is a Hybird from MarijuanaSouthAfrica
+    (2, 2, 'SeedPack4', 3, '2023-01-11'), --SeedPack4 is a Sativa from GrowWeedAfrica
+    (5, 2, 'SeedPack5', 3, '2023-01-11'), --SeedPack5 is a Indica from GrowWeedAfrica
+    (8, 2, 'SeedPack6', 3, '2023-01-11'), --SeedPack6 is a Hybird from GrowWeedAfrica
+    (3, 3, 'SeedPack7', 3, '2023-02-15'), --SeedPack7 is a Sativa from BagSeeds
+    (6, 3, 'SeedPack8', 3, '2023-02-15'), --SeedPack8 is a Indica from BagSeeds
+    (9, 3, 'SeedPack9', 3, '2023-03-20'); --SeedPack9 is a Hybrid from BagSeeds
 
 -- Adjusting mock data to account for % of seeds in the Seed Table
 -- Calculate the number of seeds to insert for each StrainSeedBag
