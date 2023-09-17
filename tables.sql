@@ -169,18 +169,19 @@ CREATE TABLE Daughter (
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
--- Create primary key indexes and additional indexes as needed
--- (e.g., indexes for frequently queried columns, non-clustered indexes, etc.)
-
 -- Indexes for SeedBreederVendor Table
-CREATE INDEX idx_SeedBreederVendor_GeneticMarkerID ON BreederVendor (BreederVendorID);
-CREATE UNIQUE INDEX UI_SeedBreederVendor_VendorName ON GeneticMarker (VendorName);
+CREATE INDEX idx_SeedBreederVendor_BreederVendorID ON SeedBreederVendor (BreederVendorID);
+CREATE UNIQUE INDEX UI_SeedBreederVendor_VendorName ON SeedBreederVendor (VendorName);
+
+-- Indexes for Strain Table
+CREATE INDEX idx_Strain_StrainID ON Strain (StrainID);
+CREATE INDEX idx_Strain_BreederVendorID ON Strain (BreederVendorID);
 
 -- Indexes for StrainSeedBag Table
-CREATE INDEX idx_StrainSeedBag_SeedID ON StrainSeedBag (SeedID);
-CREATE INDEX idx_StrainSeedBag_PackagingDate ON StrainSeedBag (PackagingDate);
+CREATE INDEX idx_StrainSeedBag_StrainID ON StrainSeedBag (StrainID);
+CREATE INDEX idx_StrainSeedBag_BreederVendorID ON StrainSeedBag (BreederVendorID);
+CREATE INDEX idx_StrainSeedBag_StrainSeedBagName ON StrainSeedBag (StrainSeedBagName);
 CREATE INDEX idx_StrainSeedBag_ExpirationDate ON StrainSeedBag (ExpirationDate);
-CREATE INDEX idx_StrainSeedBag_DateReceived ON StrainSeedBag (DateReceived);
 
 -- Indexes for GeneticMarker Table
 CREATE INDEX idx_GeneticMarker_GeneticMarkerID ON GeneticMarker (GeneticMarkerID);
@@ -192,85 +193,48 @@ CREATE UNIQUE INDEX UI_PhenotypicMarker_MarkerName ON PhenotypicMarker (MarkerNa
 CREATE INDEX idx_PhenotypicMarker_GeneticMarkerID ON PhenotypicMarker (GeneticMarkerID);
 
 -- Indexes for Seed Table
+CREATE INDEX idx_Seed_StrainSeedBagID ON Seed (StrainSeedBagID);
 CREATE INDEX idx_Seed_BreederVendorID ON Seed (BreederVendorID);
 CREATE INDEX idx_Seed_GeneticMarkerID ON Seed (GeneticMarkerID);
 CREATE INDEX idx_Seed_PhenotypicMarkerID ON Seed (PhenotypicMarkerID);
 
 -- Indexes for Seeding Table
-CREATE UNIQUE INDEX UI_Seeding_SeedID ON Seeding (SeedID);
+CREATE INDEX idx_Seeding_SeedID ON Seeding (SeedID);
 CREATE INDEX idx_Seeding_StrainSeedBagID ON Seeding (StrainSeedBagID);
 CREATE INDEX idx_Seeding_DatePlanted ON Seeding (DatePlanted);
 
 -- Indexes for Seedling Table
-CREATE UNIQUE INDEX UI_Seedling_SeedID ON Seedling (SeedID);
+CREATE INDEX idx_Seedling_SeedID ON Seedling (SeedID);
 CREATE INDEX idx_Seedling_SeedingID ON Seedling (SeedingID);
 CREATE INDEX idx_Seedling_SproutDate ON Seedling (SproutDate);
-CREATE INDEX idx_Seedling_Age ON Seedling (Age);
 
 -- Indexes for Mothers Table
-CREATE UNIQUE INDEX UI_Mothers_SeedlingID ON Mothers (SeedlingID);
-CREATE INDEX idx_MothersDateMothered ON Mothers (DateMothered);
-CREATE INDEX idx_Mothers_Age ON Mothers (Age);
+CREATE INDEX idx_Mothers_SeedlingID ON Mothers (SeedlingID);
 CREATE INDEX idx_Mothers_PhenotypicMarkerID ON Mothers (PhenotypicMarkerID);
 CREATE INDEX idx_Mothers_GeneticMarkerID ON Mothers (GeneticMarkerID);
+CREATE INDEX idx_Mothers_StrainID ON Mothers (StrainID);
 
 -- Indexes for Maturity Table
-CREATE INDEX idx_Maturity_MaturityID ON Maturity (MaturityID);
 CREATE INDEX idx_Maturity_MotherID ON Maturity (MotherID);
-CREATE INDEX idx_Maturity_MaturityDate ON Maturity (MaturityDate);
-CREATE INDEX idx_Maturity_Age ON Maturity (Age);
-CREATE INDEX idx_Maturity_Height ON Maturity (Height);
 
 -- Indexes for Cutting Table
-CREATE INDEX idx_Cutting_CutID ON Cutting (CutID);
-CREATE INDEX idx_Cutting_MaturityID ON Cutting (MaturityID);
-CREATE INDEX idx_Cutting_CutDate ON Cutting (CutDate);
+CREATE INDEX idx_Cutting_MotherID ON Cutting (MotherID);
 
 -- Indexes for Transplant Table
-CREATE INDEX idx_Transplant_TransplantID ON Transplant (TransplantID);
 CREATE INDEX idx_Transplant_CutID ON Transplant (CutID);
 
 -- Indexes for Daughter Table
 CREATE INDEX idx_Daughter_MotherID ON Daughter (MotherID);
-CREATE INDEX idx_Daughter_Packaged ON Daughter (Packaged);
-CREATE UNIQUE INDEX UI_Daughter_TransplantID ON Daughter (TransplantID);
 CREATE INDEX idx_Daughter_GeneticMarkerID ON Daughter (GeneticMarkerID);
 CREATE INDEX idx_Daughter_PhenotypicMarkerID ON Daughter (PhenotypicMarkerID);
-CREATE INDEX idx_Daughter_Age ON Daughter (Age);
-CREATE INDEX idx_Daughter_DateDaughtered ON Daughter (DateDaughtered);
-
--- Indexes for Strain Table
-CREATE INDEX idx_Strain_DaughterID ON Strain (DaughterID);
+CREATE INDEX idx_Daughter_TransplantID ON Daughter (TransplantID);
 
 -- Insert data into SeedBreederVendor Table
 INSERT INTO SeedBreederVendor (VendorName)
 VALUES
-    ('MarijuanaSouthAfrica'),
-    ('GrowWeedAfrica'),
-    ('BagSeeds'),
-    ('Vendor1');
-
--- Insert data into StrainSeedBag Table
-INSERT INTO StrainSeedBag (StrainSeedBagName, PackageUnits, BreederVendorID, ExpirationDate, DateReceived)
-VALUES
-    ('SeedPack1', 3, 1, '2024-12-31', '2023-01-11'),
-    ('SeedPack1', 3, 1, '2024-12-31', '2023-01-11'),
-    ('SeedPack1', 3, 1, '2024-12-31', '2023-01-11'),
-    ('SeedPack1', 3, 1, '2024-12-31', '2023-01-11'),
-    ('SeedPack1', 3, 1, '2024-12-31', '2023-01-11'),
-    ('SeedPack1', 3, 1, '2024-12-31', '2023-01-11'),
-    ('SeedPack1', 3, 1, '2024-12-31', '2023-01-11'),
-    ('SeedPack1', 3, 1, '2024-12-31', '2023-01-11'),
-    ('SeedPack2', 5, 2, '2024-12-31', '2023-01-11'),
-    ('SeedPack2', 5, 2, '2024-12-31', '2023-01-11'),
-    ('SeedPack2', 5, 2, '2024-12-31', '2023-01-11'),
-    ('SeedPack2', 5, 2, '2024-12-31', '2023-01-11'),
-    ('Bagseeds', 37, 3, '2024-12-31', '2023-03-11'),
-    ('Bagseeds', 737, 3, '2024-12-31', '2023-03-11'),
-    ('Bagseeds', 237, 3, '2024-12-31', '2023-03-11'),
-    ('Bagseeds', 37, 3, '2024-12-31', '2023-03-11'),
-    ('Bagseeds', 17, 3, '2024-12-31', '2023-03-11'),
-    ('Bagseeds', 2200, 3, '2023-10-31', '2023-03-03');
+    ('Vendor1'),
+    ('Vendor2'),
+    ('Vendor3');
 
 -- Insert data into GeneticMarker Table
 INSERT INTO GeneticMarker (Genus, Species)
@@ -281,239 +245,113 @@ VALUES
 
 -- Insert data into PhenotypicMarker Table
 INSERT INTO PhenotypicMarker (MarkerName, GeneticMarkerID, NumberOfBranches, Height, LeafColour)
-VALUES -- ADD DATA FOR STARINS THAT HAVE WEIRD COLOURS etc
-    -- Cannabis Sativa PhenotypicMarkers
-    ('Seedling Stage (Sativa)', 1, 2, 5, 'Green (Light)', ),
-    ('Early Vegetative Stage (Sativa)', 1, 6, 20, 'Green (Medium)'),
-    ('Late Vegetative Stage (Sativa)', 1, 12, 40, 'Green (Dark)'),
-    ('Pre-Flowering Stage (Sativa)', 1, 18, 70, 'Green (Dark)'),
-    ('Early Flowering Stage (Sativa)', 1, 24, 100, 'Varied (Light to Dark)'),
-    ('Mid-Flowering Stage (Sativa)', 1, 30, 150, 'Varied (Light to Dark)'),
-    ('Late Flowering Stage (Sativa)', 1, 36, 200, 'Varied (Light to Dark)'),
-    ('Mid-Maturity Stage (Sativa)', 1, 42, 220, 'Autumn Colors'),
-    ('Mid-Harvest Stage (Sativa)', 1, 48, 240, 'Drying and Curing'),
-    ('Post-Harvest Stage (Sativa)', 1, 50, 254, 'Drying and Curing'),
+VALUES
+    ('Marker1', 1, 5, 20, 'Green'),
+    ('Marker2', 2, 4, 18, 'Purple'),
+    ('Marker3', 3, 6, 22, 'Blue');
 
-    -- Cannabis Indica PhenotypicMarkers
-    ('Seedling Stage (Indica)', 2, 2, 5, 'Green (Light)', ),
-    ('Early Vegetative Stage (Indica)', 2, 6, 20, 'Green (Medium)'),
-    ('Late Vegetative Stage (Indica)', 2, 12, 40, 'Green (Dark)'),
-    ('Pre-Flowering Stage (Indica)', 2, 18, 70, 'Green (Dark)'),
-    ('Early Flowering Stage (Indica)', 2, 24, 100, 'Varied (Light to Dark)'),
-    ('Mid-Flowering Stage (Indica)', 2, 30, 150, 'Varied (Light to Dark)'),
-    ('Late Flowering Stage (Indica)', 2, 36, 200, 'Varied (Light to Dark)'),
-    ('Mid-Maturity Stage (Indica)', 2, 42, 220, 'Autumn Colors'),
-    ('Mid-Harvest Stage (Indica)', 2, 48, 240, 'Drying and Curing'),
-    ('Post-Harvest Stage (Indica)', 2, 50, 254, 'Drying and Curing'),
+-- Insert data into Strain Table
+INSERT INTO Strain (NickName, FirstName, MiddleName, LastName, BreederVendorID)
+VALUES
+    ('Strain1', 'First1', 'Middle1', 'Last1', 1),
+    ('Strain2', 'First2', 'Middle2', 'Last2', 2),
+    ('Strain3', 'First3', 'Middle3', 'Last3', 3);
 
-    -- Cannabis Hybrid PhenotypicMarkers
-    ('Seedling Stage (Hybrid)', 3, 2, 5, 'Green (Light)', ),
-    ('Early Vegetative Stage (Hybrid)', 3, 6, 20, 'Green (Medium)'),
-    ('Late Vegetative Stage (Hybrid)', 3, 12, 40, 'Green (Dark)'),
-    ('Pre-Flowering Stage (Hybrid)', 3, 18, 70, 'Green (Dark)'),
-    ('Early Flowering Stage (Hybrid)', 3, 24, 100, 'Varied (Light to Dark)'),
-    ('Mid-Flowering Stage (Hybrid)', 3, 30, 150, 'Varied (Light to Dark)'),
-    ('Late Flowering Stage (Hybrid)', 3, 36, 200, 'Varied (Light to Dark)'),
-    ('Mid-Maturity Stage (Hybrid)', 3, 42, 220, 'Autumn Colors'),
-    ('Mid-Harvest Stage (Hybrid)', 3, 48, 240, 'Drying and Curing'),
-    ('Post-Harvest Stage (Hybrid)', 3, 50, 254, 'Drying and Curing', 'May Change');
-
+-- Insert data into StrainSeedBag Table
+INSERT INTO StrainSeedBag (StrainID, BreederVendorID, StrainSeedBagName, PackageUnits, DateReceived)
+VALUES
+    (1, 1, 'SeedPack1', 10, '2023-01-11'),
+    (2, 2, 'SeedPack2', 15, '2023-02-15'),
+    (3, 3, 'SeedPack3', 20, '2023-03-20');
 
 -- Insert data into Seed Table
 INSERT INTO Seed (StrainSeedBagID, BreederVendorID, GeneticMarkerID, PhenotypicMarkerID)
 VALUES
     (1, 1, 1, 1),
-    (1, 1, 1, 1),
-    (1, 1, 1, 1),
-    (1, 1, 1, 1),
-    (1, 1, 1, 1),
-    (1, 1, 1, 1),
-    (1, 1, 1, 1),
-    (3, 2, 2, 2),
-    (3, 2, 2, 2),
-    (3, 2, 2, 2),
-    (3, 2, 2, 2),
-    (3, 2, 2, 2),
-    (3, 2, 2, 2),
-    (3, 2, 2, 2),
-    (3, 2, 2, 2),
-    (3, 2, 2, 2),
-    (3, 2, 2, 2),
-    (3, 2, 2, 2),
-    (1, 1, 1, 1),
-    (3, 2, 2, 2),
-    (3, 3, 2, 2),
-    (3, 3, 2, 2),
-    (3, 3, 2, 2),
-    (3, 3, 2, 2),
-    (7, 3, 3, 3);
+    (2, 2, 2, 2),
+    (3, 3, 3, 3),
+    (1, 1, 1, 2),
+    (2, 2, 2, 3),
+    (3, 3, 3, 1),
+    (1, 1, 1, 3),
+    (2, 2, 2, 1),
+    (3, 3, 3, 2);
 
 -- Insert data into Seeding Table
 INSERT INTO Seeding (SeedID, StrainSeedBagID, DatePlanted)
 VALUES
-    (1, 9, '2023-04-01'),
-    (23, 1, '2023-05-01'),
-    (1, 9, '2023-04-01'),
-    (1, 9, '2023-04-01'),
-    (23, 1, '2023-05-01'),
-    (1, 9, '2023-04-01'),
-    (23, 1, '2023-05-01'),
-    (1, 9, '2023-04-01'),
-    (23, 1, '2023-05-01'),
-    (1, 9, '2023-04-01'),
-    (1, 9, '2023-04-01'),
-    (23, 1, '2023-05-01'),
-    (1, 9, '2023-04-01'),
-    (23, 1, '2023-05-01'),
-    (19, 4, '2023-06-01');
+    (1, 1, '2023-04-01'),
+    (2, 2, '2023-04-05'),
+    (3, 3, '2023-04-10'),
+    (4, 1, '2023-04-02'),
+    (5, 2, '2023-04-06'),
+    (6, 3, '2023-04-11'),
+    (7, 1, '2023-04-03'),
+    (8, 2, '2023-04-07'),
+    (9, 3, '2023-04-12');
 
 -- Insert data into Seedling Table
 INSERT INTO Seedling (SeedID, SeedingID, SproutDate, Age)
 VALUES
-    (1, 1, '2023-04-15', 1),
-    (2, 2, '2023-05-15', 3),
-    (1, 1, '2023-04-15', 1),
-    (2, 2, '2023-05-15', 3),
-    (1, 1, '2023-04-15', 1),
-    (2, 2, '2023-05-15', 3),
-    (1, 1, '2023-04-15', 1),
-    (2, 2, '2023-05-15', 3),
-    (1, 1, '2023-04-15', 1),
-    (2, 2, '2023-05-15', 3),
-    (1, 1, '2023-04-15', 1),
-    (2, 2, '2023-05-15', 3),
-    (3, 3, '2023-06-15', 4);
+    (1, 1, '2023-04-15', 14),
+    (2, 2, '2023-04-19', 12),
+    (3, 3, '2023-04-24', 11),
+    (4, 4, '2023-04-16', 13),
+    (5, 5, '2023-04-20', 11),
+    (6, 6, '2023-04-25', 10),
+    (7, 7, '2023-04-17', 13),
+    (8, 8, '2023-04-21', 12),
+    (9, 9, '2023-04-26', 10);
 
 -- Insert data into Mothers Table
-INSERT INTO Mothers (SeedlingID, DateMothered, Age, NumberOfBranches, PhenotypicMarkerID, GeneticMarkerID)
+INSERT INTO Mothers (SeedlingID, DateMothered, NumberOfBranches, LeafColour, PhenotypicMarkerID, GeneticMarkerID, StrainID)
 VALUES
-    (1, '2023-07-01', 61, 3, 1, 1),
-    (2, '2023-07-01', 72, 9, 2, 2),
-    (3, '2023-07-01', 83, 5, 3, 3);
+    (1, '2023-06-01', 6, 'Green', 1, 1, 1),
+    (2, '2023-06-05', 5, 'Purple', 2, 2, 2),
+    (3, '2023-06-10', 7, 'Blue', 3, 3, 3),
+    (4, '2023-06-02', 6, 'Purple', 1, 1, 1),
+    (5, '2023-06-06', 5, 'Blue', 2, 2, 2),
+    (6, '2023-06-11', 7, 'Green', 3, 3, 3);
 
 -- Insert data into Maturity Table
-INSERT INTO Maturity (MotherID, MaturityDate, Age, Height, NumberOfBranches, LeafShape, LeafColour)
+INSERT INTO Maturity (MotherID, DateOfMaturityCheck, Height, NumberOfBranches, LeafColour)
 VALUES
-    (1, '2023-07-01', 15, 30, 12, 'Green'), -- MaturityID = 1
-    (2, '2023-07-02', 14, 32, 11, 'Purpule'),
-    (1, '2023-07-01', 15, 30, 12, 'Green'),
-    (2, '2023-07-02', 14, 32, 11, 'Purpule'),
-    (2, '2023-07-01', 15, 30, 12, 'Green'), -- MaturityID = 5
-    (2, '2023-07-02', 14, 32, 11, 'Purpule'),
-    (2, '2023-07-02', 14, 32, 11, 'Purpule'),
-    (1, '2023-07-01', 15, 30, 12, 'Green'),
-    (3, '2023-07-02', 14, 32, 11, 'Purpule'), -- MaturityID = 9
-    (1, '2023-07-01', 15, 30, 12, 'Green'),
-    (2, '2023-07-02', 14, 32, 11, 'Purpule'),
-    (2, '2023-07-02', 14, 32, 11, 'Purpule'),
-    (2, '2023-07-02', 14, 32, 11, 'Purpule'),
-    (1, '2023-07-01', 15, 30, 12, 'Green'), -- MaturityID = 14
-    (2, '2023-07-02', 14, 32, 11, 'Purpule'),
-    (1, '2023-07-01', 15, 30, 12, 'Green'),
-    (2, '2023-07-02', 14, 32, 11, 'Purpule'),
-    (3, '2023-07-03', 16, 28, 10, 'Brown');
+    (1, '2023-07-01', 40, 12, 'Green'),
+    (2, '2023-07-05', 38, 11, 'Purple'),
+    (3, '2023-07-10', 42, 13, 'Blue'),
+    (4, '2023-07-02', 39, 12, 'Purple'),
+    (5, '2023-07-06', 37, 11, 'Blue'),
+    (6, '2023-07-11', 41, 13, 'Green');
 
 -- Insert data into Cutting Table
-INSERT INTO Cutting (MaturityID, NumberOfCuts, CutDate)
+INSERT INTO Cutting (MotherID, NumberOfCuts, CutDate)
 VALUES
-    (1, 13, '2023-07-15'),
-    (5, 17, '2023-07-17'),
-    (9, 13, '2023-07-15'),
-    (11, 12, '2023-07-16'),
-    (14, 21, '2023-07-16');
+    (1, 8, '2023-07-15'),
+    (2, 9, '2023-07-17'),
+    (3, 7, '2023-07-16'),
+    (4, 8, '2023-07-16'),
+    (5, 9, '2023-07-18'),
+    (6, 7, '2023-07-17');
 
 -- Insert data into Transplant Table
 INSERT INTO Transplant (CutID, TransplantDate)
 VALUES
     (1, '2023-07-20'),
-    (1, '2023-07-21'),
-    (1, '2023-07-20'),
-    (1, '2023-07-21'),
-    (1, '2023-07-20'),
-    (1, '2023-07-21'),
-    (1, '2023-07-20'),
-    (1, '2023-07-21'),
-    (1, '2023-07-20'),
-    (1, '2023-07-21'),
-    (1, '2023-07-20'),
-    (9, '2023-07-21'),
-    (9, '2023-07-20'),
-    (9, '2023-07-21'),
-    (9, '2023-07-20'),
-    (9, '2023-07-21'),
-    (9, '2023-07-20'),
-    (9, '2023-07-21'),
-    (9, '2023-07-20'),
-    (9, '2023-07-21'),
-    (11, '2023-07-21'),
-    (11, '2023-07-20'),
-    (11, '2023-07-21'),
-    (11, '2023-07-20'),
-    (11, '2023-07-21'),
-    (11, '2023-07-20'),
-    (11, '2023-07-21'),
-    (11, '2023-07-21'),
-    (11, '2023-07-20'),
-    (11, '2023-07-21'),
-    (11, '2023-07-20'),
-    (14, '2023-07-21'),
-    (14, '2023-07-20'),
-    (14, '2023-07-21'),
-    (14, '2023-07-20'),
-    (14, '2023-07-21'),
-    (14, '2023-07-20'),
-    (14, '2023-07-21'),
-    (14, '2023-07-20'),
-    (14, '2023-07-21'),
-    (14, '2023-07-20'),
-    (14, '2023-07-21'),
-    (14, '2023-07-20'),
-    (14, '2023-07-21'),
-    (14, '2023-07-20'),
-    (14, '2023-07-21'),
-    (14, '2023-07-20'),
-    (14, '2023-07-21'),
-    (14, '2023-07-20'),
-    (14, '2023-07-21'),
-    (14, '2023-07-22');
+    (2, '2023-07-22'),
+    (3, '2023-07-21'),
+    (4, '2023-07-21'),
+    (5, '2023-07-23'),
+    (6, '2023-07-22');
 
 -- Insert data into Daughter Table
-INSERT INTO Daughter (MotherID, Price, Packaged, TransplantID, GeneticMarkerID, PhenotypicMarkerID, DateDaughtered, Age, LeafColour)
+INSERT INTO Daughter (MotherID, Price, Packaged, TransplantID, GeneticMarkerID, PhenotypicMarkerID, DateHarvested)
 VALUES
-    (1, 199, 1, 1, 1, 1, '2023-07-25', 5, 'Green'),
-    (1, 199, 0, 2, 2, 2, '2023-07-26', 4, 'Lime'),
-    (1, 199, 1, 3, 1, 3, '2023-07-25', 5, 'Green'),
-    (1, 199, 0, 4, 2, 2, '2023-07-26', 4, 'Lime'),
-    (1, 199, 1, 5, 1, 1, '2023-07-25', 5, 'Green'),
-    (1, 199, 0, 6, 2, 2, '2023-07-26', 4, 'Lime'),
-    (1, 199, 1, 7, 1, 1, '2023-07-25', 5, 'Green'),
-    (1, 199, 1, 8, 1, 1, '2023-07-25', 5, 'Green'),
-    (1, 199, 0, 9, 2, 2, '2023-07-26', 4, 'Lime'),
-    (1, 199, 1, 10, 1, 1, '2023-07-25', 5, 'Green'),
-    (1, 199, 0, 11, 2, 2, '2023-07-26', 4, 'Lime'),
-    (1, 199, 1, 12, 1, 1, '2023-07-25', 5, 'Green'),
-    (3, 199, 0, 14, 2, 2, '2023-07-26', 4, 'Lime'),
-    (3, 199, 1, 15, 1, 1, '2023-07-25', 5, 'Green'),
-    (3, 199, 0, 16, 2, 2, '2023-07-26', 4, 'Lime'),
-    (3, 199, 1, 17, 1, 3, '2023-07-25', 5, 'Green'),
-    (3, 199, 0, 18, 2, 2, '2023-07-26', 4, 'Lime'),
-    (3, 199, 1, 19, 1, 1, '2023-07-25', 5, 'Green'),
-    (3, 199, 0, 20, 2, 2, '2023-07-26', 4, 'Lime'),
-    (2, 199, 1, 21, 1, 1, '2023-07-25', 5, 'Green'),
-    (2, 199, 1, 22, 1, 1, '2023-07-25', 5, 'Green'),
-    (2, 199, 0, 23, 2, 2, '2023-07-26', 4, 'Lime'),
-    (2, 199, 1, 24, 1, 1, '2023-07-25', 5, 'Green'),
-    (2, 199, 0, 25, 2, 2, '2023-07-26', 4, 'Lime'),
-    (2, 199, 1, 27, 1, 1, '2023-07-25', 5, 'Green'),
-    (2, 199, 0, 28, 2, 2, '2023-07-26', 4, 'Lime'),
-    (2, 199, 1, 29, 3, 3, '2023-07-27', 3, 'Brown');
-
--- Insert data into Strain Table
-INSERT INTO Strain (NickName, FirstName, MiddleName, LastName, DaughterID)
-VALUES
-    ('Strain1', 'First1', 'Middle1', 'Last1', 1),
-    ('Strain2', 'First2', 'Middle2', 'Last2', 2),
-    ('Strain1', 'First1', 'Middle1', 'Last1', 3);
+    (1, 10.5, 1, 1, 1, 1, '2023-08-15'),
+    (2, 11.2, 1, 2, 2, 2, '2023-08-17'),
+    (3, 9.8, 1, 3, 3, 3, '2023-08-16'),
+    (4, 10.7, 1, 4, 1, 1, '2023-08-16'),
+    (5, 11.4, 1, 5, 2, 2, '2023-08-18'),
+    (6, 9.9, 1, 6, 3, 3, '2023-08-17');
 
 -- Create constras, triggers, and other database-specific configurations as required.
 -- Ensure data types, default values, and cascading actions are appropriately defined.
