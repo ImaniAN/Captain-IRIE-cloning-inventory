@@ -435,38 +435,213 @@ VALUES
     (26, 26, '2023-01-07', 7), -- Seedling 26
     (27, 27, '2023-01-07', 7); -- Seedling 27
 
-
--- Insert data into Mothers Table -- 27 mothers -- SproutDate + 60 days = DateMothered (2023-02-07)
+-- Insert data into Mothers Table 
+-- 27 mothers 
+-- SproutDate + 60 days = DateMothered (2023-02-07)
+-- NumberOfBranches = 666
 INSERT INTO Mothers (SeedlingID, DateMothered, NumberOfBranches, LeafColour, PhenotypicMarkerID, GeneticMarkerID, StrainID)
 VALUES
-    (1, '2023-06-01', 6, 'Green', 1, 1, 1),
-    (2, '2023-06-05', 5, 'Purple', 2, 2, 2),
-    (3, '2023-06-10', 7, 'Blue', 3, 3, 3),
-    (4, '2023-06-02', 6, 'Purple', 1, 1, 1),
-    (5, '2023-06-06', 5, 'Blue', 2, 2, 2),
-    (6, '2023-06-11', 7, 'Green', 3, 3, 3);
+    (1, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1),   -- Mother 1
+    (2, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1),   -- Mother 2
+    (3, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1),   -- Mother 3
+    (4, '2023-02-07', 11, 'Green (Dark)', 13, 4, 2),   -- Mother 4
+    (5, '2023-02-07', 11, 'Green (Dark)', 13, 5, 2),   -- Mother 5
+    (6, '2023-02-07', 11, 'Green (Dark)', 13, 6, 2),   -- Mother 6
+    (7, '2023-02-07', 11, 'Green (Dark)', 23, 7, 3),   -- Mother 7
+    (8, '2023-02-07', 11, 'Green (Dark)', 23, 8, 3),   -- Mother 8
+    (9, '2023-02-07', 11, 'Green (Dark)', 23, 9, 3),   -- Mother 9
+    (10, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1), -- Mother 10
+    (11, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1), -- Mother 11
+    (12, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1), -- Mother 12
+    (13, '2023-02-07', 11, 'Green (Dark)', 13, 2, 2), -- Mother 13
+    (14, '2023-02-07', 11, 'Green (Dark)', 13, 2, 2), -- Mother 14
+    (15, '2023-02-07', 11, 'Green (Dark)', 13, 2, 2), -- Mother 15
+    (16, '2023-02-07', 11, 'Green (Dark)', 23, 3, 3), -- Mother 16
+    (17, '2023-02-07', 11, 'Green (Dark)', 23, 3, 3), -- Mother 17
+    (18, '2023-02-07', 11, 'Green (Dark)', 23, 3, 3), -- Mother 18
+    (19, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1), -- Mother 19
+    (20, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1), -- Mother 20
+    (21, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1), -- Mother 21
+    (22, '2023-02-07', 11, 'Green (Dark)', 13, 2, 2), -- Mother 22
+    (23, '2023-02-07', 11, 'Green (Dark)', 13, 2, 2), -- Mother 23
+    (24, '2023-02-07', 11, 'Green (Dark)', 13, 2, 2), -- Mother 24
+    (25, '2023-02-07', 11, 'Green (Dark)', 23, 3, 3), -- Mother 25
+    (26, '2023-02-07', 11, 'Green (Dark)', 23, 3, 3), -- Mother 26
+    (27, '2023-02-07', 11, 'Green (Dark)', 23, 3, 3); -- Mother 27
 
--- Insert data into Maturity Table --4(1 every 3 weeks) Maturity checks per mother = 108 Maturity checks --DateMothered + 3 days = DateOfMaturityCheck each niitital maturity check must happen within 3 days of being a mother for cutting. every matruty check after that happens 3 weeks from that date
-INSERT INTO Maturity (MotherID, DateOfMaturityCheck, Height, NumberOfBranches, LeafColour) --(2023-02-10)
+-- Insert data into Maturity Table
+-- there are 27 mothers
+-- (2023-02-10) = DateOfMaturityCheck because each initial maturity check must happen within 3 days of being a mother for cutting.
+-- every maturity check after must happen 3 weeks from that date
+-- each mother will get 4 maturity checks each spaced out by 3 weeks (108 entries in total)
+-- Height = 70
+-- NumberOfBranches = 18
+-- LeafColour = Green (Dark)
+INSERT INTO Maturity (MotherID, DateOfMaturityCheck, Height, NumberOfBranches, LeafColour) 
 VALUES
-    (1, '2023-07-01', 40, 12, 'Green'),
-    (2, '2023-07-05', 38, 11, 'Purple'),
-    (3, '2023-07-10', 42, 13, 'Blue'),
-    (4, '2023-07-02', 39, 12, 'Purple'),
-    (5, '2023-07-06', 37, 11, 'Blue'),
-    (6, '2023-07-11', 41, 13, 'Green');
+    -- Mother 1 Maturity Checks
+    (1, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (1, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (1, '2023-03-24', 70, 18, 'Green (Dark)'),
 
--- Insert data into Cutting Table -- 4 cuttings * 52 cuts * 27 mothers = 5616 -- CutDate = DateOfMaturityCheck + 3 days cut
-INSERT INTO Cutting (MotherID, NumberOfCuts, CutDate) --(2023-02-13)
-VALUES
-    (1, 8, '2023-07-15'),
-    (2, 9, '2023-07-17'),
-    (3, 7, '2023-07-16'),
-    (4, 8, '2023-07-16'),
-    (5, 9, '2023-07-18'),
-    (6, 7, '2023-07-17');
+    -- Mother 2 Maturity Checks
+    (2, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (2, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (2, '2023-03-24', 70, 18, 'Green (Dark)'),
 
--- Insert data into Transplant Table -- 4 cuttings * 52 cuts * 27 mothers = 5616 -- TransplantDate = CutDate + 13 days
+    -- Mother 3 Maturity Checks
+    (3, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (3, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (3, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 4 Maturity Checks
+    (4, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (4, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (4, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 5 Maturity Checks
+    (5, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (5, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (5, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 6 Maturity Checks
+    (6, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (6, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (6, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 7 Maturity Checks
+    (7, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (7, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (7, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 8 Maturity Checks
+    (8, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (8, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (8, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 9 Maturity Checks
+    (9, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (9, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (9, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 10 Maturity Checks
+    (10, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (10, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (10, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 11 Maturity Checks
+    (11, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (11, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (11, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 12 Maturity Checks
+    (12, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (12, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (12, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 13 Maturity Checks
+    (13, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (13, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (13, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 14 Maturity Checks
+    (14, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (14, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (14, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 15 Maturity Checks
+    (15, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (15, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (15, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 16 Maturity Checks
+    (16, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (16, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (16, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 17 Maturity Checks
+    (17, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (17, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (17, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 18 Maturity Checks
+    (18, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (18, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (18, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 19 Maturity Checks
+    (19, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (19, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (19, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 20 Maturity Checks
+    (20, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (20, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (20, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 21 Maturity Checks
+    (21, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (21, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (21, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 22 Maturity Checks
+    (22, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (22, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (22, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 23 Maturity Checks
+    (23, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (23, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (23, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 24 Maturity Checks
+    (24, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (24, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (24, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 25 Maturity Checks
+    (25, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (25, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (25, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 26 Maturity Checks
+    (26, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (26, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (26, '2023-03-24', 70, 18, 'Green (Dark)'),
+
+    -- Mother 27 Maturity Checks
+    (27, '2023-02-10', 70, 18, 'Green (Dark)'),
+    (27, '2023-03-03', 70, 18, 'Green (Dark)'),
+    (27, '2023-03-24', 70, 18, 'Green (Dark)');
+
+-- Insert data into Cutting Table
+INSERT INTO Cutting (MotherID, NumberOfCuts, CutDate) 
+    -- Mother 1 cutting entries
+    (1, 16, '2023-02-10'),
+    (1, 16, '2023-03-03'),
+    (1, 16, '2023-03-24'),
+
+    -- Mother 2 cutting entries
+    (2, 16, '2023-02-10'),
+    (2, 16, '2023-03-03'),
+    (2, 16, '2023-03-24'),
+
+   -- Mother 3 cutting entries
+    (3, 16, '2023-02-10'),
+    (3, 16, '2023-03-03'),
+    (3, 16, '2023-03-24'),
+
+    -- Mother 4 cutting entries
+    (4, 16, '2023-02-10'),
+    (4, 16, '2023-03-03'),
+    (4, 16, '2023-03-24'),
+
+    -- Mother 27 cutting entries
+    (27, 16, '2023-02-10'),
+    (27, 16, '2023-03-03'),
+    (27, 16, '2023-03-24');
+
+-- Insert data into Transplant Table -- 3 cuttings * 16 cuts * 27 mothers = 1296 -- TransplantDate = CutDate + 13 days
 INSERT INTO Transplant (CutID, TransplantDate) --(2023-02-26)
 VALUES
     (1, '2023-07-20'),
