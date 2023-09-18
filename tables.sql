@@ -309,130 +309,100 @@ VALUES
 
 INSERT INTO Seed (StrainSeedBagID, BreederVendorID, GeneticMarkerID) -- 27 seeds
 VALUES
-    -- For StrainSeedBag 1 (SeedPack1) has 9 entries for each seed from each Species from each Vendor
+    -- For StrainSeedBag 1 (BagSeeds1) has 3 entries for each seed in a bag
     (1, 1, 1),   -- Seed 1
     (1, 1, 1),   -- Seed 2
     (1, 1, 1),   -- Seed 3
-    (1, 1, 1),   -- Seed 4
-    (1, 1, 1),   -- Seed 5
-    (1, 1, 1),   -- Seed 6
-    (1, 1, 1),   -- Seed 7
-    (1, 1, 1),   -- Seed 8
-    (1, 1, 1),   -- Seed 9
-    -- For StrainSeedBag 2 (BagSeeds2) BagSeeds1 now has 9 entries for each seed from each Species from each Vendor
-    (1, 2, 2),   -- Seed 10
-    (1, 2, 2),   -- Seed 11
-    (1, 2, 2),   -- Seed 12
-    (1, 2, 2),   -- Seed 13
-    (1, 2, 2),   -- Seed 14
-    (1, 2, 2),   -- Seed 15
-    (1, 2, 2),   -- Seed 16
-    (1, 2, 2),   -- Seed 17
-    (1, 2, 2),   -- Seed 18
-    -- For StrainSeedBag 3 (BagSeeds3) has 9 entries for each seed from each Species from each Vendor
-    (1, 1, 3),   -- Seed 19
-    (1, 1, 3),   -- Seed 20
-    (1, 1, 3),   -- Seed 21
-    (1, 1, 3),   -- Seed 22
-    (2, 2, 3),   -- Seed 23
-    (2, 2, 3),   -- Seed 24
-    (2, 2, 3),   -- Seed 25
-    (3, 3, 3),   -- Seed 26
-    (3, 3, 3),   -- Seed 27
-    (3, 3, 3),   -- Seed 28
-    -- For StrainSeedBag 4 (SeedPack1) has 9 entries for each seed from each Species from each Vendor
-    (3, 3, 1),   -- Seed 29
-    (3, 3, 1),   -- Seed 30
-    (4, 4, 1),   -- Seed 31
-    (4, 4, 1),   -- Seed 32
-    (4, 4, 1),   -- Seed 33
-    (4, 4, 1),   -- Seed 32
-    (4, 4, 1),   -- Seed 35
-    (4, 4, 1),   -- Seed 36
-    (4, 4, 1),   -- Seed 37
-    -- For StrainSeedBag 5 (SeedPack2) has 9 entries for each seed from each Species from each Vendor
-    (1, 1, 2),   -- Seed 19
-    (1, 1, 2),   -- Seed 20
-    (1, 1, 2),   -- Seed 21
-    (1, 1, 2),   -- Seed 22
-    (2, 2, 2),   -- Seed 23
-    (2, 2, 2),   -- Seed 24
-    (2, 2, 2),   -- Seed 25
-    (3, 3, 2),   -- Seed 26
-    (3, 3, 2),   -- Seed 27
-    (3, 3, 2),   -- Seed 28
-    -- For StrainSeedBag 6 (SeedPack3) has 9 entries for each seed from each Species from each Vendor
-    (3, 3, 3),   -- Seed 29
-    (3, 3, 3),   -- Seed 30
-    (4, 4, 3),   -- Seed 31
-    (4, 4, 3),   -- Seed 32
-    (4, 4, 3),   -- Seed 33
-    (4, 4, 3),   -- Seed 34
-    (4, 4, 3),   -- Seed 35
-    (4, 4, 3),   -- Seed 36
-    (4, 4, 3),   -- Seed 37
-    -- For StrainSeedBag 7 (SeedPack4) has 9 entries for each seed from each Species from each Vendor
-    (1, 1, 1),   -- Seed 19
-    (1, 1, 1),   -- Seed 20
-    (1, 1, 1),   -- Seed 21
-    (1, 1, 1),   -- Seed 22
-    (2, 2, 1),   -- Seed 23
-    (2, 2, 1),   -- Seed 24
-    (2, 2, 1),   -- Seed 25
-    (3, 3, 1),   -- Seed 26
-    (3, 3, 1),   -- Seed 27
-    (3, 3, 1),   -- Seed 28
-    -- For StrainSeedBag 8 (SeedPack5) has 9 entries for each seed from each Species from each Vendor
-    (3, 3, 2),   -- Seed 29
-    (3, 3, 2),   -- Seed 30
-    (4, 4, 2),   -- Seed 31
-    (4, 4, 2),   -- Seed 32
-    (4, 4, 2),   -- Seed 33
-    (4, 4, 2),   -- Seed 34
-    (4, 4, 2),   -- Seed 35
-    (4, 4, 2),   -- Seed 36
-    (4, 4, 2),   -- Seed 37
-    -- For StrainSeedBag 9 (SeedPack6) has 9 entries for each seed from each Species from each Vendor
-    (1, 1, 3),   -- Seed 19
-    (1, 1, 3),   -- Seed 20
-    (1, 1, 3),   -- Seed 21
-    (4, 4, 3),   -- Seed 34
-    (4, 4, 3),   -- Seed 35
-    (4, 4, 3),   -- Seed 36
-    (4, 4, 3),   -- Seed 37
-    (4, 4, 3),   -- Seed 34
-    (4, 4, 3),   -- Seed 35
-    (4, 4, 3),   -- Seed 36
-    (4, 4, 3),   -- Seed 37
-    (4, 4, 3);   -- Seed 38
+    -- For StrainSeedBag 2 (BagSeeds2) has 3 entries for each seed in a bag
+    (2, 1, 1),   -- Seed 4
+    (2, 1, 1),   -- Seed 5
+    (2, 1, 1),   -- Seed 6
+    -- For StrainSeedBag 3 (BagSeeds3) has 3 entries for each seed in a bag
+    (3, 1, 1),   -- Seed 7
+    (3, 1, 1),   -- Seed 8
+    (3, 1, 1),   -- Seed 9
+    -- For StrainSeedBag 4 (SeedPack1) has 3 entries for each seed in a bag
+    (4, 2, 1),   -- Seed 10
+    (4, 2, 1),   -- Seed 11
+    (4, 2, 1),   -- Seed 12
+    -- For StrainSeedBag 5 (SeedPack2) has 3 entries for each seed in a bag
+    (5, 2, 2),   -- Seed 13
+    (5, 2, 2),   -- Seed 14
+    (5, 2, 2),   -- Seed 15
+    -- For StrainSeedBag 6 (SeedPack3) has 3 entries for each seed in a bag
+    (6, 2, 3),   -- Seed 16
+    (6, 2, 3),   -- Seed 17
+    (6, 2, 3),   -- Seed 18
+    -- For StrainSeedBag 7 (SeedPack4) has 3 entries for each seed in a bag
+    (7, 3, 1),   -- Seed 19
+    (7, 3, 1),   -- Seed 20
+    (7, 3, 1),   -- Seed 21
+    -- For StrainSeedBag 8 (SeedPack5) has 3 entries for each seed in a bag
+    (8, 3, 2),   -- Seed 22
+    (8, 3, 2),   -- Seed 23
+    (8, 3, 2),   -- Seed 24
+    -- For StrainSeedBag 9 (SeedPack6) has 3 entries for each seed in a bag
+    (9, 3, 3),   -- Seed 25
+    (9, 3, 3),   -- Seed 26
+    (9, 3, 3);   -- Seed 27
 
 -- Insert data into Seeding Table
 INSERT INTO Seeding (SeedID, StrainSeedBagID, DatePlanted) -- 27 Seeding -- DatePlanted 2023-01-01
 VALUES
-    (1, 1, '2023-04-01'), -- StrainSeedBagID has 12 from 22 seeds
-    (2, 1, '2023-04-03'),
-    (3, 1, '2023-04-02'),
-    (4, 1, '2023-04-01'),
-    (5, 1, '2023-04-03'),
-    (6, 1, '2023-04-02'),
-    (7, 1, '2023-04-01'),
-    (8, 1, '2023-04-03'),
-    (9, 1, '2023-04-02'),
-    (10, 1, '2023-04-01'),
-    (11, 1, '2023-04-03'),
-    (12, 1, '2023-04-02'),
-    (23, 2, '2023-04-05'),-- StrainSeedBagID has 3 from 3 seeds
-    (24, 2, '2023-04-06'),
-    (25, 2, '2023-04-07'),
-    (26, 3, '2023-04-10'), -- StrainSeedBagID has 3 from 5 seeds
-    (27, 3, '2023-04-11'),
-    (28, 3, '2023-04-10'),
-    (31, 4, '2023-04-11'), -- StrainSeedBagID has 6 from 8 seeds
-    (32, 4, '2023-04-11'),
-    (33, 4, '2023-04-11'),
-    (34, 4, '2023-04-11'),
-    (35, 4, '2023-04-11'),
-    (37, 4, '2023-04-12');
+    -- For Seed 1 (in StrainSeedBag 1)
+    (1, 1, '2023-01-01'),
+    -- For Seed 2 (in StrainSeedBag 1)
+    (2, 1, '2023-01-01'),
+    -- For Seed 3 (in StrainSeedBag 1)
+    (3, 1, '2023-01-01'),
+    -- For Seed 4 (in StrainSeedBag 2)
+    (4, 2, '2023-01-01'),
+    -- For Seed 5 (in StrainSeedBag 2)
+    (5, 2, '2023-01-01'),
+    -- For Seed 6 (in StrainSeedBag 2)
+    (6, 2, '2023-01-01'),
+    -- For Seed 7 (in StrainSeedBag 3)
+    (7, 3, '2023-01-01'),
+    -- For Seed 8 (in StrainSeedBag 3)
+    (8, 3, '2023-01-01'),
+    -- For Seed 9 (in StrainSeedBag 3)
+    (9, 3, '2023-01-01'),
+    -- For Seed 10 (in StrainSeedBag 4)
+    (10, 4, '2023-01-01'),
+    -- For Seed 11 (in StrainSeedBag 4)
+    (11, 4, '2023-01-01'),
+    -- For Seed 12 (in StrainSeedBag 4)
+    (12, 4, '2023-01-01'),
+    -- For Seed 13 (in StrainSeedBag 5)
+    (13, 5, '2023-01-01'),
+    -- For Seed 14 (in StrainSeedBag 5)
+    (14, 5, '2023-01-01'),
+    -- For Seed 15 (in StrainSeedBag 5)
+    (15, 5, '2023-01-01'),
+    -- For Seed 16 (in StrainSeedBag 6)
+    (16, 6, '2023-01-01'),
+    -- For Seed 17 (in StrainSeedBag 6)
+    (17, 6, '2023-01-01'),
+    -- For Seed 18 (in StrainSeedBag 6)
+    (18, 6, '2023-01-01'),
+    -- For Seed 19 (in StrainSeedBag 7)
+    (19, 7, '2023-01-01'),
+    -- For Seed 20 (in StrainSeedBag 7)
+    (20, 7, '2023-01-01'),
+    -- For Seed 21 (in StrainSeedBag 7)
+    (21, 7, '2023-01-01'),
+    -- For Seed 22 (in StrainSeedBag 8)
+    (22, 8, '2023-01-01'),
+    -- For Seed 23 (in StrainSeedBag 8)
+    (23, 8, '2023-01-01'),
+    -- For Seed 24 (in StrainSeedBag 8)
+    (24, 8, '2023-01-01'),
+    -- For Seed 25 (in StrainSeedBag 9)
+    (25, 9, '2023-01-01'),
+    -- For Seed 26 (in StrainSeedBag 9)
+    (26, 9, '2023-01-01'),
+    -- For Seed 27 (in StrainSeedBag 9)
+    (27, 9, '2023-01-01');
 
 -- Insert data into Seedling Table
 INSERT INTO Seedling (SeedID, SeedingID, SproutDate, Age) --27 Seedling -- DatePlanted 2023-01-01 + 7 days = SproutDate (2023-01-07)
