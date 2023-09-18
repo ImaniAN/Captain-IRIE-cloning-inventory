@@ -405,17 +405,36 @@ VALUES
     (27, 9, '2023-01-01');
 
 -- Insert data into Seedling Table
-INSERT INTO Seedling (SeedID, SeedingID, SproutDate, Age) --27 Seedling -- DatePlanted 2023-01-01 + 7 days = SproutDate (2023-01-07)
+INSERT INTO Seedling (SeedID, SeedingID, SproutDate, Age) -- 27 Seedlings -- DatePlanted 2023-01-01 + 7 days = SproutDate (2023-01-07)
 VALUES
-    (1, 1, '2023-04-15', 14),
-    (2, 2, '2023-04-19', 12),
-    (3, 3, '2023-04-24', 11),
-    (4, 4, '2023-04-16', 13),
-    (5, 5, '2023-04-20', 11),
-    (6, 6, '2023-04-25', 10),
-    (7, 7, '2023-04-17', 13),
-    (8, 8, '2023-04-21', 12),
-    (9, 9, '2023-04-26', 10);
+    (1, 1, '2023-01-07', 7),   -- Seedling 1
+    (2, 2, '2023-01-07', 7),   -- Seedling 2
+    (3, 3, '2023-01-07', 7),   -- Seedling 3
+    (4, 4, '2023-01-07', 7),   -- Seedling 4
+    (5, 5, '2023-01-07', 7),   -- Seedling 5
+    (6, 6, '2023-01-07', 7),   -- Seedling 6
+    (7, 7, '2023-01-07', 7),   -- Seedling 7
+    (8, 8, '2023-01-07', 7),   -- Seedling 8
+    (9, 9, '2023-01-07', 7),   -- Seedling 9
+    (10, 10, '2023-01-07', 7), -- Seedling 10
+    (11, 11, '2023-01-07', 7), -- Seedling 11
+    (12, 12, '2023-01-07', 7), -- Seedling 12
+    (13, 13, '2023-01-07', 7), -- Seedling 13
+    (14, 14, '2023-01-07', 7), -- Seedling 14
+    (15, 15, '2023-01-07', 7), -- Seedling 15
+    (16, 16, '2023-01-07', 7), -- Seedling 16
+    (17, 17, '2023-01-07', 7), -- Seedling 17
+    (18, 18, '2023-01-07', 7), -- Seedling 18
+    (19, 19, '2023-01-07', 7), -- Seedling 19
+    (20, 20, '2023-01-07', 7), -- Seedling 20
+    (21, 21, '2023-01-07', 7), -- Seedling 21
+    (22, 22, '2023-01-07', 7), -- Seedling 22
+    (23, 23, '2023-01-07', 7), -- Seedling 23
+    (24, 24, '2023-01-07', 7), -- Seedling 24
+    (25, 25, '2023-01-07', 7), -- Seedling 25
+    (26, 26, '2023-01-07', 7), -- Seedling 26
+    (27, 27, '2023-01-07', 7); -- Seedling 27
+
 
 -- Insert data into Mothers Table -- 27 mothers -- SproutDate + 60 days = DateMothered (2023-02-07)
 INSERT INTO Mothers (SeedlingID, DateMothered, NumberOfBranches, LeafColour, PhenotypicMarkerID, GeneticMarkerID, StrainID)
