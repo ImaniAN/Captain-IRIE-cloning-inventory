@@ -320,50 +320,50 @@ VALUES
     (1, 1, 1),   -- Seed 8
     (1, 1, 1),   -- Seed 9
     -- For StrainSeedBag 2 (BagSeeds2) BagSeeds1 now has 9 entries for each seed from each Species from each Vendor
-    (1, 1, 2),   -- Seed 10
-    (1, 1, 2),   -- Seed 11
-    (1, 1, 2),   -- Seed 12
-    (1, 1, 2),   -- Seed 13
-    (1, 1, 2),   -- Seed 14
-    (1, 1, 2),   -- Seed 15
-    (1, 1, 2),   -- Seed 16
-    (1, 1, 2),   -- Seed 17
-    (1, 1, 2),   -- Seed 18
+    (1, 2, 2),   -- Seed 10
+    (1, 2, 2),   -- Seed 11
+    (1, 2, 2),   -- Seed 12
+    (1, 2, 2),   -- Seed 13
+    (1, 2, 2),   -- Seed 14
+    (1, 2, 2),   -- Seed 15
+    (1, 2, 2),   -- Seed 16
+    (1, 2, 2),   -- Seed 17
+    (1, 2, 2),   -- Seed 18
     -- For StrainSeedBag 3 (BagSeeds3) has 9 entries for each seed from each Species from each Vendor
     (1, 1, 3),   -- Seed 19
     (1, 1, 3),   -- Seed 20
     (1, 1, 3),   -- Seed 21
     (1, 1, 3),   -- Seed 22
-    (2, 2, 1),   -- Seed 23
-    (2, 2, 1),   -- Seed 24
-    (2, 2, 1),   -- Seed 25
-    (3, 3, 2),   -- Seed 26
-    (3, 3, 2),   -- Seed 27
-    (3, 3, 2),   -- Seed 28
+    (2, 2, 3),   -- Seed 23
+    (2, 2, 3),   -- Seed 24
+    (2, 2, 3),   -- Seed 25
+    (3, 3, 3),   -- Seed 26
+    (3, 3, 3),   -- Seed 27
+    (3, 3, 3),   -- Seed 28
     -- For StrainSeedBag 4 (SeedPack1) has 9 entries for each seed from each Species from each Vendor
-    (3, 3, 2),   -- Seed 29
-    (3, 3, 2),   -- Seed 30
-    (4, 4, 3),   -- Seed 31
-    (4, 4, 3),   -- Seed 32
-    (4, 4, 3),   -- Seed 33
-    (4, 4, 3),   -- Seed 34
-    (4, 4, 3),   -- Seed 35
-    (4, 4, 3),   -- Seed 36
-    (4, 4, 3),   -- Seed 37
+    (3, 3, 1),   -- Seed 29
+    (3, 3, 1),   -- Seed 30
+    (4, 4, 1),   -- Seed 31
+    (4, 4, 1),   -- Seed 32
+    (4, 4, 1),   -- Seed 33
+    (4, 4, 1),   -- Seed 32
+    (4, 4, 1),   -- Seed 35
+    (4, 4, 1),   -- Seed 36
+    (4, 4, 1),   -- Seed 37
     -- For StrainSeedBag 5 (SeedPack2) has 9 entries for each seed from each Species from each Vendor
-    (1, 1, 3),   -- Seed 19
-    (1, 1, 3),   -- Seed 20
-    (1, 1, 3),   -- Seed 21
-    (1, 1, 3),   -- Seed 22
-    (2, 2, 1),   -- Seed 23
-    (2, 2, 1),   -- Seed 24
-    (2, 2, 1),   -- Seed 25
+    (1, 1, 2),   -- Seed 19
+    (1, 1, 2),   -- Seed 20
+    (1, 1, 2),   -- Seed 21
+    (1, 1, 2),   -- Seed 22
+    (2, 2, 2),   -- Seed 23
+    (2, 2, 2),   -- Seed 24
+    (2, 2, 2),   -- Seed 25
     (3, 3, 2),   -- Seed 26
     (3, 3, 2),   -- Seed 27
     (3, 3, 2),   -- Seed 28
     -- For StrainSeedBag 6 (SeedPack3) has 9 entries for each seed from each Species from each Vendor
-    (3, 3, 2),   -- Seed 29
-    (3, 3, 2),   -- Seed 30
+    (3, 3, 3),   -- Seed 29
+    (3, 3, 3),   -- Seed 30
     (4, 4, 3),   -- Seed 31
     (4, 4, 3),   -- Seed 32
     (4, 4, 3),   -- Seed 33
@@ -372,26 +372,26 @@ VALUES
     (4, 4, 3),   -- Seed 36
     (4, 4, 3),   -- Seed 37
     -- For StrainSeedBag 7 (SeedPack4) has 9 entries for each seed from each Species from each Vendor
-    (1, 1, 3),   -- Seed 19
-    (1, 1, 3),   -- Seed 20
-    (1, 1, 3),   -- Seed 21
-    (1, 1, 3),   -- Seed 22
+    (1, 1, 1),   -- Seed 19
+    (1, 1, 1),   -- Seed 20
+    (1, 1, 1),   -- Seed 21
+    (1, 1, 1),   -- Seed 22
     (2, 2, 1),   -- Seed 23
     (2, 2, 1),   -- Seed 24
     (2, 2, 1),   -- Seed 25
-    (3, 3, 2),   -- Seed 26
-    (3, 3, 2),   -- Seed 27
-    (3, 3, 2),   -- Seed 28
+    (3, 3, 1),   -- Seed 26
+    (3, 3, 1),   -- Seed 27
+    (3, 3, 1),   -- Seed 28
     -- For StrainSeedBag 8 (SeedPack5) has 9 entries for each seed from each Species from each Vendor
     (3, 3, 2),   -- Seed 29
     (3, 3, 2),   -- Seed 30
-    (4, 4, 3),   -- Seed 31
-    (4, 4, 3),   -- Seed 32
-    (4, 4, 3),   -- Seed 33
-    (4, 4, 3),   -- Seed 34
-    (4, 4, 3),   -- Seed 35
-    (4, 4, 3),   -- Seed 36
-    (4, 4, 3),   -- Seed 37
+    (4, 4, 2),   -- Seed 31
+    (4, 4, 2),   -- Seed 32
+    (4, 4, 2),   -- Seed 33
+    (4, 4, 2),   -- Seed 34
+    (4, 4, 2),   -- Seed 35
+    (4, 4, 2),   -- Seed 36
+    (4, 4, 2),   -- Seed 37
     -- For StrainSeedBag 9 (SeedPack6) has 9 entries for each seed from each Species from each Vendor
     (1, 1, 3),   -- Seed 19
     (1, 1, 3),   -- Seed 20
