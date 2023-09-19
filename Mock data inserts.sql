@@ -19,7 +19,7 @@ VALUES
     ('Seedling Stage (Sativa)', 1, 2, 5, 'Green (Light)'),
     ('Early Vegetative Stage (Sativa)', 1, 6, 20, 'Green (Medium)'),
     ('Late Vegetative Stage (Sativa)', 1, 12, 40, 'Green (Dark)'),
-    ('Pre-Flowering Stage (Sativa)', 1, 18, 70, 'Green (Dark)'),
+    ('Pre-Flowering Stage (Sativa)', 1, 13, 70, 'Green (Dark)'),
     ('Early Flowering Stage (Sativa)', 1, 24, 100, 'Varied (Light to Dark)'),
     ('Mid-Flowering Stage (Sativa)', 1, 30, 150, 'Varied (Light to Dark)'),
     ('Late Flowering Stage (Sativa)', 1, 36, 200, 'Varied (Light to Dark)'),
@@ -30,7 +30,7 @@ VALUES
     ('Seedling Stage (Indica)', 2, 2, 5, 'Green (Light)', ),
     ('Early Vegetative Stage (Indica)', 2, 6, 20, 'Green (Medium)'),
     ('Late Vegetative Stage (Indica)', 2, 12, 40, 'Green (Dark)'),
-    ('Pre-Flowering Stage (Indica)', 2, 18, 70, 'Green (Dark)'),
+    ('Pre-Flowering Stage (Indica)', 2, 13, 70, 'Green (Dark)'),
     ('Early Flowering Stage (Indica)', 2, 24, 100, 'Varied (Light to Dark)'),
     ('Mid-Flowering Stage (Indica)', 2, 30, 150, 'Varied (Light to Dark)'),
     ('Late Flowering Stage (Indica)', 2, 36, 200, 'Varied (Light to Dark)'),
@@ -41,7 +41,7 @@ VALUES
     ('Seedling Stage (Hybrid)', 3, 2, 5, 'Green (Light)', ),
     ('Early Vegetative Stage (Hybrid)', 3, 6, 20, 'Green (Medium)'),
     ('Late Vegetative Stage (Hybrid)', 3, 12, 40, 'Green (Dark)'),
-    ('Pre-Flowering Stage (Hybrid)', 3, 18, 70, 'Green (Dark)'),
+    ('Pre-Flowering Stage (Hybrid)', 3, 13, 70, 'Green (Dark)'),
     ('Early Flowering Stage (Hybrid)', 3, 24, 100, 'Varied (Light to Dark)'),
     ('Mid-Flowering Stage (Hybrid)', 3, 30, 150, 'Varied (Light to Dark)'),
     ('Late Flowering Stage (Hybrid)', 3, 36, 200, 'Varied (Light to Dark)'),
@@ -192,7 +192,7 @@ VALUES
     (15, 15, '2023-01-07', 7), -- Seedling 15
     (16, 16, '2023-01-07', 7), -- Seedling 16
     (17, 17, '2023-01-07', 7), -- Seedling 17
-    (18, 18, '2023-01-07', 7), -- Seedling 18
+    (18, 13, '2023-01-07', 7), -- Seedling 18
     (19, 19, '2023-01-07', 7), -- Seedling 19
     (20, 20, '2023-01-07', 7), -- Seedling 20
     (21, 21, '2023-01-07', 7), -- Seedling 21
@@ -203,8 +203,8 @@ VALUES
     (26, 26, '2023-01-07', 7), -- Seedling 26
     (27, 27, '2023-01-07', 7); -- Seedling 27
 
--- Insert data into Mothers Table 
--- 27 mothers 
+-- Insert data into Mothers Table
+-- 27 mothers
 -- SproutDate + 60 days = DateMothered (2023-02-07)
 -- NumberOfBranches = 666
 INSERT INTO Mothers (SeedlingID, DateMothered, NumberOfBranches, LeafColour, PhenotypicMarkerID, GeneticMarkerID, StrainID)
@@ -245,145 +245,145 @@ VALUES
 -- Height = 70
 -- NumberOfBranches = 18
 -- LeafColour = Green (Dark)
-INSERT INTO Maturity (MotherID, DateOfMaturityCheck, Height, NumberOfBranches, LeafColour) 
+INSERT INTO Maturity (MotherID, DateOfMaturityCheck, Height, NumberOfBranches, LeafColour)
 VALUES
     -- Mother 1 Maturity Checks
-    (1, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (1, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (1, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (1, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (1, '2023-03-03', 85, 13, 'Green (Dark)'),
+    (1, '2023-03-24', 102, 13, 'Green (Dark)'),
 
     -- Mother 2 Maturity Checks
-    (2, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (2, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (2, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (2, '2023-02-10', 40, 13, 'Green (Dark)'),
+    (2, '2023-03-03', 48, 13, 'Green (Dark)'),
+    (2, '2023-03-24', 58, 13, 'Green (Dark)'),
 
     -- Mother 3 Maturity Checks
-    (3, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (3, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (3, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (3, '2023-02-10', 50, 13, 'Green (Dark)'),
+    (3, '2023-03-03', 60, 13, 'Green (Dark)'),
+    (3, '2023-03-24', 63, 13, 'Green (Dark)'),
 
     -- Mother 4 Maturity Checks
-    (4, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (4, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (4, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (4, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (4, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (4, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 5 Maturity Checks
-    (5, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (5, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (5, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (5, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (5, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (5, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 6 Maturity Checks
-    (6, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (6, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (6, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (6, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (6, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (6, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 7 Maturity Checks
-    (7, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (7, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (7, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (7, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (7, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (7, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 8 Maturity Checks
-    (8, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (8, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (8, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (8, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (8, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (8, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 9 Maturity Checks
-    (9, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (9, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (9, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (9, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (9, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (9, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 10 Maturity Checks
-    (10, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (10, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (10, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (10, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (10, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (10, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 11 Maturity Checks
-    (11, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (11, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (11, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (11, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (11, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (11, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 12 Maturity Checks
-    (12, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (12, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (12, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (12, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (12, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (12, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 13 Maturity Checks
-    (13, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (13, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (13, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (13, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (13, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (13, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 14 Maturity Checks
-    (14, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (14, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (14, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (14, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (14, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (14, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 15 Maturity Checks
-    (15, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (15, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (15, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (15, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (15, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (15, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 16 Maturity Checks
-    (16, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (16, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (16, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (16, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (16, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (16, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 17 Maturity Checks
-    (17, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (17, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (17, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (17, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (17, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (17, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 18 Maturity Checks
-    (18, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (18, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (18, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (18, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (18, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (18, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 19 Maturity Checks
-    (19, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (19, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (19, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (19, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (19, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (19, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 20 Maturity Checks
-    (20, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (20, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (20, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (20, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (20, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (20, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 21 Maturity Checks
-    (21, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (21, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (21, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (21, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (21, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (21, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 22 Maturity Checks
-    (22, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (22, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (22, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (22, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (22, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (22, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 23 Maturity Checks
-    (23, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (23, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (23, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (23, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (23, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (23, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 24 Maturity Checks
-    (24, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (24, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (24, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (24, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (24, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (24, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 25 Maturity Checks
-    (25, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (25, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (25, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (25, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (25, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (25, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 26 Maturity Checks
-    (26, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (26, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (26, '2023-03-24', 70, 18, 'Green (Dark)'),
+    (26, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (26, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (26, '2023-03-24', 70, 13, 'Green (Dark)'),
 
     -- Mother 27 Maturity Checks
-    (27, '2023-02-10', 70, 18, 'Green (Dark)'),
-    (27, '2023-03-03', 70, 18, 'Green (Dark)'),
-    (27, '2023-03-24', 70, 18, 'Green (Dark)');
+    (27, '2023-02-10', 70, 13, 'Green (Dark)'),
+    (27, '2023-03-03', 70, 13, 'Green (Dark)'),
+    (27, '2023-03-24', 70, 13, 'Green (Dark)');
 
 -- Insert data into Cutting Table
-INSERT INTO Cutting (MotherID, NumberOfCuts, CutDate) 
+INSERT INTO Cutting (MotherID, NumberOfCuts, CutDate)
     -- Mother 1 cutting entries
     (1, 5, '2023-02-10'),
     (1, 5, '2023-03-03'),
@@ -1104,13 +1104,11 @@ VALUES
     -- Daughters fromm for First cutting on Mother 1
     (1, 100, 1, 1, 1, 5, '2023-03-07', 25, 'Green', 1, 'Kept'),
     (1, 100, 1, 2, 1, 5, '2023-03-07', 25, 'Green', 1, 'Sold'),
-    (1, 100, 1, 2, 1, 5, '2023-03-07', 25, 'Green', 1, 'Sold'),
     (1, 100, 1, 3, 1, 5, '2023-03-07', 25, 'Green', 0, 'Destroyed'),
     (1, 100, 1, 4, 1, 5, '2023-03-07', 25, 'Green', 1, 'Donated'),
 
     -- Daughters fromm for Second cutting on Mother 1 '2023-03-28'
     (1, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Kept'),
-    (1, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Sold'),
     (1, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Sold'),
     (1, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 0, 'Destroyed'),
     (1, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Donated'),
@@ -1118,13 +1116,11 @@ VALUES
     -- Daughters fromm for Third cutting on Mother 1 '2023-03-24'
     (1, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Kept'),
     (1, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Sold'),
-    (1, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Sold'),
     (1, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 0, 'Destroyed'),
     (1, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Donated'),
 
     -- Daughters fromm for First cutting on Mother 2
     (2, 100, 1, 1, 1, 5, '2023-03-07', 25, 'Green', 1, 'Kept'),
-    (2, 100, 1, 2, 1, 5, '2023-03-07', 25, 'Green', 1, 'Sold'),
     (2, 100, 1, 2, 1, 5, '2023-03-07', 25, 'Green', 1, 'Sold'),
     (2, 100, 1, 3, 1, 5, '2023-03-07', 25, 'Green', 0, 'Destroyed'),
     (2, 100, 1, 4, 1, 5, '2023-03-07', 25, 'Green', 1, 'Donated'),
@@ -1132,13 +1128,11 @@ VALUES
     -- Daughters fromm for Second cutting on Mother 2 '2023-03-28'
     (2, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Kept'),
     (2, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Sold'),
-    (2, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Sold'),
     (2, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 0, 'Destroyed'),
     (2, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Donated'),
 
     -- Daughters fromm for Third cutting on Mother 2 '2023-03-24'
     (2, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Kept'),
-    (2, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Sold'),
     (2, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Sold'),
     (2, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 0, 'Destroyed'),
     (2, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Donated'),
@@ -1146,20 +1140,17 @@ VALUES
     -- Daughters fromm for First cutting on Mother 3
     (3, 100, 1, 1, 1, 5, '2023-03-07', 25, 'Green', 1, 'Kept'),
     (3, 100, 1, 2, 1, 5, '2023-03-07', 25, 'Green', 1, 'Sold'),
-    (3, 100, 1, 2, 1, 5, '2023-03-07', 25, 'Green', 1, 'Sold'),
     (3, 100, 1, 3, 1, 5, '2023-03-07', 25, 'Green', 0, 'Destroyed'),
     (3, 100, 1, 4, 1, 5, '2023-03-07', 25, 'Green', 1, 'Donated'),
 
     -- Daughters fromm for Second cutting on Mother 3 '2023-03-28'
     (3, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Kept'),
     (3, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Sold'),
-    (3, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Sold'),
     (3, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 0, 'Destroyed'),
     (3, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Donated'),
 
     -- Daughters fromm for Third cutting on Mother 3 '2023-03-24'
     (3, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Kept'),
-    (3, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Sold'),
     (3, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Sold'),
     (3, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 0, 'Destroyed'),
     (3, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Donated'),
@@ -1170,20 +1161,17 @@ VALUES
     -- Daughters fromm for First cutting on Mother 1
     (1, 100, 1, 1, 1, 5, '2023-03-07', 25, 'Green', 1, 'Kept'),
     (1, 100, 1, 2, 1, 5, '2023-03-07', 25, 'Green', 1, 'Sold'),
-    (1, 100, 1, 2, 1, 5, '2023-03-07', 25, 'Green', 1, 'Sold'),
     (1, 100, 1, 3, 1, 5, '2023-03-07', 25, 'Green', 0, 'Destroyed'),
     (1, 100, 1, 4, 1, 5, '2023-03-07', 25, 'Green', 1, 'Donated'),
 
     -- Daughters fromm for Second cutting on Mother 1 '2023-03-28'
     (1, 100, 1, 2, 2, 15, '2023-03-28', 25, 'Green', 1, 'Kept'),
     (1, 100, 1, 2, 2, 15, '2023-03-28', 25, 'Green', 1, 'Sold'),
-    (1, 100, 1, 2, 2, 15, '2023-03-28', 25, 'Green', 1, 'Sold'),
     (1, 100, 1, 2, 2, 15, '2023-03-28', 25, 'Green', 0, 'Destroyed'),
     (1, 100, 1, 2, 2, 15, '2023-03-28', 25, 'Green', 1, 'Donated'),
 
     -- Daughters fromm for Third cutting on Mother 1 '2023-03-24'
     (1, 100, 1, 2, 3, 25, '2023-04-18', 25, 'Green', 1, 'Kept'),
-    (1, 100, 1, 2, 3, 25, '2023-04-18', 25, 'Green', 1, 'Sold'),
     (1, 100, 1, 2, 3, 25, '2023-04-18', 25, 'Green', 1, 'Sold'),
     (1, 100, 1, 2, 3, 25, '2023-04-18', 25, 'Green', 0, 'Destroyed'),
     (1, 100, 1, 2, 3, 25, '2023-04-18', 25, 'Green', 1, 'Donated');
