@@ -168,38 +168,37 @@ VALUES
     (27, '2023-01-07');  -- Seedling 27
 
 -- Insert data into Mothers Table
--- 27 mothers
 -- SproutDate + 60 days = DateMothered (2023-02-07)
--- NumberOfBranches = 666
-INSERT INTO Mothers (SeedlingID, DateMothered, NumberOfBranches, LeafColour, GeneticMarkerID, StrainID)
+INSERT INTO Mothers (SeedlingID, DateMothered)
 VALUES
-    (1, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1),   -- Mother 1
-    (2, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1),   -- Mother 2
-    (3, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1),   -- Mother 3
-    (4, '2023-02-07', 11, 'Green (Dark)', 13, 2, 2),   -- Mother 4
-    (5, '2023-02-07', 11, 'Green (Dark)', 13, 2, 2),   -- Mother 5
-    (6, '2023-02-07', 11, 'Green (Dark)', 13, 2, 2),   -- Mother 6
-    (7, '2023-02-07', 11, 'Green (Dark)', 23, 3, 3),   -- Mother 7
-    (8, '2023-02-07', 11, 'Green (Dark)', 23, 3, 3),   -- Mother 8
-    (9, '2023-02-07', 11, 'Green (Dark)', 23, 3, 3),   -- Mother 9
-    (10, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1), -- Mother 10
-    (11, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1), -- Mother 11
-    (12, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1), -- Mother 12
-    (13, '2023-02-07', 11, 'Green (Dark)', 13, 2, 2), -- Mother 13
-    (14, '2023-02-07', 11, 'Green (Dark)', 13, 2, 2), -- Mother 14
-    (15, '2023-02-07', 11, 'Green (Dark)', 13, 2, 2), -- Mother 15
-    (16, '2023-02-07', 11, 'Green (Dark)', 23, 3, 3), -- Mother 16
-    (17, '2023-02-07', 11, 'Green (Dark)', 23, 3, 3), -- Mother 17
-    (18, '2023-02-07', 11, 'Green (Dark)', 23, 3, 3), -- Mother 18
-    (19, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1), -- Mother 19
-    (20, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1), -- Mother 20
-    (21, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1), -- Mother 21
-    (22, '2023-02-07', 11, 'Green (Dark)', 13, 2, 2), -- Mother 22
-    (23, '2023-02-07', 11, 'Green (Dark)', 13, 2, 2), -- Mother 23
-    (24, '2023-02-07', 11, 'Green (Dark)', 13, 2, 2), -- Mother 24
-    (25, '2023-02-07', 11, 'Green (Dark)', 23, 3, 3), -- Mother 25
-    (26, '2023-02-07', 11, 'Green (Dark)', 23, 3, 3), -- Mother 26
-    (27, '2023-02-07', 11, 'Green (Dark)', 23, 3, 3); -- Mother 27
+    (1, '2023-02-07'),   -- Mother 1
+    (2, '2023-02-07'),   -- Mother 2
+    (3, '2023-02-07'),   -- Mother 3
+    (4, '2023-02-07'),   -- Mother 4
+    (5, '2023-02-07'),   -- Mother 5
+    (6, '2023-02-07'),   -- Mother 6
+    (7, '2023-02-07'),   -- Mother 7
+    (8, '2023-02-07'),   -- Mother 8
+    (9, '2023-02-07'),   -- Mother 9
+    (10, '2023-02-07'), -- Mother 10
+    (11, '2023-02-07'), -- Mother 11
+    (12, '2023-02-07'), -- Mother 12
+    (13, '2023-02-07'), -- Mother 13
+    (14, '2023-02-07'), -- Mother 14
+    (15, '2023-02-07'), -- Mother 15
+    (16, '2023-02-07'), -- Mother 16
+    (17, '2023-02-07'), -- Mother 17
+    (18, '2023-02-07'), -- Mother 18
+    (19, '2023-02-07'), -- Mother 19
+    (20, '2023-02-07'), -- Mother 20
+    (21, '2023-02-07'), -- Mother 21
+    (22, '2023-02-07'), -- Mother 22
+    (23, '2023-02-07'), -- Mother 23
+    (24, '2023-02-07'), -- Mother 24
+    (25, '2023-02-07'), -- Mother 25
+    (26, '2023-02-07'), -- Mother 26
+    (27, '2023-02-07'); -- Mother 27
+
 
 -- Insert data into Maturity Table
 -- there are 27 mothers
@@ -209,145 +208,146 @@ VALUES
 -- Height = 70
 -- NumberOfBranches = 18
 -- LeafColour = Green (Dark)
-INSERT INTO Maturity (MotherID, DateOfMaturityCheck, Height, NumberOfBranches, LeafColour)
+-- Insert data into Maturity Table
+INSERT INTO Maturity (MotherID, DateOfMaturityCheck, Height, NumberOfBranches)
 VALUES
     -- Mother 1 Maturity Checks
-    (1, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (1, '2023-03-03', 85, 13, 'Green (Dark)'),
-    (1, '2023-03-24', 102, 13, 'Green (Dark)'),
+    (1, '2023-02-10', 70, 13),  -- Entry 1
+    (1, '2023-03-03', 85, 13),  -- Entry 2
+    (1, '2023-03-24', 102, 13),  -- Entry 3
 
     -- Mother 2 Maturity Checks
-    (2, '2023-02-10', 40, 13, 'Green (Dark)'),
-    (2, '2023-03-03', 48, 13, 'Green (Dark)'),
-    (2, '2023-03-24', 58, 13, 'Green (Dark)'),
+    (2, '2023-02-10', 40, 13),  -- Entry 4
+    (2, '2023-03-03', 48, 13),  -- Entry 5
+    (2, '2023-03-24', 58, 13),  -- Entry 6
 
     -- Mother 3 Maturity Checks
-    (3, '2023-02-10', 50, 13, 'Green (Dark)'),
-    (3, '2023-03-03', 60, 13, 'Green (Dark)'),
-    (3, '2023-03-24', 63, 13, 'Green (Dark)'),
+    (3, '2023-02-10', 50, 13),  -- Entry 7
+    (3, '2023-03-03', 60, 13),  -- Entry 8
+    (3, '2023-03-24', 63, 13),  -- Entry 9
 
     -- Mother 4 Maturity Checks
-    (4, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (4, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (4, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (4, '2023-02-10', 70, 13),  -- Entry 10
+    (4, '2023-03-03', 70, 13),  -- Entry 11
+    (4, '2023-03-24', 70, 13),  -- Entry 12
 
     -- Mother 5 Maturity Checks
-    (5, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (5, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (5, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (5, '2023-02-10', 70, 13),  -- Entry 13
+    (5, '2023-03-03', 70, 13),  -- Entry 14
+    (5, '2023-03-24', 70, 13),  -- Entry 15
 
     -- Mother 6 Maturity Checks
-    (6, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (6, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (6, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (6, '2023-02-10', 70, 13),  -- Entry 16
+    (6, '2023-03-03', 70, 13),  -- Entry 17
+    (6, '2023-03-24', 70, 13),  -- Entry 18
 
     -- Mother 7 Maturity Checks
-    (7, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (7, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (7, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (7, '2023-02-10', 70, 13),  -- Entry 19
+    (7, '2023-03-03', 70, 13),  -- Entry 20
+    (7, '2023-03-24', 70, 13),  -- Entry 21
 
     -- Mother 8 Maturity Checks
-    (8, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (8, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (8, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (8, '2023-02-10', 70, 13),  -- Entry 22
+    (8, '2023-03-03', 70, 13),  -- Entry 23
+    (8, '2023-03-24', 70, 13),  -- Entry 24
 
     -- Mother 9 Maturity Checks
-    (9, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (9, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (9, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (9, '2023-02-10', 70, 13),  -- Entry 25
+    (9, '2023-03-03', 70, 13),  -- Entry 26
+    (9, '2023-03-24', 70, 13),  -- Entry 27
 
     -- Mother 10 Maturity Checks
-    (10, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (10, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (10, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (10, '2023-02-10', 70, 13),  -- Entry 28
+    (10, '2023-03-03', 70, 13),  -- Entry 29
+    (10, '2023-03-24', 70, 13),  -- Entry 30
 
     -- Mother 11 Maturity Checks
-    (11, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (11, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (11, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (11, '2023-02-10', 70, 13),  -- Entry 31
+    (11, '2023-03-03', 70, 13),  -- Entry 32
+    (11, '2023-03-24', 70, 13),  -- Entry 33
 
     -- Mother 12 Maturity Checks
-    (12, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (12, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (12, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (12, '2023-02-10', 70, 13),  -- Entry 34
+    (12, '2023-03-03', 70, 13),  -- Entry 35
+    (12, '2023-03-24', 70, 13),  -- Entry 36
 
     -- Mother 13 Maturity Checks
-    (13, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (13, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (13, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (13, '2023-02-10', 70, 13),  -- Entry 37
+    (13, '2023-03-03', 70, 13),  -- Entry 38
+    (13, '2023-03-24', 70, 13),  -- Entry 39
 
     -- Mother 14 Maturity Checks
-    (14, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (14, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (14, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (14, '2023-02-10', 70, 13),  -- Entry 40
+    (14, '2023-03-03', 70, 13),  -- Entry 41
+    (14, '2023-03-24', 70, 13),  -- Entry 42
 
     -- Mother 15 Maturity Checks
-    (15, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (15, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (15, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (15, '2023-02-10', 70, 13),  -- Entry 43
+    (15, '2023-03-03', 70, 13),  -- Entry 44
+    (15, '2023-03-24', 70, 13),  -- Entry 45
 
     -- Mother 16 Maturity Checks
-    (16, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (16, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (16, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (16, '2023-02-10', 70, 13),  -- Entry 46
+    (16, '2023-03-03', 70, 13),  -- Entry 47
+    (16, '2023-03-24', 70, 13),  -- Entry 48
 
     -- Mother 17 Maturity Checks
-    (17, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (17, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (17, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (17, '2023-02-10', 70, 13),  -- Entry 49
+    (17, '2023-03-03', 70, 13),  -- Entry 50
+    (17, '2023-03-24', 70, 13),  -- Entry 51
 
     -- Mother 18 Maturity Checks
-    (18, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (18, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (18, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (18, '2023-02-10', 70, 13),  -- Entry 52
+    (18, '2023-03-03', 70, 13),  -- Entry 53
+    (18, '2023-03-24', 70, 13),  -- Entry 54
 
     -- Mother 19 Maturity Checks
-    (19, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (19, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (19, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (19, '2023-02-10', 70, 13),  -- Entry 55
+    (19, '2023-03-03', 70, 13),  -- Entry 56
+    (19, '2023-03-24', 70, 13),  -- Entry 57
 
     -- Mother 20 Maturity Checks
-    (20, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (20, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (20, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (20, '2023-02-10', 70, 13),  -- Entry 58
+    (20, '2023-03-03', 70, 13),  -- Entry 59
+    (20, '2023-03-24', 70, 13),  -- Entry 60
 
     -- Mother 21 Maturity Checks
-    (21, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (21, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (21, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (21, '2023-02-10', 70, 13),  -- Entry 61
+    (21, '2023-03-03', 70, 13),  -- Entry 62
+    (21, '2023-03-24', 70, 13),  -- Entry 63
 
     -- Mother 22 Maturity Checks
-    (22, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (22, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (22, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (22, '2023-02-10', 70, 13),  -- Entry 64
+    (22, '2023-03-03', 70, 13),  -- Entry 65
+    (22, '2023-03-24', 70, 13),  -- Entry 66
 
     -- Mother 23 Maturity Checks
-    (23, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (23, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (23, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (23, '2023-02-10', 70, 13),  -- Entry 67
+    (23, '2023-03-03', 70, 13),  -- Entry 68
+    (23, '2023-03-24', 70, 13),  -- Entry 69
 
     -- Mother 24 Maturity Checks
-    (24, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (24, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (24, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (24, '2023-02-10', 70, 13),  -- Entry 70
+    (24, '2023-03-03', 70, 13),  -- Entry 71
+    (24, '2023-03-24', 70, 13),  -- Entry 72
 
     -- Mother 25 Maturity Checks
-    (25, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (25, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (25, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (25, '2023-02-10', 70, 13),  -- Entry 73
+    (25, '2023-03-03', 70, 13),  -- Entry 74
+    (25, '2023-03-24', 70, 13),  -- Entry 75
 
     -- Mother 26 Maturity Checks
-    (26, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (26, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (26, '2023-03-24', 70, 13, 'Green (Dark)'),
+    (26, '2023-02-10', 70, 13),  -- Entry 76
+    (26, '2023-03-03', 70, 13),  -- Entry 77
+    (26, '2023-03-24', 70, 13),  -- Entry 78
 
     -- Mother 27 Maturity Checks
-    (27, '2023-02-10', 70, 13, 'Green (Dark)'),
-    (27, '2023-03-03', 70, 13, 'Green (Dark)'),
-    (27, '2023-03-24', 70, 13, 'Green (Dark)');
+    (27, '2023-02-10', 70, 13),  -- Entry 79
+    (27, '2023-03-03', 70, 13),  -- Entry 80
+    (27, '2023-03-24', 70, 13);  -- Entry 81
 
 -- Insert data into Cutting Table
-INSERT INTO Cutting (MotherID, NumberOfCuts, CutDate)
+INSERT INTO Cutting (MaturityID, NumberOfCuts, CutDate)
     -- Mother 1 cutting entries
     (1, 5, '2023-02-10'),
     (1, 5, '2023-03-03'),
@@ -358,7 +358,7 @@ INSERT INTO Cutting (MotherID, NumberOfCuts, CutDate)
     (2, 5, '2023-03-03'),
     (2, 5, '2023-03-24'),
 
-   -- Mother 3 cutting entries
+    -- Mother 3 cutting entries
     (3, 5, '2023-02-10'),
     (3, 5, '2023-03-03'),
     (3, 5, '2023-03-24'),
@@ -378,7 +378,7 @@ INSERT INTO Cutting (MotherID, NumberOfCuts, CutDate)
     (6, 5, '2023-03-03'),
     (6, 5, '2023-03-24'),
 
-   -- Mother 7 cutting entries
+    -- Mother 7 cutting entries
     (7, 5, '2023-02-10'),
     (7, 5, '2023-03-03'),
     (7, 5, '2023-03-24'),
@@ -398,10 +398,10 @@ INSERT INTO Cutting (MotherID, NumberOfCuts, CutDate)
     (10, 5, '2023-03-03'),
     (10, 5, '2023-03-24'),
 
-   -- Mother 11 cutting entries
+    -- Mother 11 cutting entries
     (11, 5, '2023-02-10'),
     (11, 5, '2023-03-03'),
-    (12, 5, '2023-03-24'),
+    (11, 5, '2023-03-24'),
 
     -- Mother 12 cutting entries
     (12, 5, '2023-02-10'),
@@ -418,7 +418,7 @@ INSERT INTO Cutting (MotherID, NumberOfCuts, CutDate)
     (14, 5, '2023-03-03'),
     (14, 5, '2023-03-24'),
 
-   -- Mother 15 cutting entries
+    -- Mother 15 cutting entries
     (15, 5, '2023-02-10'),
     (15, 5, '2023-03-03'),
     (15, 5, '2023-03-24'),
@@ -438,7 +438,7 @@ INSERT INTO Cutting (MotherID, NumberOfCuts, CutDate)
     (18, 5, '2023-03-03'),
     (18, 5, '2023-03-24'),
 
-   -- Mother 19 cutting entries
+    -- Mother 19 cutting entries
     (19, 5, '2023-02-10'),
     (19, 5, '2023-03-03'),
     (19, 5, '2023-03-24'),
@@ -458,7 +458,7 @@ INSERT INTO Cutting (MotherID, NumberOfCuts, CutDate)
     (22, 5, '2023-03-03'),
     (22, 5, '2023-03-24'),
 
-   -- Mother 23 cutting entries
+    -- Mother 23 cutting entries
     (23, 5, '2023-02-10'),
     (23, 5, '2023-03-03'),
     (23, 5, '2023-03-24'),
@@ -468,7 +468,7 @@ INSERT INTO Cutting (MotherID, NumberOfCuts, CutDate)
     (24, 5, '2023-03-03'),
     (24, 5, '2023-03-24'),
 
-   -- Mother 25 cutting entries
+    -- Mother 25 cutting entries
     (25, 5, '2023-02-10'),
     (25, 5, '2023-03-03'),
     (25, 5, '2023-03-24'),
@@ -1058,88 +1058,494 @@ VALUES
     (81, '2023-03-24');
 
 -- Insert data into Daughter Table
--- 4 cuttings * 52 cuts * 27 mothers = 5616
 --DateHarvested + 7 days
--- Daughters from First cutting on Mother 1
---(2023-03-07)
--- Insert data into Daughter Table
-INSERT INTO Daughter (MotherID, Price, Packaged, TransplantID, GeneticMarkerID, DateDaughtered, Age, LeafColour, HealthStatus, Fate)
+INSERT INTO Daughter (TransplantID, Price, DateDaughtered, HealthStatus, Fate)
 VALUES
-    -- Daughters fromm for First cutting on Mother 1
-    (1, 100, 1, 1, 1, 5, '2023-03-07', 25, 'Green', 1, 'Kept'),
-    (1, 100, 1, 2, 1, 5, '2023-03-07', 25, 'Green', 1, 'Sold'),
-    (1, 100, 1, 3, 1, 5, '2023-03-07', 25, 'Green', 0, 'Destroyed'),
-    (1, 100, 1, 4, 1, 5, '2023-03-07', 25, 'Green', 1, 'Donated'),
+    -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters fromm for Second cutting on Mother 1 '2023-03-28'
-    (1, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Kept'),
-    (1, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Sold'),
-    (1, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 0, 'Destroyed'),
-    (1, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Donated'),
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters fromm for Third cutting on Mother 1 '2023-03-24'
-    (1, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Kept'),
-    (1, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Sold'),
-    (1, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 0, 'Destroyed'),
-    (1, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Donated'),
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
 
-    -- Daughters fromm for First cutting on Mother 2
-    (2, 100, 1, 1, 1, 5, '2023-03-07', 25, 'Green', 1, 'Kept'),
-    (2, 100, 1, 2, 1, 5, '2023-03-07', 25, 'Green', 1, 'Sold'),
-    (2, 100, 1, 3, 1, 5, '2023-03-07', 25, 'Green', 0, 'Destroyed'),
-    (2, 100, 1, 4, 1, 5, '2023-03-07', 25, 'Green', 1, 'Donated'),
+    -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters fromm for Second cutting on Mother 2 '2023-03-28'
-    (2, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Kept'),
-    (2, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Sold'),
-    (2, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 0, 'Destroyed'),
-    (2, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Donated'),
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters fromm for Third cutting on Mother 2 '2023-03-24'
-    (2, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Kept'),
-    (2, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Sold'),
-    (2, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 0, 'Destroyed'),
-    (2, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Donated'),
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
 
-    -- Daughters fromm for First cutting on Mother 3
-    (3, 100, 1, 1, 1, 5, '2023-03-07', 25, 'Green', 1, 'Kept'),
-    (3, 100, 1, 2, 1, 5, '2023-03-07', 25, 'Green', 1, 'Sold'),
-    (3, 100, 1, 3, 1, 5, '2023-03-07', 25, 'Green', 0, 'Destroyed'),
-    (3, 100, 1, 4, 1, 5, '2023-03-07', 25, 'Green', 1, 'Donated'),
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters fromm for Second cutting on Mother 3 '2023-03-28'
-    (3, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Kept'),
-    (3, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Sold'),
-    (3, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 0, 'Destroyed'),
-    (3, 100, 1, 2, 1, 15, '2023-03-28', 25, 'Green', 1, 'Donated'),
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters fromm for Third cutting on Mother 3 '2023-03-24'
-    (3, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Kept'),
-    (3, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Sold'),
-    (3, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 0, 'Destroyed'),
-    (3, 100, 1, 2, 1, 25, '2023-04-18', 25, 'Green', 1, 'Donated'),
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
 
-    -- Continue with the same pattern for the remaining mothers and cuttings
-    -- ...
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters fromm for First cutting on Mother 1
-    (1, 100, 1, 1, 1, 5, '2023-03-07', 25, 'Green', 1, 'Kept'),
-    (1, 100, 1, 2, 1, 5, '2023-03-07', 25, 'Green', 1, 'Sold'),
-    (1, 100, 1, 3, 1, 5, '2023-03-07', 25, 'Green', 0, 'Destroyed'),
-    (1, 100, 1, 4, 1, 5, '2023-03-07', 25, 'Green', 1, 'Donated'),
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters fromm for Second cutting on Mother 1 '2023-03-28'
-    (1, 100, 1, 2, 2, 15, '2023-03-28', 25, 'Green', 1, 'Kept'),
-    (1, 100, 1, 2, 2, 15, '2023-03-28', 25, 'Green', 1, 'Sold'),
-    (1, 100, 1, 2, 2, 15, '2023-03-28', 25, 'Green', 0, 'Destroyed'),
-    (1, 100, 1, 2, 2, 15, '2023-03-28', 25, 'Green', 1, 'Donated'),
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
 
-    -- Daughters fromm for Third cutting on Mother 1 '2023-03-24'
-    (1, 100, 1, 2, 3, 25, '2023-04-18', 25, 'Green', 1, 'Kept'),
-    (1, 100, 1, 2, 3, 25, '2023-04-18', 25, 'Green', 1, 'Sold'),
-    (1, 100, 1, 2, 3, 25, '2023-04-18', 25, 'Green', 0, 'Destroyed'),
-    (1, 100, 1, 2, 3, 25, '2023-04-18', 25, 'Green', 1, 'Donated');
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
 
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated'),
+
+        -- Daughters from First cutting on Mother 1
+    (1, 100, '2023-03-07', 1, 'Kept'),
+    (2, 100, '2023-03-07', 1, 'Sold'),
+    (3, 100, '2023-03-07', 0, 'Destroyed'),
+    (4, 100, '2023-03-07', 1, 'Donated'),
+
+    -- Daughters from Second cutting on Mother x
+    (5, 100, '2023-03-28', 1, 'Kept'),
+    (6, 100, '2023-03-28', 1, 'Sold'),
+    (7, 100, '2023-03-28', 0, 'Destroyed'),
+    (8, 100, '2023-03-28', 1, 'Donated'),
+
+    -- Daughters from Third cutting on Mother x
+    (9, 100, '2023-04-18', 1, 'Kept'),
+    (10, 100, '2023-04-18', 1, 'Sold'),
+    (11, 100, '2023-04-18', 0, 'Destroyed'),
+    (12, 100, '2023-04-18', 1, 'Donated');
 
 -- Create constraints, triggers, and other database-specific configurations as required.
 -- Ensure data types, default values, and cascading actions are appropriately defined.
