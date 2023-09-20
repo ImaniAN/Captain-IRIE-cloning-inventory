@@ -1067,481 +1067,481 @@ VALUES
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 1
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 1
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-    -- Daughters from First cutting on Mother 1
+    -- Daughters from First cutting on Mother 2
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 2
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 2
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 3
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 3
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 3
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 4
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 4
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 4
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 5
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 5
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 5
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 6
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 6
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 6
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 7
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 7
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 7
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 8
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 8
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 8
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 9
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 9
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 9
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 10
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 10
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 10
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 11
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 11
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 11
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 12
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 12
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 12
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 13
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 13
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 13
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 14
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 14
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 14
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 15
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 15
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 15
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 16
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 16
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 16
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 17
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 17
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 17
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 18
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 18
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 18
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 19
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 19
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 19
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 20
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 20
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 20
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 21
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 21
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 21
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 22
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 22
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 22
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 23
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 23
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 23
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 24
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 24
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 24
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 25
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 25
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 25
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 26
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 26
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 26
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
     (12, 100, '2023-04-18', 1, 'Donated'),
 
-        -- Daughters from First cutting on Mother 1
+        -- Daughters from First cutting on Mother 27
     (1, 100, '2023-03-07', 1, 'Kept'),
     (2, 100, '2023-03-07', 1, 'Sold'),
     (3, 100, '2023-03-07', 0, 'Destroyed'),
     (4, 100, '2023-03-07', 1, 'Donated'),
 
-    -- Daughters from Second cutting on Mother x
+    -- Daughters from Second cutting on Mother 27
     (5, 100, '2023-03-28', 1, 'Kept'),
     (6, 100, '2023-03-28', 1, 'Sold'),
     (7, 100, '2023-03-28', 0, 'Destroyed'),
     (8, 100, '2023-03-28', 1, 'Donated'),
 
-    -- Daughters from Third cutting on Mother x
+    -- Daughters from Third cutting on Mother 27
     (9, 100, '2023-04-18', 1, 'Kept'),
     (10, 100, '2023-04-18', 1, 'Sold'),
     (11, 100, '2023-04-18', 0, 'Destroyed'),
