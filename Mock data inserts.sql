@@ -13,42 +13,6 @@ VALUES
     ('Cannabis', 'Indica'),
     ('Cannabis', 'Hybrid');
 
-INSERT INTO PhenotypicMarker (MarkerName, GeneticMarkerID, NumberOfBranches, Height, LeafColour)
-VALUES
-    -- Cannabis Sativa specific PhenotypicMarkers
-    ('Seedling Stage (Sativa)', 1, 2, 5, 'Green (Light)'),
-    ('Early Vegetative Stage (Sativa)', 1, 6, 20, 'Green (Medium)'),
-    ('Late Vegetative Stage (Sativa)', 1, 12, 40, 'Green (Dark)'),
-    ('Pre-Flowering Stage (Sativa)', 1, 13, 70, 'Green (Dark)'),
-    ('Early Flowering Stage (Sativa)', 1, 24, 100, 'Varied (Light to Dark)'),
-    ('Mid-Flowering Stage (Sativa)', 1, 30, 150, 'Varied (Light to Dark)'),
-    ('Late Flowering Stage (Sativa)', 1, 36, 200, 'Varied (Light to Dark)'),
-    ('Mid-Maturity Stage (Sativa)', 1, 42, 220, 'Autumn Colors'),
-    ('Mid-Harvest Stage (Sativa)', 1, 48, 240, 'Drying and Curing'),
-    ('Post-Harvest Stage (Sativa)', 1, 50, 254, 'Drying and Curing'),
-    -- Cannabis Indica specific PhenotypicMarkers
-    ('Seedling Stage (Indica)', 2, 2, 5, 'Green (Light)', ),
-    ('Early Vegetative Stage (Indica)', 2, 6, 20, 'Green (Medium)'),
-    ('Late Vegetative Stage (Indica)', 2, 12, 40, 'Green (Dark)'),
-    ('Pre-Flowering Stage (Indica)', 2, 13, 70, 'Green (Dark)'),
-    ('Early Flowering Stage (Indica)', 2, 24, 100, 'Varied (Light to Dark)'),
-    ('Mid-Flowering Stage (Indica)', 2, 30, 150, 'Varied (Light to Dark)'),
-    ('Late Flowering Stage (Indica)', 2, 36, 200, 'Varied (Light to Dark)'),
-    ('Mid-Maturity Stage (Indica)', 2, 42, 220, 'Autumn Colors'),
-    ('Mid-Harvest Stage (Indica)', 2, 48, 240, 'Drying and Curing'),
-    ('Post-Harvest Stage (Indica)', 2, 50, 254, 'Drying and Curing'),
-    -- Cannabis Hybrid specific PhenotypicMarkers
-    ('Seedling Stage (Hybrid)', 3, 2, 5, 'Green (Light)', ),
-    ('Early Vegetative Stage (Hybrid)', 3, 6, 20, 'Green (Medium)'),
-    ('Late Vegetative Stage (Hybrid)', 3, 12, 40, 'Green (Dark)'),
-    ('Pre-Flowering Stage (Hybrid)', 3, 13, 70, 'Green (Dark)'),
-    ('Early Flowering Stage (Hybrid)', 3, 24, 100, 'Varied (Light to Dark)'),
-    ('Mid-Flowering Stage (Hybrid)', 3, 30, 150, 'Varied (Light to Dark)'),
-    ('Late Flowering Stage (Hybrid)', 3, 36, 200, 'Varied (Light to Dark)'),
-    ('Mid-Maturity Stage (Hybrid)', 3, 42, 220, 'Autumn Colors'),
-    ('Mid-Harvest Stage (Hybrid)', 3, 48, 240, 'Drying and Curing'),
-    ('Post-Harvest Stage (Hybrid)', 3, 50, 254, 'Drying and Curing', 'May Change');
-
 -- Insert data into Strain Table
 INSERT INTO Strain (NickName, FirstName, MiddleName, LastName, BreederVendorID, GeneticMarkerID) --Mock data reflects 3 species from 3 "real clients"
 VALUES
@@ -207,7 +171,7 @@ VALUES
 -- 27 mothers
 -- SproutDate + 60 days = DateMothered (2023-02-07)
 -- NumberOfBranches = 666
-INSERT INTO Mothers (SeedlingID, DateMothered, NumberOfBranches, LeafColour, PhenotypicMarkerID, GeneticMarkerID, StrainID)
+INSERT INTO Mothers (SeedlingID, DateMothered, NumberOfBranches, LeafColour, ,, GeneticMarkerID, StrainID)
 VALUES
     (1, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1),   -- Mother 1
     (2, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1),   -- Mother 2
@@ -1099,7 +1063,7 @@ VALUES
 -- Daughters from First cutting on Mother 1
 --(2023-03-07)
 -- Insert data into Daughter Table
-INSERT INTO Daughter (MotherID, Price, Packaged, TransplantID, GeneticMarkerID, PhenotypicMarkerID, DateDaughtered, Age, LeafColour, HealthStatus, Fate)
+INSERT INTO Daughter (MotherID, Price, Packaged, TransplantID, GeneticMarkerID, DateDaughtered, Age, LeafColour, HealthStatus, Fate)
 VALUES
     -- Daughters fromm for First cutting on Mother 1
     (1, 100, 1, 1, 1, 5, '2023-03-07', 25, 'Green', 1, 'Kept'),
