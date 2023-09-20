@@ -18,7 +18,6 @@ CREATE TABLE GeneticMarker (
 );
 
 -- Create the Strain Table
--- NOT NULL
 CREATE TABLE Strain (
     StrainID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     NickName VARCHAR(150),
@@ -34,10 +33,9 @@ CREATE TABLE Strain (
 );
 
 -- Create the StrainSeedBag Table
--- NOT NULL
 CREATE TABLE StrainSeedBag (
     StrainSeedBagID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    StrainSeedBagName VARCHAR(150) NOT NULL,,
+    StrainSeedBagName VARCHAR(150) NOT NULL,
     PackageUnits INT NOT NULL,
     DateReceived DATE GETDATE() DEFAULT NOT NULL,
     StrainID INT NOT NULL,
@@ -67,7 +65,6 @@ CREATE TABLE Seedling (
     SeedlingID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     SeedID INT NOT NULL,
     SproutDate DATE GETDATE() DEFAULT NOT NULL,
-    HealthStatus BOOLEAN NOT NULL,
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
       ON UPDATE CASCADE ON DELETE CASCADE
 );
