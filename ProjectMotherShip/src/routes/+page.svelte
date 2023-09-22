@@ -1,4 +1,7 @@
 <!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
+<script>
+    export let data;
+  </script>
 
 <div class="container h-full mx-auto flex justify-center items-center">
 	<div class="space-y-5">
@@ -10,6 +13,11 @@
 			<li>
 				<code class="code">/src/routes/+page.svelte</code> - this page, you can replace the contents
 			</li>
+			<ul>
+				{#each data.strains as strain}
+				  <li>{strain.nickname}</li>
+				{/each}
+			  </ul>
 		</ul>
 	</div>
 </div>
