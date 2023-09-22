@@ -1203,7 +1203,7 @@ values
     (116, 100, '2023-04-18', true, 'kept'),
     (117, 100, '2023-04-18', true, 'sold'),
     (118, 100, '2023-04-18', false, 'destroyed'),
-    (119, 100, '2023-04-18', true, 'donated'),
+    (119, 100, '2023-04-18', true, 'donated'), 
 
         -- daughters from first cutting on mother 9
     (121, 100, '2023-03-07', true, 'kept'),
@@ -1215,7 +1215,7 @@ values
     (126, 100, '2023-03-28', true, 'kept'),
     (127, 100, '2023-03-28', true, 'sold'),
     (128, 100, '2023-03-28', false, 'destroyed'),
-    (129, 100, '2023-03-28', true, 'donated'),
+    (129, 100, '2023-03-28', true, 'donated'), --Transplant IDCheckeced
 
     -- daughters from third cutting on mother 9
     (131, 100, '2023-04-18', true, 'kept'),
@@ -1466,8 +1466,8 @@ values
     -- daughters from second cutting on mother 23
     (336, 100, '2023-03-28', true, 'kept'),
     (337, 100, '2023-03-28', true, 'sold'),
-    (238, 100, '2023-03-28', false, 'destroyed'),
-    (339, 100, '2023-03-28', true, 'donated'),
+    (338, 100, '2023-03-28', false, 'destroyed'),
+    (339, 100, '2023-03-28', true, 'donated'), --Transplant IDCheckeced
 
     -- daughters from third cutting on mother 23
     (341, 100, '2023-04-18', true, 'kept'),
