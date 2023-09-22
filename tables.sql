@@ -115,7 +115,7 @@ create table
     TransplantID bigint not null unique,
     Price smallint not null,
     DateDaughtered timestamp with time zone default now() not null,
-    HealthStatus boolean not null,
+    A1Healthy boolean not null,
     Fate text not null,
     foreign key (TransplantID) references Transplant (TransplantID) on update cascade on delete cascade
   );
