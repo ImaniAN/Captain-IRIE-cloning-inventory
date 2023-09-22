@@ -13,7 +13,7 @@ VALUES
     ('Cannabis', 'Hybrid');
 
 -- Insert data into Strain Table
-INSERT INTO Strain (NickName, FirstName, MiddleName, LastName, BreederVendorID, GeneticMarkerID) --Mock data reflects 3 species from 3 "real clients"
+INSERT INTO Strain (NickName, FirstName, MiddleName, LastName, BreederVendorID, GeneticMarkerID) --Mock data reflects 3 species from 3 "real SeedBreederVendors"
 VALUES
     ('Strain1', 'FirstS', 'MiddleMSA', 'Last1', 1, 1), -- Strain1 is a Sativa from MarijuanaSouthAfrica
     ('Strain2', 'FirstS', 'MiddleGWA', 'Last2', 2, 1), -- Strain2 is a Sativa from GrowWeedAfrica
@@ -168,7 +168,7 @@ VALUES
     (27, '2023-01-07');  -- Seedling 27
 
 -- Insert data into Mothers Table
--- SproutDate + 60 days = DateMothered (2023-02-07)
+-- SproutDate + (+-60 days) = DateMothered (2023-02-07)
 INSERT INTO Mothers (SeedlingID, DateMothered)
 VALUES
     (1, '2023-02-07'),   -- Mother 1
