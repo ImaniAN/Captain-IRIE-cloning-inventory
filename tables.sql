@@ -6,20 +6,20 @@ USE ProjectMotherShip;
 
 -- Create the Seed Breeder Vendor Table
 CREATE TABLE SeedBreederVendor (
-    BreederVendorID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    BreederVendorID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     VendorName VARCHAR(150) UNIQUE NOT NULL
 );
 
 -- Create the Genetic Marker Table
 CREATE TABLE GeneticMarker (
-    GeneticMarkerID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    GeneticMarkerID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     Genus VARCHAR(100) NOT NULL,
     Species VARCHAR(100) UNIQUE NOT NULL
 );
 
 -- Create the Strain Table
 CREATE TABLE Strain (
-    StrainID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    StrainID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     NickName VARCHAR(150),
     FirstName VARCHAR(150),
     MiddleName VARCHAR(150),
@@ -34,7 +34,7 @@ CREATE TABLE Strain (
 
 -- Create the StrainSeedBag Table
 CREATE TABLE StrainSeedBag (
-    StrainSeedBagID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    StrainSeedBagID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     StrainSeedBagName VARCHAR(150) NOT NULL,
     PackageUnits INT NOT NULL,
     DateReceived DATE GETDATE() DEFAULT NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE StrainSeedBag (
 
 -- Create the Seed Table
 CREATE TABLE Seed (
-    SeedID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    SeedID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     StrainSeedBagID INT NOT NULL,
     FOREIGN KEY (StrainSeedBagID) REFERENCES StrainSeedBag(StrainSeedBagID)
         ON UPDATE CASCADE ON DELETE CASCADE
@@ -53,7 +53,7 @@ CREATE TABLE Seed (
 
 -- Create the Seeding Table
 CREATE TABLE Seeding (
-    SeedingID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    SeedingID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     SeedID INT NOT NULL,
     DatePlanted DATE GETDATE() DEFAULT NOT NULL,
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
@@ -62,7 +62,7 @@ CREATE TABLE Seeding (
 
 -- Create the Seedling Table
 CREATE TABLE Seedling (
-    SeedlingID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    SeedlingID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     SeedID INT NOT NULL,
     SproutDate DATE GETDATE() DEFAULT NOT NULL,
     FOREIGN KEY (SeedID) REFERENCES Seed(SeedID)
@@ -71,7 +71,7 @@ CREATE TABLE Seedling (
 
 -- Create the Mothers Table
 CREATE TABLE Mothers (
-    MotherID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    MotherID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     SeedlingID INT NOT NULL,
     DateMothered DATE GETDATE() DEFAULT NOT NULL,
     FOREIGN KEY (SeedlingID) REFERENCES Seedling(SeedlingID)
@@ -80,7 +80,7 @@ CREATE TABLE Mothers (
 
 -- Create the Maturity Table
 CREATE TABLE Maturity (
-    MaturityID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    MaturityID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     MotherID INT NOT NULL,
     DateOfMaturityCheck DATE GETDATE() DEFAULT NOT NULL,
     Height INT NOT NULL,
@@ -91,7 +91,7 @@ CREATE TABLE Maturity (
 
 -- Create the Cutting Table
 CREATE TABLE Cutting (
-    CutID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    CutID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     MaturityID INT NOT NULL,
     CutDate DATE GETDATE() DEFAULT NOT NULL,
     NumberOfCuts SMALLINT NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE Cutting (
 
 -- Create the Transplant Table
 CREATE TABLE Transplant (
-    TransplantID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    TransplantID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     CutID INT NOT NULL,
     TransplantDate DATE GETDATE() DEFAULT NOT NULL,
     FOREIGN KEY (CutID) REFERENCES Cutting(CutID)
@@ -110,7 +110,7 @@ CREATE TABLE Transplant (
 
 -- Create the Daughter Table
 CREATE TABLE Daughter (
-    DaughterID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    DaughterID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     TransplantID INT UNIQUE NOT NULL,
     Price SMALLINT NOT NULL,
     DateDaughtered DATE GETDATE() DEFAULT NOT NULL,
