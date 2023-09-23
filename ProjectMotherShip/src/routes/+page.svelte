@@ -1,23 +1,17 @@
 <!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
 <script>
-    export let data;
-  </script>
+	export let data;
+</script>
 
 <div class="container h-full mx-auto flex justify-center items-center">
 	<div class="space-y-5">
-		<h1 class="h1">Let's get cracking bones!</h1>
-		<p>Start by exploring:</p>
+		<h1 class="h1">Welcome to the Captain Irie Farms</h1>
+		<h1 class="h1">Cloning Inventory Management System!</h1>
+		<p>Start by exploring:()</p>
 		<ul>
-			<li><code class="code">/src/routes/+layout.svelte</code> - barebones layout</li>
-			<li><code class="code">/src/app.postcss</code> - app wide css</li>
-			<li>
-				<code class="code">/src/routes/+page.svelte</code> - this page, you can replace the contents
-			</li>
-			<ul>
-				{#each data.strains as strain}
-				  <li>{strain.nickname}</li>
-				{/each}
-			  </ul>
+			{#each data.strains as strain}
+				<li>{strain.nickname}</li>
+			{/each}
 		</ul>
 	</div>
 </div>
