@@ -11,7 +11,7 @@ INSERT INTO GeneticMarker (Genus, Species)
 VALUES
     ('Cannabis', 'Sativa'),
     ('Cannabis', 'Indica'),
-    ('Cannabis', 'Hybrid');
+    ('Cannabis', 'Hybrid'); 
 
 -- Insert data into Strain Table
 INSERT INTO Strain (NickName, FirstName, MiddleName, LastName, BreederVendorID, GeneticMarkerID) --Mock data reflects 3 species from 3 "real clients"
@@ -171,7 +171,7 @@ VALUES
 -- 27 mothers
 -- SproutDate + 60 days = DateMothered (2023-02-07)
 -- NumberOfBranches = 666
-INSERT INTO Mothers (SeedlingID, DateMothered, NumberOfBranches, LeafColour, ,, GeneticMarkerID, StrainID)
+INSERT INTO Mothers (SeedlingID, DateMothered, NumberOfBranches, LeafColour, GeneticMarkerID, StrainID)
 VALUES
     (1, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1),   -- Mother 1
     (2, '2023-02-07', 11, 'Green (Dark)', 3, 1, 1),   -- Mother 2
@@ -483,7 +483,7 @@ INSERT INTO Cutting (MotherID, NumberOfCuts, CutDate)
     (27, 5, '2023-03-03'),
     (27, 5, '2023-03-24');
 
--- Insert data into Transplant Table -- 3 cuttings * 16 cuts * 27 mothers = 1296transplat entries 
+-- Insert data into Transplant Table -- 3 cuttings * 16 cuts * 27 mothers = 1296 transplat entries 
 -- TransplantDate = CutDate + 13 days
 -- 27 Mothers
 -- 16 cuts per marutity check 

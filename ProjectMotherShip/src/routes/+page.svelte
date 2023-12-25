@@ -9,8 +9,8 @@
 		<h1 class="h1">Cloning Inventory Management System!</h1>
 		<p>Start by exploring:()</p>
 		<ul>
-			{#each data.strains as strain}
-				<li>{strain.nickname}</li>
+			{#each data.geneticmarker as geneticmarkers}
+				<li>{geneticmarkers.species}</li>
 			{/each}
 		</ul>
 	</div>

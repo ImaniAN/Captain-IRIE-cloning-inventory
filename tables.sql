@@ -27,7 +27,7 @@ create table
     MiddleName text,
     LastName text,
     BreederVendorID bigint not null,
-    GeneticMarkerID bigint not null,
+    GeneticMarkerID bigint not null, 
     foreign key (BreederVendorID) references SeedBreederVendor (BreederVendorID) on update cascade on delete cascade,
     foreign key (GeneticMarkerID) references GeneticMarker (GeneticMarkerID) on update cascade on delete cascade
   );
